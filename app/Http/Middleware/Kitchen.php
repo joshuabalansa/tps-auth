@@ -32,7 +32,7 @@ class Kitchen
         }
         if($user->role == 2) {
             
-            return redirect('/admin');
+            return redirect('/admin/dashboard');
         }
         if($user->role == 3) {
             

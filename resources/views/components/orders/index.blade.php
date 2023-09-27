@@ -7,13 +7,19 @@
     <title>ORders</title>
     <script src="https://cdn.tailwindcss.com"></script>
     @vite(['resources/css/app.css','resources/js/app.js'])
-    @livewireStyles
 </head>
 <body>
     @php use Carbon\Carbon; @endphp
 <nav class="bg-gray-700 p-4 mb-3">
-    <div class="container mx-auto">
+    <div class="container mx-auto flex justify-between text-white">
         <h1 class="text-2xl font-bold text-white">Orders</h1>
+        <a class="dropdown-item" href="{{ route('logout') }}"
+        onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();">
+            <i class="fe-log-out"></i>
+            {{ __('Logout') }}
+        </a>
+                      
     </div>
 </nav>
 <div class="container mx-auto">
@@ -78,6 +84,8 @@
         });
     });
 </script>
-
+<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+    @csrf
+   </form>
 </body>
 </html>

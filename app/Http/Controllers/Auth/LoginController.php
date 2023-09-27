@@ -57,7 +57,7 @@ class LoginController extends Controller
                     break;
 
                 case 2:
-                    return redirect('/admin');
+                    return redirect('/admin/dashboard');
                     break;
 
                 case 3:
@@ -65,7 +65,7 @@ class LoginController extends Controller
                     break;
                     
                 case 4: 
-                    return redirect('/kitchen');
+                    return redirect('/order');
                     break;
 
                 default:
