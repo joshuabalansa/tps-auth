@@ -49,7 +49,7 @@
     
                
                     <li>
-                        <a href="/">
+                        <a href="{{ route('admin') }}">
                             <i class="mdi mdi-view-dashboard-outline"></i>
                             <span> Dashboard </span>
                         </a>

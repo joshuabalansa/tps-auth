@@ -30,16 +30,19 @@ class StockController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
-        $validate = $request->validate([
-            'item' => 'required',
-            'manufacturer' => 'required',
-            'description' => 'required',
-            'quantity' => 'required',
-            'cost' => 'required'
-        ]);
-        Stock::create($validate);
-        return redirect()->route('stocks.index')->with('success', 'Item has been added');
+        // try {
+            $validate = $request->validate([
+                'item' => 'required',
+                'manufacturer' => 'required',
+                'description' => 'required',
+                'quantity' => 'required',
+                'cost' => 'required'
+            ]);
+            Stock::create($validate);
+            return redirect()->route('stocks.index')->with('success', 'Item has been added');
+        // } catch(\Exception $e) {
+        //     return redirect()->route('stocks.index')->with('error', 'Something went wrong!');
+        // }
     }
 
     /**

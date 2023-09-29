@@ -8,6 +8,8 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request; // Add this line at the top if not already added
+use Auth;
 
 class RegisterController extends Controller
 {
@@ -51,11 +53,19 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'email' => ['required', 'string', 'max:255', 'unique:users'],
             'role' => ['required'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
+    protected function registered(Request $request, $user)
+{
+    // Logout the user
+    Auth::logout();
+
+    // Redirect the user to a different page after registration
+    return redirect('/'); // Redirect to the homepage or any other desired route
+}
 
     /**
      * Create a new user instance after a valid registration.

@@ -6,7 +6,7 @@
     <x-admin.dashboard.page-title />
     <!-- end page title -->  --}}
 
-    <x-admin.dashboard.dashboard-card />
+    <x-admin.dashboard.dashboard-card :stocks="$stocks" />
 
     {{-- <x-admin.dashboard.dashboard-analytics /> --}}
     

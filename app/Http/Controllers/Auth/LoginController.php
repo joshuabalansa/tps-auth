@@ -43,7 +43,7 @@ class LoginController extends Controller
     protected function login(Request $request) {
 
         $credentials = $request->validate([
-            'email' => 'required|email',
+            'email' => 'required',
             'password' => 'required'
         ]);
 
@@ -57,15 +57,15 @@ class LoginController extends Controller
                     break;
 
                 case 2:
-                    return redirect('/admin/dashboard');
+                    return redirect()->route('admin');
                     break;
 
                 case 3:
-                    return redirect('/cashier');
+                    return redirect()->route('cashier.index');
                     break;
                     
                 case 4: 
-                    return redirect('/order');
+                    return redirect()->route('order.index');
                     break;
 
                 default:

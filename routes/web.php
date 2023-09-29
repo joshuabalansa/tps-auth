@@ -11,6 +11,7 @@
 */
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CashierController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\MenuController;
@@ -37,7 +38,7 @@ Route::get('superadmin', function() {
 
 //Menu Controllers
 Route::prefix('admin')->group(function() {
-    Route::get('dashboard', 'App\Http\Controllers\DashboardController@index')->middleware('admin');
+    Route::get('dashboard', [DashboardController::class, 'index'])->name('admin')->middleware('admin');
    
     Route::prefix('menu')->group(function() {
         Route::get('/',              [MenuController::class, 'index'])->name('menu.index')->middleware('admin');
