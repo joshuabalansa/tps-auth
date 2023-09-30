@@ -6,7 +6,7 @@
             <div class="card-body">
                 <h4 class="header-title mb-4">Monthly Sales</h4>
                 <div class="table-responsive">
-                    <table class="table table-hover m-0 table-centered dt-responsive nowrap w-100" id="tickets-table">
+                    <table id="datatable-buttons" class="table table-striped dt-responsive nowrap w-100">
                         <thead>
                         <tr>
                             <th>Month</th>

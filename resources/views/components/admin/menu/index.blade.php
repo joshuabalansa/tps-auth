@@ -98,7 +98,7 @@
         <div class="card">
             <div class="card-body">
                 <a href="{{ route('menu.create') }}" class="btn btn-sm btn-blue waves-effect waves-light float-end">
-                    <i class="mdi mdi-plus-circle"></i> Add Menu
+                    <i class="mdi mdi-plus-circle"></i>Add Product
                 </a>
                 <h4 class="header-title mb-4">Manage Products</h4>
 

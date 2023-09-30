@@ -6,7 +6,7 @@
                 <a data-bs-toggle="collapse" href="#cardCollpase5" role="button" aria-expanded="false" aria-controls="cardCollpase5"><i class="mdi mdi-minus"></i></a>
                 <a href="javascript: void(0);" data-toggle="remove"><i class="mdi mdi-close"></i></a>
             </div>
-            <h4 class="header-title mb-0">Top Selling Menu</h4>
+            <h4 class="header-title mb-0">Top Selling</h4>
 
             <div id="cardCollpase5" class="collapse pt-3 show">
                 <div class="table-responsive">

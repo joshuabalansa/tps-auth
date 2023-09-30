@@ -11,7 +11,7 @@
                     @csrf
                     @method('put')
                     <div class="mb-3">
-                        <label for="product-name" class="form-label">Menu Name <span class="text-danger">*</span></label>
+                        <label for="product-name" class="form-label">Name <span class="text-danger">*</span></label>
                         <input type="text" value="{{ $menu->getName() }}" name="name" id="product-name" class="form-control" placeholder="e.g : Burger, Fries">
                     </div>
 

@@ -6,6 +6,7 @@ use App\Models\Order;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Cart;
+
 class CustomerController extends Controller
 {
     public $categories = [];

@@ -75,12 +75,6 @@
                     </div>
                 </li>
                 <li>
-                    <a href="#">
-                        <i class="mdi mdi-domain"></i>
-                        <span> Tables </span>
-                    </a>
-                </li>
-                <li>
                     <a href="#payments" data-bs-toggle="collapse">
                         <i class="fas fa-chart-bar"></i>
                         <span> Reports </span>
