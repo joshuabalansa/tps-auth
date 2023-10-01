@@ -3,7 +3,7 @@
     <div class="h-100" data-simplebar>
 
         <!-- User box -->
-        <div class="user-box text-center">
+        {{-- <div class="user-box text-center">
             <img src="{{ asset('assets/images/users/user-1.jpg') }}" alt="user-img" title="Mat Helme"
                 class="rounded-circle avatar-md">
             <div class="dropdown">
@@ -38,7 +38,7 @@
                 </div>
             </div>
             <p class="text-muted">Admin Head</p>
-        </div>
+        </div> --}}
 
         <!--- Sidemenu -->
         <div id="sidebar-menu">
@@ -115,7 +115,7 @@
                 </li>
 
                 <li>
-                    <a href="#">
+                    <a href="{{ route('reservation.index') }}">
                         <i class="far fa-calendar-alt"></i>
                         <span> Reservations </span>
                     </a>

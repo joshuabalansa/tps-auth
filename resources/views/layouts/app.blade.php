@@ -59,7 +59,8 @@
 
                         <!-- Start Content-->
                         <div class="container-fluid">                 
-                            <x-partials.page-title title="Dashboard" />
+                            {{-- <x-partials.page-title title="Dashboard" /> --}}
+                            <div class="mb-4"></div>
                                 @yield('content')
                         </div> 
 

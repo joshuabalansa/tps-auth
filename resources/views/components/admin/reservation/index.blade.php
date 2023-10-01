@@ -13,7 +13,7 @@
                     </div>
                     <div class="col-6">
                         <div class="text-end">
-                            <h3 class="text-dark mt-1"><span data-plugin="counterup">{{ $stocks->count() }}</span></h3>
+                            <h3 class="text-dark mt-1"><span data-plugin="counterup">123</span></h3>
                             <p class="text-muted mb-1 text-truncate">Total Items</p>
                         </div>
                     </div>
@@ -34,7 +34,7 @@
                     <div class="col-6">
                         <div class="text-end">
                             <h3 class="text-dark mt-1"><span data-plugin="counterup">123</span></h3>
-                            <p class="text-muted mb-1 text-truncate">stocks</p>
+                            <p class="text-muted mb-1 text-truncate">qwe</p>
                         </div>
                     </div>
                 </div> <!-- end row-->
@@ -52,7 +52,7 @@
                     </div>
                     <div class="col-6">
                         <div class="text-end">
-                            <h3 class="text-dark mt-1"><span data-plugin="counterup">12334</span></h3>
+                            <h3 class="text-dark mt-1"><span data-plugin="counterup">123</span></h3>
                             <p class="text-muted mb-1 text-truncate">Available</p>
                         </div>
                     </div>
@@ -71,8 +71,8 @@
                     </div>
                     <div class="col-6">
                         <div class="text-end">
-                            <h3 class="mt-1"><span data-plugin="counterup">6432</span></h3>
-                            <p class="text-muted mb-1 text-truncate">Drafts</p>
+                            <h3 class="mt-1"><span data-plugin="counterup">123</span></h3>
+                            <p class="text-muted mb-1 text-truncate">123</p>
                         </div>
                     </div>
                 </div> <!-- end row-->
@@ -81,66 +81,79 @@
     </div>
 </div>
 <!-- end row -->
+@if (session()->has('flash_notification.message'))
+    <script>
+        toastr.options = {
+            "closeButton": true,
+            "progressBar": true,
+            "positionClass": "toast-top-right",
+            "timeOut": "3000",
+        };
+        toastr["{{ session('flash_notification.level') }}"]("{{ session('flash_notification.message') }}");
+    </script>
+@endif
 
 <div class="row">
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <a href="{{ route('stocks.create') }}" class="btn btn-sm btn-blue waves-effect waves-light float-end">
-                    <i class="mdi mdi-plus-circle"></i> Add Item
+                <a href="#" class="btn btn-sm btn-blue waves-effect waves-light float-end">
+                    <i class="mdi mdi-plus-circle"></i>Add Customer
                 </a>
-                <h4 class="header-title mb-4">Inventory</h4>
+                <h4 class="header-title mb-4">Manage Customer</h4>
+
                 <div class="table-responsive">
                     <table class="table table-hover m-0 table-centered dt-responsive nowrap w-100" id="tickets-table">
                         <thead>
                         <tr>
                             <th>
-                                #
+                            #
                             </th>
-                            <th>Item</th>
+                            <th>Name</th>
                             <th>Description</th>
-                            <th>Manufacturer</th>
-                            <th>Quantity</th>
-                            <th>Cost</th>  
+                            <th>Category</th>
+                            <th>Price</th>
+                            <th>Status</th>  
                             <th class="hidden-sm">Action</th>
                         </tr>
                         </thead>
 
                         <tbody>
-                            @foreach($stocks as $stock)
+                            {{-- @foreach($menus as $menu) --}}
                         <tr>
-                            <td><b>{{ $stock->getId() }}</b></td>
+                            <td>
+                                {{-- <b>{{ $menu->id }}</b> --}}
+                            </td>
                             <td> 
-                                {{ $stock->getItem() }}
+                                {{-- {{ $menu->getName() }} --}}
                             </td>
 
                             <td>
-                                {{ $stock->getDescription() }}
+                                {{-- {{ $menu->getDescription()  }} --}}
                             </td>
 
                             <td>
-                                {{ $stock->getManufacturer() }}
+                                {{-- @foreach($menu->getCategory() as $category)
+                                    {{ $category['category'] }}
+                                @endforeach --}}
                             </td>
 
                             <td>
-                                {{ $stock->getQuantity() }}
+                                {{-- {{ $menu->getPrice() }} --}}
                             </td>
                             <td>
-                                {{ $stock->getCost() }}
+                                {{-- <span class="badge bg-{{$menu->getStatus() == 'Available' ? 'success' : 'warning'}}">{{ $menu->getStatus('status') }}</span> --}}
                             </td>
-                            {{-- <td>
-                                <span class="badge bg-success">{{ $stock->getCost() }}</span>
-                            </td> --}}
                             <td>
                                 <div class="btn-group dropdown">
                                     <a href="javascript: void(0);" class="table-action-btn dropdown-toggle arrow-none btn btn-light btn-sm" data-bs-toggle="dropdown" aria-expanded="false"><i class="mdi mdi-dots-horizontal"></i></a>
                                     <div class="dropdown-menu dropdown-menu-end">
-                                        <a class="dropdown-item" href="{{ route('stocks.edit', $stock->getId()) }}"><i class="mdi mdi-pencil me-2 text-muted font-18 vertical-middle"></i>Edit</a>
-                                        <a class="dropdown-item" href="{{ route('stocks.destroy', $stock->getId()) }}"><i class="mdi mdi-delete me-2 text-muted font-18 vertical-middle"></i>Remove</a>                                    </div>
+                                        {{-- <a class="dropdown-item" href="{{ route('menu.edit', $menu->id) }}"><i class="mdi mdi-pencil me-2 text-muted font-18 vertical-middle"></i>Edit Menu</a> --}}
+                                        {{-- <a class="dropdown-item" href="{{ route('menu.destroy', $menu->id) }}"><i class="mdi mdi-delete me-2 text-muted font-18 vertical-middle"></i>Remove</a>                                    </div> --}}
                                 </div>
                             </td>
                         </tr>
-                        @endforeach  
+                        {{-- @endforeach  r --}}
                         </tbody>
                     </table>
                 </div>

@@ -364,37 +364,33 @@
                 <div class="dropdown-menu">
                     <!-- item-->
                     <a href="{{ route('menu.create') }}" class="dropdown-item">
-                        <i class="fe-briefcase me-1"></i>
-                        <span>Menu</span>
+                        {{-- <i class="fe-briefcase me-1"></i> --}}
+                        <span>Product</span>
                     </a>
+                    <div class="dropdown-divider"></div>
     
                     <!-- item-->
                     <a href="{{ route('category.index') }}" class="dropdown-item">
-                        <i class="fe-user me-1"></i>
+                        {{-- <i class="fe-user me-1"></i> --}}
                         <span>Category</span>
                     </a>
     
                     <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item">
-                        <i class="fe-bar-chart-line- me-1"></i>
-                        <span>Table</span>
-                    </a>
     
                     <!-- item-->
                     <a href="{{ route('stocks.create') }}" class="dropdown-item">
-                        <i class="fe-settings me-1"></i>
+                        {{-- <i class="fe-settings me-1"></i> --}}
                         <span>Stocks</span>
                     </a>
                     <a href="javascript:void(0);" class="dropdown-item">
-                        <i class="fe-settings me-1"></i>
+                        {{-- <i class="fe-settings me-1"></i> --}}
                         <span>Customer</span>
                     </a>
     
-                    <div class="dropdown-divider"></div>
-    
+                    
                     <!-- item-->
                     <a href="{{ route('staff.create') }}" class="dropdown-item">
-                        <i class="fe-headphones me-1"></i>
+                        {{-- <i class="fe-headphones me-1"></i> --}}
                         <span>Staff</span>
                     </a>
     

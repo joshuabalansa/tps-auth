@@ -18,6 +18,7 @@ use App\Http\Controllers\MenuController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\StaffController;
+use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
@@ -84,6 +85,10 @@ Route::prefix('admin')->group(function() {
         Route::get('edit/{staff}',    [StaffController::class, 'edit'])->name('staff.edit')->middleware('admin');
         Route::put('update/{staff}',  [StaffController::class, 'update'])->name('staff.update')->middleware('admin');
         Route::get('destroy/{staff}', [StaffController::class, 'destroy'])->name('staff.destroy')->middleware('admin');
+    });
+
+    Route::prefix('reservation')->group(function() {
+        Route::get('/', [ReservationController::class, 'index'])->name('reservation.index')->middleware('admin');
     });
 
 });
