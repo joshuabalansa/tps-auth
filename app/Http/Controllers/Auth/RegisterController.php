@@ -58,14 +58,18 @@ class RegisterController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
-    protected function registered(Request $request, $user)
-{
-    // Logout the user
-    Auth::logout();
-
-    // Redirect the user to a different page after registration
-    return redirect('/'); // Redirect to the homepage or any other desired route
-}
+    /**
+     * Undocumented function
+     *
+     * @param Request $request
+     * @param array $user
+     * @return void
+     */
+    protected function registered(Request $request, $user) {
+        
+        Auth::logout();    
+        return redirect('/'); 
+    }
 
     /**
      * Create a new user instance after a valid registration.

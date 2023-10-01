@@ -59,7 +59,7 @@
                 <li class="menu-title mt-2">Apps</li>
                 <li>
                     <a href="#sidebarEcommerce" data-bs-toggle="collapse">
-                        <i class="mdi mdi-hamburger"></i>
+                        <i class="fas fa-cart-plus"></i>
                         <span> Products </span>
                         <span class="menu-arrow"></span>
                     </a>
@@ -74,6 +74,14 @@
                         </ul>
                     </div>
                 </li>
+                
+                <li>
+                    <a href="{{ route('reports.orders') }}">
+                        <i class="fas fa-credit-card"></i>
+                        <span> Payments </span>
+                    </a>
+                </li>
+
                 <li>
                     <a href="#payments" data-bs-toggle="collapse">
                         <i class="fas fa-chart-bar"></i>
@@ -83,14 +91,15 @@
                     <div class="collapse" id="payments">
                         <ul class="nav-second-level">
                             <li>
-                                <a href="{{ route('reports.orders') }}">Order History</a>
+                                <a href="{{ route('daily.reports') }}">Daily Income</a>
                             </li>
                             <li>
-                                <a href="{{ route('reports.sales') }}">Monthly Sales</a>
+                                <a href="{{ route('monthly.reports') }}">Monthly Income</a>
                             </li>
                         </ul>
                     </div>
                 </li>
+
                 <li>
                     <a href="{{ route('stocks.index') }}">
                         <i class="mdi mdi-dropbox"></i>
@@ -107,14 +116,7 @@
 
                 <li>
                     <a href="#">
-                        <i class="fas fa-chart-bar"></i>
-                        <span> Payments </span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="#">
-                        <i class="mdi mdi-domain"></i>
+                        <i class="far fa-calendar-alt"></i>
                         <span> Reservations </span>
                     </a>
                 </li>

@@ -23,7 +23,11 @@ class ReportController extends Controller
         return view('components.admin.reports.order-history', compact('transactions', 'approvedOrders', 'cancelledOrders'));
     }
 
-    public function salesReport() {
+    /**
+     * returns with the monthly total
+     * @return \Illuminate\View\View
+     */
+    public function monthlyReport() {
         
         $transactions = Transaction::all();
 
@@ -39,6 +43,28 @@ class ReportController extends Controller
             return $transaction->sum('amount');
         });
         
-        return view('components.admin.reports.sales-reports', compact('monthlySums', 'transactionByMonth'));
+        return view('components.admin.reports.monthly-reports', compact('monthlySums', 'transactionByMonth'));
     }
+    
+
+    /**
+     * returns the daily sums
+     * @return \Illuminate\View\View
+     */
+    public function dailyReport() {
+        $transactions = Transaction::all();
+    
+        // Group transactions by day
+        $transactionsByDay = $transactions->groupBy(function($transaction) {
+            return $transaction->created_at->format('Y-m-d');
+        });
+    
+        // Calculate the sum of amount for each day
+        $dailySums = $transactionsByDay->map(function($transactions) {
+            return $transactions->sum('amount');
+        });
+        
+        return view('components.admin.reports.daily-reports', compact('dailySums', 'transactionsByDay'));
+    }
+
 }
