@@ -42,11 +42,11 @@ class MenuController extends Controller
     public function store(Request $request)
 {
         $validatedData = $request->validate([
-            'name' => 'required|min:2',
-            'description' => 'required',
-            'category' => 'required',
-            'price' => ['required', 'numeric'],
-            'status' => '',
+            'name'          => 'required|min:2',
+            'description'   => 'required',
+            'category'      => 'required',
+            'price'         => ['required', 'numeric'],
+            'status'        => '',
             'image' => [
                 'nullable',
                 'image', 
@@ -98,17 +98,22 @@ class MenuController extends Controller
      */
     public function update(Request $request, Menu $menu)
     {
+        try {
+            $validate = $request->validate([
+                'name' => 'required:min:2',
+                'description' => 'required',
+                'category' => 'required',
+                'price' => ['required', 'numeric'],
+                'status' => ''
+            ]);
+            
+            $menu->update($validate);
+            return redirect()->route('menu.index')->with('success', $menu->name . ' Has beed updated');
+        } catch (\Exception $e) {
+            
+            return redirect()->route('menu.index')->with('error', 'Opps! Something went wrong');
+        }
         
-        $validate = $request->validate([
-            'name' => 'required:min:2',
-            'description' => 'required',
-            'category' => 'required',
-            'price' => ['required', 'numeric'],
-            'status' => ''
-        ]);
-        
-        $menu->update($validate);
-        return redirect()->route('menu.index')->with('info', $menu->name . ' Has beed updated');
     }
 
     /**
@@ -118,7 +123,12 @@ class MenuController extends Controller
      */
     public function destroy(Menu $menu)
     {
-        $menu->delete();
-        return redirect()->route('menu.index')->with('danger', 'Item has been deleted!');
+        try {
+            $menu->delete();
+            return redirect()->route('menu.index')->with('danger', 'Item has been deleted!');
+        } catch(\Exception $e) {
+            
+            return redirect()->route('menu.index')->with('error', 'Opps! Something went wrong');
+        }
     }
 }

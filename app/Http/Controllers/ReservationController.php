@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Reservation;
 
 class ReservationController extends Controller
 {
@@ -12,8 +13,8 @@ class ReservationController extends Controller
      */
     public function index()
     {
-        
-        return view('components.admin.reservation.index');
+        $reservations = Reservation::take(10)->get();
+        return view('components.admin.reservation.index', compact('reservations'));
     }
 
     /**
@@ -21,15 +22,42 @@ class ReservationController extends Controller
      */
     public function create()
     {
-        //
+
+        return view('components.admin.reservation.create');
     }
 
     /**
      * Store a newly created resource in storage.
+     * @param array $request
      */
     public function store(Request $request)
     {
-        //
+        try {
+            $validatedData = $request->validate([
+                'firstname'         => 'required',
+                'lastname'          => 'required',
+                'phone'             => 'required',
+                'email'             => '',
+                'table'             => '',
+                'special_request'   => '',
+                'reservation_date'  => 'required'
+            ]);
+
+            $reservation = new Reservation;
+            $reservation->firstname         =   $validatedData['firstname'];
+            $reservation->lastname          =   $validatedData['lastname'];
+            $reservation->phone             =   $validatedData['phone'];
+            $reservation->email             =   $validatedData['email'];
+            $reservation->table             =   '';
+            $reservation->special_request   =   $validatedData['special_request'];
+            $reservation->reservation_date  =   $validatedData['reservation_date'];
+            $reservation->save();
+
+            return redirect()->route('reservation.index')->with('success', 'Resevervation successfuly added');
+        } catch (\Exception $e) {
+
+            return redirect()->route('reservation.index')->with('error', 'Something went wrong, try again');
+        }
     }
 
     /**
@@ -59,8 +87,9 @@ class ReservationController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Reservation $reservation)
     {
-        //
+        $reservation->delete();
+        return redirect()->route('reservation.index')->with('success', 'Reservation Deleted Successfuly');
     }
 }

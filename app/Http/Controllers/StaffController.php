@@ -29,32 +29,29 @@ class StaffController extends Controller
      */
     public function store(Request $request)
     {
-        $validate = $request->validate([
-            'firstname' => 'required|min:2',
-            'middlename' => 'required',
-            'lastname' => 'required|min:2',
-            'address' => 'required',
-            'phone' => 'required|numeric',
-            'email' => 'required|email',
-            'birthdate' => 'required|date',
-            'role' => 'required',
-            'salary' => 'required|numeric',
-            'emergency_number' => 'nullable',
-        ]);
+        try {
+            $validate = $request->validate([
+                'firstname' => 'required|min:2',
+                'middlename' => 'required',
+                'lastname' => 'required|min:2',
+                'address' => 'required',
+                'phone' => 'required|numeric',
+                'email' => 'required|email',
+                'birthdate' => 'required|date',
+                'role' => 'required',
+                'salary' => 'required|numeric',
+                'emergency_number' => 'nullable',
+            ]);
 
-        Staff::create($validate); 
-        return redirect()->route('staff.index')->with('success', 'New staff has been added');
+            Staff::create($validate); 
+            return redirect()->route('staff.index')->with('success', 'New staff has been added');
+        } catch(\Exception $e) {
+            
+            return redirect()->route('staff.index')->with('error', 'Opps! Something went wrong');
+        }
+        
         
     }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
     /**
      * Show the form for editing the specified resource.
      * @param int
@@ -94,8 +91,14 @@ class StaffController extends Controller
      */
     public function destroy(Staff $staff)
     {
-        
-        $staff->delete();
-        return redirect()->route('staff.index')->with('danger', 'Staff has been archived');
+     
+        try {
+
+            $staff->delete();
+            return redirect()->route('staff.index')->with('danger', 'Staff has been archived');
+        } catch(\Exception $e) {
+
+            return redirect()->route('staff.index')->with('error', 'Opps! Something went wrong');
+        }
     }
 }

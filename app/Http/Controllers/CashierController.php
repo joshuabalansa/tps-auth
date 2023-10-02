@@ -26,8 +26,13 @@ class CashierController extends Controller
      */
     public function cancel($orderId)
     {
-        Order::where(['order_number' => $orderId])
-             ->update(['status' => 'cancelled']);
-        return redirect()->route('cashier.index')->with('warning', 'Order ' . $orderId . ' has been cancelled');
+        try {
+            Order::where(['order_number' => $orderId])->update(['status' => 'cancelled']);
+            return redirect()->route('cashier.index')->with('success', 'Order ' . $orderId . ' has been cancelled');
+        } catch(\Exception $e) {
+            
+            return redirect()->route('cashier.index')->with('error', 'Something went wrong, try again');
+        }
+       
     }
 }

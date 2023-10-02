@@ -30,7 +30,8 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
+        try {
+            $validatedData = $request->validate([
             'category_id' => '',
             'category' => 'required|min:3',
         ]);
@@ -39,7 +40,12 @@ class CategoryController extends Controller
         $category->category = $validatedData['category'];
         $category->save();
 
-        return redirect()->route('category.index')->with('success', 'Category has been');
+        return redirect()->route('category.index')->with('success', 'Category has been created');
+        } catch(\Exception $e) {
+            
+            return redirect()->route('category.index')->with('error', 'Opps! Something went wrong');
+        }
+        
 
     }
 
@@ -65,12 +71,18 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        $validatedData = $request->validate([
-            'category' => 'required|min:3',
-        ]);
-        $category->update($validatedData);
+        try {
+            $validatedData = $request->validate([
+                'category' => 'required|min:3',
+            ]);
+            $category->update($validatedData);
 
-        return redirect()->route('category.index')->with('success', 'Category has been');
+            return redirect()->route('category.index')->with('success', 'Category has been');
+        } catch(\Exception $e) {
+            
+            return redirect()->route('category.index')->with('error', 'Opps! Something went wrong');
+        }
+       
     }
 
     /**
@@ -78,7 +90,13 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        $category->delete();
-        return redirect()->route('category.index')->with('danger', 'Category has been deleted');
+        try {
+
+            $category->delete();
+            return redirect()->route('category.index')->with('danger', 'Category has been deleted');
+        } catch(\Exception $e) {
+            
+            return redirect()->route('category.index')->with('error', 'Opps! Something went wrong');
+        }
     }
 }

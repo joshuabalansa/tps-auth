@@ -30,7 +30,7 @@ class StockController extends Controller
      */
     public function store(Request $request)
     {
-        // try {
+        try {
             $validate = $request->validate([
                 'item' => 'required',
                 'manufacturer' => 'required',
@@ -40,9 +40,9 @@ class StockController extends Controller
             ]);
             Stock::create($validate);
             return redirect()->route('stocks.index')->with('success', 'Item has been added');
-        // } catch(\Exception $e) {
-        //     return redirect()->route('stocks.index')->with('error', 'Something went wrong!');
-        // }
+        } catch(\Exception $e) {
+            return redirect()->route('stocks.index')->with('error', 'Something went wrong!');
+        }
     }
 
     /**
@@ -67,15 +67,20 @@ class StockController extends Controller
      */
     public function update(Stock $stock, Request $request)
     {
-        $validate = $request->validate([
-            'item' => 'required',
-            'description' => 'required',
-            'manufacturer' => 'required',
-            'quantity' => 'required',
-            'cost' => 'required'
-        ]);
-        $stock->update($validate);
-        return redirect()->route('stocks.index')->with('info', 'Item has been updated');
+        try {
+            $validate = $request->validate([
+                'item' => 'required',
+                'description' => 'required',
+                'manufacturer' => 'required',
+                'quantity' => 'required',
+                'cost' => 'required'
+            ]);
+            $stock->update($validate);
+            return redirect()->route('stocks.index')->with('info', 'Item has been updated');
+        } catch(\Exception $e) {
+            
+            return redirect()->route('stocks.index')->with('error', 'Opps! Something went wrong');
+        }
     }
 
     /**
@@ -83,7 +88,14 @@ class StockController extends Controller
      */
     public function destroy(Stock $stock)
     {
-        $stock->delete();
-        return redirect()->route('stocks.index')->with('danger', 'Item has been deleted');
+        try {
+
+            $stock->delete();
+            return redirect()->route('stocks.index')->with('danger', 'Item has been deleted');
+        } catch(\Exception $e) {
+            
+            return redirect()->route('stocks.index')->with('error', 'Opps! Something went wrong');
+        }
+       
     }
 }

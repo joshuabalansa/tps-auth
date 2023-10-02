@@ -29,33 +29,38 @@ class CartController extends Controller
      */
     public function store(Menu $menu, Request $request)
     {
-        // Get Category name
-        $category = $menu->getCategory()->pluck('category')->first();
+        try {
+            $category = $menu->getCategory()->pluck('category')->first();
 
-        $cart = new Cart;
-        $cart->menu_id = $menu->id;
-        $cart->menu =  $menu->getName();
-        $cart->category =  $category;
-        $cart->image =  $menu->image;
-        $cart->quantity = $request->qty;
-        $cart->price = $menu->getPrice();
-        $cart->save();
-    
-        // Add cart item to session
-        $cartItem = [
-            'menu_id' => $cart->menu_id,
-            'menu' => $cart->menu,
-            'category' => $cart->category,
-            'image' => $cart->image,
-            'quantity' => $cart->quantity,
-            'price' => $cart->price,
-        ];
-    
-        $cartSession = Session::get('cart', []);
-        $cartSession[] = $cartItem;
-        Session::put('cart', $cartSession);
-    
-        return redirect()->route('cart.index')->with('success', 'Menu has been Added');
+            $cart = new Cart;
+            $cart->menu_id = $menu->id;
+            $cart->menu =  $menu->getName();
+            $cart->category =  $category;
+            $cart->image =  $menu->image;
+            $cart->quantity = $request->qty;
+            $cart->price = $menu->getPrice();
+            $cart->save();
+        
+            // Add cart item to session
+            $cartItem = [
+                'menu_id' => $cart->menu_id,
+                'menu' => $cart->menu,
+                'category' => $cart->category,
+                'image' => $cart->image,
+                'quantity' => $cart->quantity,
+                'price' => $cart->price,
+            ];
+        
+            $cartSession = Session::get('cart', []);
+            $cartSession[] = $cartItem;
+            Session::put('cart', $cartSession);
+        
+            return redirect()->route('cart.index')->with('success', 'Menu has been Added');
+        } catch(\Exception $e) {
+            
+            return redirect()->route('cart.index')->with('error', 'Somthing went wrong, try again');
+        }
+        
     }
 
     /**
