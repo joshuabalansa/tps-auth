@@ -46,15 +46,15 @@
             <ul id="side-menu">
 
                 <li class="menu-title">Navigation</li>
-    
-               
-                    <li>
-                        <a href="{{ route('admin') }}">
-                            <i class="mdi mdi-view-dashboard-outline"></i>
-                            <span> Dashboard </span>
-                        </a>
-                    </li>
-      
+
+
+                <li>
+                    <a href="{{ route('admin') }}">
+                        <i class="mdi mdi-view-dashboard-outline"></i>
+                        <span> Dashboard </span>
+                    </a>
+                </li>
+
 
                 <li class="menu-title mt-2">Apps</li>
                 <li>
@@ -74,7 +74,7 @@
                         </ul>
                     </div>
                 </li>
-                
+
                 <li>
                     <a href="{{ route('reports.orders') }}">
                         <i class="fas fa-credit-card"></i>
@@ -120,7 +120,20 @@
                         <span> Reservations </span>
                     </a>
                 </li>
-  
+                <li>
+                    <a href="{{ route('reservation.index') }}">
+                        <i class="far fa-calendar-alt"></i>
+                        <span> Tables </span>
+                    </a>
+                </li>
+                <li>
+                    <a
+                        href="{{ route('logout') }}"onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                        <i class="fe-log-out"></i>
+                        <span> Logout </span>
+                    </a>
+                </li>
+
             </ul>
 
         </div>
@@ -132,3 +145,6 @@
     <!-- Sidebar -left -->
 
 </div>
+<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+    @csrf
+</form>

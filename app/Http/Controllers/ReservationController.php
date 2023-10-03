@@ -63,25 +63,41 @@ class ReservationController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
-    {
+    public function show(string $id) {
         //
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
-    {
-        //
+    public function edit(Reservation $reservation) {
+        
+        return view('components.admin.reservation.edit', compact('reservation'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Reservation $reservation)
     {
-        //
+        try {
+            $validatedData = $request->validate([
+            'firstname'         => 'required',
+            'lastname'          => 'required',
+            'phone'             => 'required',
+            'email'             => '',
+            'table'             => '',
+            'special_request'   => '',
+            'reservation_date'  => 'required'
+            ]);
+
+            $reservation->update($validatedData);
+            return redirect()->route('reservation.index')->with('success', 'Updated successfully');
+            
+        } catch(\Exception $e) {
+            return redirect()->route('reservation.index')->with('error', 'Something went wrong, try again');
+        }
+   
     }
 
     /**

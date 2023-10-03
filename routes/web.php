@@ -88,10 +88,12 @@ Route::prefix('admin')->group(function() {
     });
 
     Route::prefix('reservation')->group(function() {
-        Route::get('/', [ReservationController::class, 'index'])->name('reservation.index')->middleware('admin');
-        Route::get('create', [ReservationController::class, 'create'])->name('reservation.create')->middleware('admin');
-        Route::post('store', [ReservationController::class, 'store'])->name('reservation.store')->middleware('admin');
+        Route::get('/',                     [ReservationController::class, 'index'])->name('reservation.index')->middleware('admin');
+        Route::get('create',                [ReservationController::class, 'create'])->name('reservation.create')->middleware('admin');
+        Route::post('store',                [ReservationController::class, 'store'])->name('reservation.store')->middleware('admin');
         Route::get('destroy/{reservation}', [ReservationController::class, 'destroy'])->name('reservation.destroy')->middleware('admin');
+        Route::get('edit/{reservation}',    [ReservationController::class, 'edit'])->name('reservation.edit')->middleware('admin');
+        Route::put('update/{reservation}',  [ReservationController::class, 'update'])->name('reservation.update')->middleware('admin');
     });
 
 });

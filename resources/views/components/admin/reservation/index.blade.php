@@ -144,9 +144,14 @@
                                                     data-bs-toggle="dropdown" aria-expanded="false"><i
                                                         class="mdi mdi-dots-horizontal"></i></a>
                                                 <div class="dropdown-menu dropdown-menu-end">
-                                                    {{-- <a class="dropdown-item" href="{{ route('menu.edit', $menu->id) }}"><i class="mdi mdi-pencil me-2 text-muted font-18 vertical-middle"></i>Edit Menu</a> --}}
-                                                    <a class="dropdown-item" href="{{ route('reservation.destroy', $reservation->id) }}"><i class="mdi mdi-delete me-2 text-muted font-18 vertical-middle"></i>Remove</a>                                    </div>
+                                                    <a class="dropdown-item"
+                                                        href="{{ route('reservation.edit', $reservation->id) }}"><i
+                                                            class="mdi mdi-pencil me-2 text-muted font-18 vertical-middle"></i>Edit</a>
+                                                    <a class="dropdown-item"
+                                                        href="{{ route('reservation.destroy', $reservation->id) }}"><i
+                                                            class="mdi mdi-delete me-2 text-muted font-18 vertical-middle"></i>Remove</a>
                                                 </div>
+                                            </div>
                                         </td>
                                     </tr>
                                 @endforeach

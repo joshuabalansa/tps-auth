@@ -11,24 +11,24 @@
                         <div class="mb-3">
                             <label for="firstname" class="form-label">Firstname <span class="text-danger">*</span></label>
                             <input type="text" value="{{ old('firstname') }}" name="firstname" id="firstname"
-                                class="form-control" placeholder="Enter customer firstname">
+                                class="form-control" placeholder="Enter customer firstname" required>
                         </div>
                         <div class="mb-3">
                             <label for="lastname" class="form-label">Lastname <span class="text-danger">*</span></label>
                             <input type="text" value="{{ old('lastname') }}" name="lastname" id="lastname"
-                                class="form-control" placeholder="Enter customer lastname">
+                                class="form-control" placeholder="Enter customer lastname" required>
                         </div>
 
 
                         <div class="mb-3">
                             <label for="phone">Phone <span class="text-danger">*</span></label>
-                            <input value="{{ old('phone') }}" name="phone" type="text" class="form-control"
-                                id="phone" placeholder="Enter phone number">
+                            <input value="{{ old('phone') }}" maxlength="11" name="phone" type="text"
+                                class="form-control" id="phone" placeholder="Enter phone number" required>
                         </div>
 
                         <div class="mb-3">
                             <label for="email">Email</label>
-                            <input value="{{ old('email') }}" name="email" type="text" class="form-control"
+                            <input value="{{ old('email') }}" name="email" type="email" class="form-control"
                                 id="phone" placeholder="Enter email">
                         </div>
                 </div>
@@ -40,14 +40,14 @@
             <div class="card">
                 <div class="card-body">
                     <div class="mb-3">
-                        <label class="form-label">Comment</label>
+                        <label class="form-label">Special Request</label>
                         <textarea class="form-control" name="special_request" rows="3" placeholder="Please enter comment"></textarea>
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label">Reservation Date</label>
                         <input value="{{ old('reservation_date') }}" name="reservation_date" type="date"
-                            class="form-control" id="reservation_date">
+                            class="form-control" id="reservation_date" required>
                     </div>
                     {{-- <div class="mb-3">
                                 <label class="mb-2">Status <span class="text-danger">*</span></label>
