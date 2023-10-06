@@ -16,7 +16,7 @@ class ReportController extends Controller
     {
         $transactions = Transaction::all();
 
-        
+
 
         $approvedOrders = Order::where('status', 'approved')->count();
         $cancelledOrders = Order::where('status', 'cancelled')->count();
@@ -28,7 +28,7 @@ class ReportController extends Controller
      * @return \Illuminate\View\View
      */
     public function monthlyReport() {
-        
+
         $transactions = Transaction::all();
 
         // group transaction by month
@@ -42,29 +42,47 @@ class ReportController extends Controller
 
             return $transaction->sum('amount');
         });
-      
+
         return view('components.admin.reports.monthly-reports', compact('monthlySums', 'transactionByMonth'));
     }
-    
+
 
     /**
      * returns the daily sums
      * @return \Illuminate\View\View
      */
-    public function dailyReport() {
+    public static function dailyReport() {
         $transactions = Transaction::all();
-    
+
         // Group transactions by day
         $transactionsByDay = $transactions->groupBy(function($transaction) {
             return $transaction->created_at->format('Y-m-d');
         });
-    
+
         // Calculate the sum of amount for each day
         $dailySums = $transactionsByDay->map(function($transactions) {
             return $transactions->sum('amount');
         });
-        
+
         return view('components.admin.reports.daily-reports', compact('dailySums', 'transactionsByDay'));
+    }
+
+    public static function dailyReports() {
+        $transactions = Transaction::all();
+
+        // Group transactions by day
+        $transactionsByDay = $transactions->groupBy(function($transaction) {
+            return $transaction->created_at->format('Y-m-d');
+        });
+
+        // Calculate the sum of amount for each day
+        $dailySums = $transactionsByDay->map(function($transactions) {
+            return $transactions->sum('amount');
+        });
+
+        return [
+            'dailySums' => $dailySums
+        ];
     }
 
 }
