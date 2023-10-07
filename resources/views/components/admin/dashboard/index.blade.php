@@ -36,8 +36,8 @@
                         </div>
                         <div class="col-6">
                             <div class="text-end">
-                                <h3 class="text-dark my-1"><span data-plugin="counterup">1576</span></h3>
-                                <p class="text-muted mb-1 text-truncate">January's Sales</p>
+                                <h3 class="text-dark my-1"><span data-plugin="counterup">{{ $menuCount }}</span></h3>
+                                <p class="text-muted mb-1 text-truncate">Products</p>
                             </div>
                         </div>
                     </div>
@@ -55,8 +55,8 @@
                         </div>
                         <div class="col-6">
                             <div class="text-end">
-                                <h3 class="text-dark my-1">$<span data-plugin="counterup">8947</span></h3>
-                                <p class="text-muted mb-1 text-truncate">Payouts</p>
+                                <h3 class="text-dark my-1"><span data-plugin="counterup">{{ $categoryCount }}</span></h3>
+                                <p class="text-muted mb-1 text-truncate">Categories</p>
                             </div>
                         </div>
                     </div>
@@ -99,7 +99,7 @@
                             aria-controls="cardCollpase5"><i class="mdi mdi-minus"></i></a>
                         <a href="javascript: void(0);" data-toggle="remove"><i class="mdi mdi-close"></i></a>
                     </div>
-                    <h4 class="header-title mb-0">Top Selling</h4>
+                    <h4 class="header-title mb-0">Sales Analytics</h4>
                     <div id="chart"></div>
 
                     <script>
@@ -107,21 +107,42 @@
                         var monthlySums = @json($monthlySums);
                         var transactionByMonth = @json($transactionByMonth);
 
+                        // Define custom colors for the bars
+                        var customColors = ['#FF5733', '#FFC300', '#33FF57', '#5733FF', '#FF3357'];
+
+                        // Define the chart options
                         var options = {
                             chart: {
-                                type: 'line'
+                                type: 'bar',
+                                height: 350,
                             },
                             series: [{
                                 name: 'Sales',
-                                data: Object.values(monthlySums) // Use the monthly total sales data
+                                data: Object.values(monthlySums), // Use the monthly total sales data
                             }],
                             xaxis: {
-                                categories: Object.keys(transactionByMonth) // Use the months as categories
-                            }
+                                categories: Object.keys(transactionByMonth), // Use the months as categories
+                            },
+                            plotOptions: {
+                                bar: {
+                                    colors: {
+                                        ranges: customColors,
+                                    },
+                                },
+                            },
+                            yaxis: {
+                                labels: {
+                                    formatter: function(value) {
+                                        return "₱" + value.toFixed(2); // Add "$" sign and format to two decimal places
+                                    },
+                                },
+                            },
                         };
 
+                        // Create a new ApexCharts instance
                         var chart = new ApexCharts(document.querySelector("#chart"), options);
 
+                        // Render the chart
                         chart.render();
                     </script>
                 </div> <!-- collapsed end -->
@@ -131,25 +152,3 @@
 
     </div>
 @endsection
-{{-- 
-<div id="chart"></div>
-
-<script>
-    console.log(sales)
-    var options = {
-        chart: {
-            type: 'bar'
-        },
-        series: [{
-            name: 'sales',
-            data: {{ json_encode($totalSales) }}
-        }],
-        xaxis: {
-            categories: {{ json_encode($byMonth) }}
-        }
-    }
-
-    var chart = new ApexCharts(document.querySelector("#chart"), options);
-
-    chart.render();
-</script> --}}

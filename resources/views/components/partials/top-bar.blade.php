@@ -329,7 +329,7 @@ View all
                 </span>
                 <span class="logo-lg">
                     {{-- <img src="{{ asset('assets/images/logo-dark.png') }}" alt="" height="20"> --}}
-                    <span class="logo-lg-text-light">TPS</span>
+                    <span class="logo-lg-text-light">Rabbit Hole TPS</span>
                 </span>
             </a>
 
@@ -339,8 +339,8 @@ View all
                     <span class="logo-lg-text-light">TPS</span>
                 </span>
                 <span class="logo-lg">
-                    {{-- <img src="{{ asset('assets/images/logo-light.png') }}" alt="" height="20">   --}}
-                    <span class="logo-lg-text-light">TPS</span>
+                    {{-- <img src="{{ asset('assets/images/logo-lsight.png') }}" alt="" height="20">   --}}
+                    <span class="logo-lg-text-light">Rabbit Hole TPS</span>
                 </span>
             </a>
         </div>
