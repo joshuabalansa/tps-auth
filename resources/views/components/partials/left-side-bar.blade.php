@@ -114,7 +114,7 @@
                     </a>
                 </li>
 
-                <li>
+                {{-- <li>
                     <a href="{{ route('reservation.index') }}">
                         <i class="far fa-calendar-alt"></i>
                         <span> Tables </span>
@@ -126,6 +126,21 @@
                         <i class="far fa-calendar-alt"></i>
                         <span> Reservations </span>
                     </a>
+                </li> --}}
+
+                <li>
+                    <a href="{{ route('reservation.index') }}   " data-bs-toggle="collapse3">
+                        <i class="fas fa-chart-bar"></i>
+                        <span> Reservations </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse3" id="payments">
+                        <ul class="nav-second-level">
+                            <li>
+                                <a href="{{ route('table.index') }}">Tables</a>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
 
                 <li>

@@ -41,7 +41,7 @@
                 </div>
             </div> <!-- end widget-rounded-circle-->
         </div> <!-- end col-->
-        <div class="col-md-6 col-xl-3">
+        {{-- <div class="col-md-6 col-xl-3">
             <div class="widget-rounded-circle card">
                 <div class="card-body">
                     <div class="row">
@@ -80,7 +80,7 @@
             </div> <!-- end widget-rounded-circle-->
         </div>
     </div>
-    <!-- end row -->
+    <!-- end row --> --}}
 
     <div class="row">
         <div class="col-12">

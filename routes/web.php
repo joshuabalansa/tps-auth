@@ -22,7 +22,7 @@ use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
-
+use App\Http\Controllers\TableController;
 
 // View Dashboard
 Route::get('/', function () {
@@ -100,12 +100,12 @@ Route::prefix('admin')->group(function() {
 
 // Table controller
 Route::prefix('table')->group(function () {
-    Route::get('/', 'App\Http\Controllers\TableController@index')->name('table.index');
-    Route::get('create', 'App\Http\Controllers\TableController@create')->name('table.create');
-    Route::post('store', 'App\Http\Controllers\TableController@store')->name('table.store');
-    Route::get('edit/{table}', 'App\Http\Controllers\TableController@edit')->name('table.edit');
-    Route::put('update/{table}', 'App\Http\Controllers\TableController@update')->name('table.update');
-    Route::get('destroy/{table}', 'App\Http\Controllers\TableController@destroy')->name('table.destroy');
+    Route::get('/',                 [TableController::class, 'index'])->name('table.index');
+    Route::get('create',            [TableController::class, 'create'])->name('table.create');
+    Route::post('store',            [TableController::class, 'store'])->name('table.store');
+    Route::get('edit/{table}',      [TableController::class, 'edit'])->name('table.edit');
+    Route::put('update/{table}',    [TableController::class, 'update'])->name('table.update');
+    Route::get('destroy/{table}',   [TableController::class, 'destroy'])->name('table.destroy');
 });
 
 

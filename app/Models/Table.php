@@ -10,24 +10,26 @@ class Table extends Model
     use HasFactory;
 
     protected $fillable = [
-        'code',
+        'table_name',
         'status'
     ];
 
-    /**
-     * get random table code
-     *
-     * @return string
-     */
-    public function getCode() {
-        return $this->code;
-    }
 
     /**
-     *get table status
+     * get table name function
+     * @return string
+     */
+    public function getTableName() {
+
+        return $this->table_name;
+    }
+    
+    /**
+     * get table status function
      * @return string
      */
     public function getStatus() {
-        return $this->status;
+
+        return ucfirst($this->status);
     }
 }

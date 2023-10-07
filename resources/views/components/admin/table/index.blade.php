@@ -2,165 +2,129 @@
 
 @section('content')
     <div class="row">
-        <div class="col-md-6 col-xl-3">
-            <div class="widget-rounded-circle card">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-6">
-                            <div class="avatar-lg rounded-circle bg-primary">
-                                <i class="mdi mdi-hamburger font-22 avatar-title text-white"></i>
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="text-end">
-                                <h3 class="text-dark mt-1"><span data-plugin="counterup">123</span></h3>
-                                <p class="text-muted mb-1 text-truncate">Total Items</p>
-                            </div>
-                        </div>
-                    </div> <!-- end row-->
-                </div>
-            </div> <!-- end widget-rounded-circle-->
-        </div> <!-- end col-->
-
-        <div class="col-md-6 col-xl-3">
-            <div class="widget-rounded-circle card">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-6">
-                            <div class="avatar-lg rounded-circle bg-secondary">
-                                <i class="dripicons-checklist font-22 avatar-title text-white"></i>
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="text-end">
-                                <h3 class="text-dark mt-1"><span data-plugin="counterup">123</span></h3>
-                                <p class="text-muted mb-1 text-truncate">qwe</p>
-                            </div>
-                        </div>
-                    </div> <!-- end row-->
-                </div>
-            </div> <!-- end widget-rounded-circle-->
-        </div> <!-- end col-->
-        <div class="col-md-6 col-xl-3">
-            <div class="widget-rounded-circle card">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-6">
-                            <div class="avatar-lg rounded-circle bg-success">
-                                <i class="fe-trash-2 font-22 avatar-title text-white"></i>
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="text-end">
-                                <h3 class="text-dark mt-1"><span data-plugin="counterup">123</span></h3>
-                                <p class="text-muted mb-1 text-truncate">Available</p>
-                            </div>
-                        </div>
-                    </div> <!-- end row-->
-                </div>
-            </div> <!-- end widget-rounded-circle-->
-        </div> <!-- end col-->
-        <div class="col-md-6 col-xl-3">
-            <div class="widget-rounded-circle card">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-6">
-                            <div class="avatar-lg rounded-circle bg-warning border-warning border shadow">
-                                <i class="ti-archive font-22 avatar-title text-white"></i>
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="text-end">
-                                <h3 class="mt-1"><span data-plugin="counterup">123</span></h3>
-                                <p class="text-muted mb-1 text-truncate">123</p>
-                            </div>
-                        </div>
-                    </div> <!-- end row-->
-                </div>
-            </div> <!-- end widget-rounded-circle-->
-        </div>
-    </div>
-    <!-- end row -->
-    @if (session()->has('flash_notification.message'))
-        <script>
-            toastr.options = {
-                "closeButton": true,
-                "progressBar": true,
-                "positionClass": "toast-top-right",
-                "timeOut": "3000",
-            };
-            toastr["{{ session('flash_notification.level') }}"]("{{ session('flash_notification.message') }}");
-        </script>
-    @endif
-
-    <div class="row">
-        <div class="col-12">
+        <div class="col-lg-6">
             <div class="card">
                 <div class="card-body">
-                    <a href="{{ route('reservation.create') }}"
-                        class="btn btn-sm btn-blue waves-effect waves-light float-end">
-                        <i class="mdi mdi-plus-circle"></i>Add Customer
-                    </a>
-                    <h4 class="header-title mb-4">Manage Customer</h4>
+                    <h5 class="text-uppercase bg-light p-2 mt-0 mb-3">Add Table</h5>
+                    <form action="{{ route('table.store') }}" method="post">
+                        @csrf
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Table Name <span class="text-danger">*</span></label>
+                            <input type="text" value="{{ old('table_name') }}" name="table_name" id="table_name"
+                                class="form-control" placeholder="Enter table name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="mb-2">Status <span class="text-danger">*</span></label>
+                            <br />
+                            <div class="radio form-check-inline">
+                                <input type="radio" id="inlineRadio1" value="available" name="status" checked="">
+                                <label for="inlineRadio1"> Available </label>
+                            </div>
+                            <div class="radio form-check-inline">
+                                <input type="radio" id="inlineRadio3" value="occupied" name="status">
+                                <label for="inlineRadio3"> Occupied </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="text-center mb-3">
+                                    <input type="submit" class="btn w-sm btn-success waves-effect waves-light"
+                                        value="Create" />
+                                </div>
+                            </div> <!-- end col -->
+                        </div>
+                </div>
+            </div>
+        </div>
 
-                    <div class="table-responsive">
-                        <table class="table table-hover m-0 table-centered dt-responsive nowrap w-100" id="tickets-table">
-                            <thead>
-                                <tr>
-                                    <th>
-                                        #
-                                    </th>
-                                    <th>Name</th>
-                                    <th>Phone </th>
-                                    <th>Email</th>
-                                    <th>Reservation Date</th>
-                                    <th class="hidden-sm">Action</th>
-                                </tr>
-                            </thead>
+        <div class="col-lg-6">
 
-                            <tbody>
-                                @foreach ($reservations as $reservation)
+            <div class="card">
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label class="form-label">Tables</label>
+                        <div class="table-responsive">
+                            <table class="table table-hover m-0 table-centered dt-responsive nowrap w-100"
+                                id="tickets-table">
+                                <thead>
                                     <tr>
-                                        <td>
-                                            {{ $reservation->id }}
-                                        </td>
-                                        <td>
-                                            {{ $reservation->getName() }}
-                                        </td>
-                                        <td>
-                                            {{ $reservation->getPhone() }}
-                                        </td>
-                                        <td>
-                                            {{ $reservation->getEmail() }}
-                                        </td>
-                                        <td>
-                                            {{ $reservation->getReservationDate() }}
-                                        </td>
-                                        {{-- <span class="badge bg-{{$menu->getStatus() == 'Available' ? 'success' : 'warning'}}">{{ $menu->getStatus('status') }}</span> --}}
-                                        <td>
-                                            <div class="btn-group dropdown">
-                                                <a href="javascript: void(0);"
-                                                    class="table-action-btn dropdown-toggle arrow-none btn btn-light btn-sm"
-                                                    data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                        class="mdi mdi-dots-horizontal"></i></a>
-                                                <div class="dropdown-menu dropdown-menu-end">
-                                                    <a class="dropdown-item"
-                                                        href="{{ route('reservation.edit', $reservation->id) }}"><i
-                                                            class="mdi mdi-pencil me-2 text-muted font-18 vertical-middle"></i>Edit</a>
-                                                    <a class="dropdown-item"
-                                                        href="{{ route('reservation.destroy', $reservation->id) }}"><i
-                                                            class="mdi mdi-delete me-2 text-muted font-18 vertical-middle"></i>Remove</a>
-                                                </div>
-                                            </div>
-                                        </td>
+                                        <th>
+                                            #
+                                        </th>
+                                        <th>Table Name</th>
+                                        <th>Status</th>
+                                        <th class="hidden-sm">Action</th>
                                     </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                                </thead>
+
+                                <tbody>
+                                    @foreach ($tables as $table)
+                                        <tr>
+                                            <td>
+                                                {{ $table->id }}
+                                            </td>
+                                            <td>
+                                                {{ $table->getTableName() }}
+                                            </td>
+                                            <td>
+                                                <span
+                                                    class="badge bg-{{ $table->status == 'available' ? 'success' : 'danger' }}">{{ $table->getStatus() }}</span>
+                                            </td>
+                                            <td>
+                                                <div class="btn-group dropdown">
+                                                    <a href="javascript: void(0);"
+                                                        class="table-action-btn dropdown-toggle arrow-none btn btn-light btn-sm"
+                                                        data-bs-toggle="dropdown" aria-expanded="false"><i
+                                                            class="mdi mdi-dots-horizontal"></i></a>
+                                                    <div class="dropdown-menu dropdown-menu-end">
+                                                        <a class="dropdown-item"
+                                                            href="{{ route('table.edit', $table->id) }}"><i
+                                                                class="mdi mdi-pencil me-2 text-muted font-18 vertical-middle"></i>Edit</a>
+                                                        <a class="dropdown-item"
+                                                        href="{{ route('table.destroy', $table->id) }}"><i
+                                                                class="mdi mdi-delete me-2 text-muted font-18 vertical-middle"></i>Remove</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+
+
+                        <!-- Preview -->
+
+                    </div>
+                </div> <!-- end col-->
+
+
+
+            </div> <!-- end col-->
+        </div>
+        </form>
+
+
+        <!-- file preview template -->
+        <div class="d-none" id="uploadPreviewTemplate">
+            <div class="card mt-1 mb-0 shadow-none border">
+                <div class="p-2">
+                    <div class="row align-items-center">
+                        <div class="col-auto">
+                            <img data-dz-thumbnail src="#" class="avatar-sm rounded bg-light" alt="">
+                        </div>
+                        <div class="col ps-0">
+                            <a href="javascript:void(0);" class="text-muted fw-bold" data-dz-name></a>
+                            <p class="mb-0" data-dz-size></p>
+                        </div>
+                        <div class="col-auto">
+                            <!-- Button -->
+                            <a href="" class="btn btn-link btn-lg text-muted" data-dz-remove>
+                                <i class="dripicons-cross"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div><!-- end col -->
-    </div>
-    <!-- end row -->
-@endsection
+        </div>
+    @endsection
