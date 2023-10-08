@@ -376,7 +376,7 @@ View all
                         {{-- <i class="fe-briefcase me-1"></i> --}}
                         <span>Product</span>
                     </a>
-                    <div class="dropdown-divider"></div>
+
 
                     <!-- item-->
                     <a href="{{ route('category.index') }}" class="dropdown-item">
@@ -405,6 +405,12 @@ View all
                     <a href="{{ route('reservation.create') }}" class="dropdown-item">
                         {{-- <i class="fe-headphones me-1"></i> --}}
                         <span>Reservation</span>
+                    </a>
+
+                    <div class="dropdown-divider"></div>
+                    <a href="{{ route('user.create') }}" class="dropdown-item">
+                        {{-- <i class="fe-headphones me-1"></i> --}}
+                        <span>User</span>
                     </a>
 
                 </div>

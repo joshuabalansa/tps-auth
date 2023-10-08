@@ -49,20 +49,16 @@
                         <input value="{{ old('reservation_date') }}" name="reservation_date" type="date"
                             class="form-control" id="reservation_date" required>
                     </div>
-                    {{-- <div class="mb-3">
-                                <label class="mb-2">Status <span class="text-danger">*</span></label>
-                                <br/>
-                                <div class="radio form-check-inline">
-                                    <input type="radio" id="inlineRadio1" value="1" name="status" checked="">
-                                    <label for="inlineRadio1"> Available </label>
-                                </div>
-                                <div class="radio form-check-inline">
-                                    <input type="radio" id="inlineRadio3" value="0" name="status">
-                                    <label for="inlineRadio3"> Draft </label>
-                                </div>
-                            </div> --}}
-                    <!-- Preview -->
-
+                    <div class="mb-3">
+                        <label for="product-category" class="form-label">Assign Table <span
+                                class="text-danger">*</span></label>
+                        <select name="table" class="form-control select2" id="product-table">
+                            <option value="">Select</option>
+                            @foreach ($tables as $table)
+                                <option value="{{ $table->getTableName() }}">{{ $table->getTableName() }}</option>
+                            @endforeach
+                        </select>
+                    </div>
                 </div>
             </div> <!-- end col-->
 

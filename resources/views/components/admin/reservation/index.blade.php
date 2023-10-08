@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="row">
+    {{-- <div class="row">
         <div class="col-md-6 col-xl-3">
             <div class="widget-rounded-circle card">
                 <div class="card-body">
@@ -79,20 +79,8 @@
                 </div>
             </div> <!-- end widget-rounded-circle-->
         </div>
-    </div>
+    </div> --}}
     <!-- end row -->
-    @if (session()->has('flash_notification.message'))
-        <script>
-            toastr.options = {
-                "closeButton": true,
-                "progressBar": true,
-                "positionClass": "toast-top-right",
-                "timeOut": "3000",
-            };
-            toastr["{{ session('flash_notification.level') }}"]("{{ session('flash_notification.message') }}");
-        </script>
-    @endif
-
     <div class="row">
         <div class="col-12">
             <div class="card">
@@ -101,7 +89,7 @@
                         class="btn btn-sm btn-blue waves-effect waves-light float-end">
                         <i class="mdi mdi-plus-circle"></i>Add Customer
                     </a>
-                    <h4 class="header-title mb-4">Manage Customer</h4>
+                    <h4 class="header-title mb-4">Customer Reservations</h4>
 
                     <div class="table-responsive">
                         <table class="table table-hover m-0 table-centered dt-responsive nowrap w-100" id="tickets-table">
@@ -113,6 +101,7 @@
                                     <th>Name</th>
                                     <th>Phone </th>
                                     <th>Email</th>
+                                    <th>Table</th>
                                     <th>Reservation Date</th>
                                     <th class="hidden-sm">Action</th>
                                 </tr>
@@ -132,6 +121,9 @@
                                         </td>
                                         <td>
                                             {{ $reservation->getEmail() }}
+                                        </td>
+                                        <td>
+                                            {{ $reservation->table }}
                                         </td>
                                         <td>
                                             {{ $reservation->getReservationDate() }}

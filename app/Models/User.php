@@ -43,4 +43,60 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    /**
+     * get user name function
+     *
+     * @return string
+     */
+    public function getName() {
+
+        return $this->name;
+    }
+
+     /**
+     * get user email function
+     *
+     * @return string
+     */
+    public function getEmail() {
+
+        return $this->email;
+    }
+
+     /**
+     * get user role function
+     *
+     * @return string
+     */
+    public function getRole() {
+
+        $role = '';
+
+        switch($this->role) {
+            case 0: 
+                $role = 'Deactivated';
+              break;
+              
+            case 1: 
+              $role = 'System Admin';
+            break;
+            
+            case 2: 
+                $role = 'Administrator';
+            break;
+
+            case 3: 
+                $role = 'Cashier';
+            break;
+
+            case 4: 
+                $role = 'Kitchen Orders';
+            break;
+
+            default:
+            break;
+        }
+        return $role;
+    }
 }

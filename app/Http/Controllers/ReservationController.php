@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Reservation;
+use App\Models\Table;
 
 class ReservationController extends Controller
 {
@@ -23,7 +24,8 @@ class ReservationController extends Controller
     public function create()
     {
 
-        return view('components.admin.reservation.create');
+        $tables = Table::all();
+        return view('components.admin.reservation.create', compact('tables'));
     }
 
     /**
@@ -48,7 +50,7 @@ class ReservationController extends Controller
             $reservation->lastname          =   $validatedData['lastname'];
             $reservation->phone             =   $validatedData['phone'];
             $reservation->email             =   $validatedData['email'];
-            $reservation->table             =   '';
+            $reservation->table             =   $validatedData['table'];
             $reservation->special_request   =   $validatedData['special_request'];
             $reservation->reservation_date  =   $validatedData['reservation_date'];
             $reservation->save();

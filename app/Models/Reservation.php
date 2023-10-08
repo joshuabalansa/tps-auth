@@ -60,6 +60,7 @@ class Reservation extends Model
 
         return $this->special_request;
     }
+
     
     /**
      * get special request function

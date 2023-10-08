@@ -39,6 +39,12 @@ class DashboardController extends Controller
             return $transaction->sum('amount');
         });
 
-        return view('components.admin.dashboard.index', compact('menuCount', 'stocks', 'monthlySums', 'transactionByMonth', 'categoryCount'));
+        return view('components.admin.dashboard.index', compact(
+            'menuCount', 
+            'stocks', 
+            'monthlySums', 
+            'transactionByMonth', 
+            'categoryCount'
+        ));
     }
 }

@@ -23,6 +23,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\TableController;
+use App\Http\Controllers\ManageUserController;
 
 // View Dashboard
 Route::get('/', function () {
@@ -37,7 +38,8 @@ Route::get('superadmin', function() {
     return view('superadmin');
 })->name('superadmin')->middleware('superadmin');
 
-//Menu Controllers
+
+//Menu routes
 Route::prefix('admin')->group(function() {
     Route::get('dashboard', [DashboardController::class, 'index'])->name('admin')->middleware('admin');
    
@@ -60,14 +62,14 @@ Route::prefix('admin')->group(function() {
         Route::get('destroy/{category}', [CategoryController::class, 'destroy'])->name('category.destroy')->middleware('admin');
     });
 
-    // payments route
+    // payments routes
     Route::prefix('reports')->group(function() {
         Route::get('orders',            [ReportController::class, 'ordersReport'])->name('reports.orders')->middleware('admin');
         Route::get('daily',             [ReportController::class, 'dailyReport'])->name('daily.reports')->middleware('admin');
         Route::get('monthly',           [ReportController::class, 'monthlyReport'])->name('monthly.reports')->middleware('admin');
     });
 
-    // Route Stocks Controller
+    // Route Stocks routes
     Route::prefix('stock')->group(function () {
         Route::get('/',               [StockController::class, 'index'])->name('stocks.index')->middleware('admin');
         Route::get('create',          [StockController::class, 'create'])->name('stocks.create')->middleware('admin');
@@ -77,7 +79,7 @@ Route::prefix('admin')->group(function() {
         Route::get('destroy/{stock}', [StockController::class, 'destroy'])->name('stocks.destroy')->middleware('admin');
     });
 
-    //Staff Controller
+    //Staff routes
     Route::prefix('staff')->group(function() {
         Route::get('/',               [StaffController::class, 'index'])->name('staff.index')->middleware('admin');
         Route::get('create',          [StaffController::class, 'create'])->name('staff.create')->middleware('admin');
@@ -95,18 +97,28 @@ Route::prefix('admin')->group(function() {
         Route::get('edit/{reservation}',    [ReservationController::class, 'edit'])->name('reservation.edit')->middleware('admin');
         Route::put('update/{reservation}',  [ReservationController::class, 'update'])->name('reservation.update')->middleware('admin');
     });
+    // Table controller
+    Route::prefix('table')->group(function () {
+        Route::get('/',                 [TableController::class, 'index'])->name('table.index');
+        Route::get('create',            [TableController::class, 'create'])->name('table.create');
+        Route::post('store',            [TableController::class, 'store'])->name('table.store');
+        Route::get('edit/{table}',      [TableController::class, 'edit'])->name('table.edit');
+        Route::put('update/{table}',    [TableController::class, 'update'])->name('table.update');
+        Route::get('destroy/{table}',   [TableController::class, 'destroy'])->name('table.destroy');
+    });
+    // users controller
+    Route::prefix('user')->group(function () {
+        Route::get('/',                 [ManageUserController::class, 'index'])->name('user.index');
+        Route::get('create',            [ManageUserController::class, 'create'])->name('user.create');
+        Route::post('store',            [ManageUserController::class, 'store'])->name('user.store');
+        Route::get('edit/{user}',      [ManageUserController::class, 'edit'])->name('user.edit');
+        Route::get('update/{user}',    [ManageUserController::class, 'update'])->name('user.update');
+        Route::get('destroy/{user}',   [ManageUserController::class, 'destroy'])->name('user.destroy');
+    });
 
 });
 
-// Table controller
-Route::prefix('table')->group(function () {
-    Route::get('/',                 [TableController::class, 'index'])->name('table.index');
-    Route::get('create',            [TableController::class, 'create'])->name('table.create');
-    Route::post('store',            [TableController::class, 'store'])->name('table.store');
-    Route::get('edit/{table}',      [TableController::class, 'edit'])->name('table.edit');
-    Route::put('update/{table}',    [TableController::class, 'update'])->name('table.update');
-    Route::get('destroy/{table}',   [TableController::class, 'destroy'])->name('table.destroy');
-});
+
 
 
 // Customer menu and checkout routes
