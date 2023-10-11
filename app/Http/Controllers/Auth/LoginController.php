@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use App\Models\User;
 use Auth;
 
 class LoginController extends Controller
@@ -46,20 +47,22 @@ class LoginController extends Controller
             'email' => 'required',
             'password' => 'required'
         ]);
-
-        if(Auth::attempt($credentials)) {
-
+    
+        $user = User::where('email', $credentials['email'])->first();
+    
+        if ($user && $user->status === 'active' && Auth::attempt($credentials)) {
+    
             $user_role = Auth::user()->role;
-             
+    
             switch($user_role) {
                 case 1: 
                     return redirect()->route('superadmin');
                     break;
-
+    
                 case 2:
                     return redirect()->route('admin');
                     break;
-
+    
                 case 3:
                     return redirect()->route('cashier.index');
                     break;
@@ -67,14 +70,14 @@ class LoginController extends Controller
                 case 4: 
                     return redirect()->route('order.index');
                     break;
-
+    
                 default:
                     Auth::logout();
                     return redirect('/')->with('error', 'Something Went wrong! try again');
             }
         } else {
-
-            return redirect('/login');
+            return redirect('/login')->with('error', 'Invalid login credentials');
         }
-    } 
+    }
+    
 }

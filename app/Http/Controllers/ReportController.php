@@ -55,19 +55,19 @@ class ReportController extends Controller
      * returns the daily sums
      * @return \Illuminate\View\View
      */
-    public function dailyReport() {
+    public static function dailyReport() {
         $transactions = Transaction::all();
-    
+
         // Group transactions by day
         $transactionsByDay = $transactions->groupBy(function($transaction) {
             return $transaction->created_at->format('Y-m-d');
         });
-    
+
         // Calculate the sum of amount for each day
         $dailySums = $transactionsByDay->map(function($transactions) {
             return $transactions->sum('amount');
         });
-        
+
         return view('components.admin.reports.daily-reports', compact('dailySums', 'transactionsByDay'));
     }
 

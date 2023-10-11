@@ -113,7 +113,7 @@
                         // Define the chart options
                         var options = {
                             chart: {
-                                type: 'bar',
+                                type: 'area',
                                 height: 350,
                             },
                             series: [{
