@@ -111,9 +111,10 @@ Route::prefix('admin')->group(function() {
         Route::get('/',                 [ManageUserController::class, 'index'])->name('user.index');
         Route::get('create',            [ManageUserController::class, 'create'])->name('user.create');
         Route::post('store',            [ManageUserController::class, 'store'])->name('user.store');
-        Route::get('edit/{user}',      [ManageUserController::class, 'edit'])->name('user.edit');
-        Route::get('update/{user}',    [ManageUserController::class, 'update'])->name('user.update');
-        Route::get('destroy/{user}',   [ManageUserController::class, 'destroy'])->name('user.destroy');
+        Route::get('edit/{user}',       [ManageUserController::class, 'edit'])->name('user.edit');
+        Route::get('deactivate/{user}', [ManageUserController::class, 'deactivate'])->name('user.deactivate');
+        Route::get('reactivate/{user}', [ManageUserController::class, 'reactivate'])->name('user.reactivate');
+        Route::get('destroy/{user}',    [ManageUserController::class, 'destroy'])->name('user.destroy');
     });
 
 });

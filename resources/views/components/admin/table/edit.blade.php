@@ -21,10 +21,10 @@
                                 <input type="radio" id="inlineRadio1" value="available" name="status" checked="">
                                 <label for="inlineRadio1"> Available </label>
                             </div>
-                            <div class="radio form-check-inline">
-                                <input type="radio" id="inlineRadio3" value="occupied" name="status">
-                                <label for="inlineRadio3"> Occupied </label>
-                            </div>
+                            {{-- <div class="radio form-check-inline">
+                                    <input type="radio" id="inlineRadio3" value="occupied" name="status">
+                                    <label for="inlineRadio3"> Occupied </label>
+                                </div> --}}
                         </div>
                         <div class="row">
                             <div class="col-12">
