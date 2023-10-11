@@ -12,9 +12,8 @@ use App\Http\Controllers\ReportController;
 
 class DashboardController extends Controller
 {
-    
+
     /**
-     *
      * @return \Illuminate\View\View
      */
     public function index() {

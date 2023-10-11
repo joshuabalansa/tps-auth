@@ -20,10 +20,10 @@
                                 <input type="radio" id="inlineRadio1" value="available" name="status" checked="">
                                 <label for="inlineRadio1"> Available </label>
                             </div>
-                            <div class="radio form-check-inline">
+                            {{-- <div class="radio form-check-inline">
                                 <input type="radio" id="inlineRadio3" value="occupied" name="status">
                                 <label for="inlineRadio3"> Occupied </label>
-                            </div>
+                            </div> --}}
                         </div>
                         <div class="row">
                             <div class="col-12">
@@ -81,7 +81,7 @@
                                                             href="{{ route('table.edit', $table->id) }}"><i
                                                                 class="mdi mdi-pencil me-2 text-muted font-18 vertical-middle"></i>Edit</a>
                                                         <a class="dropdown-item"
-                                                        href="{{ route('table.destroy', $table->id) }}"><i
+                                                            href="{{ route('table.destroy', $table->id) }}"><i
                                                                 class="mdi mdi-delete me-2 text-muted font-18 vertical-middle"></i>Remove</a>
                                                     </div>
                                                 </div>

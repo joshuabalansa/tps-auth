@@ -15,23 +15,40 @@ class ManageUserController extends Controller
         $users = User::all();
         return view('components.admin.users.index', compact('users'));
     }
+    
     /**
      * Update the specified resource in storage.
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(User $user)
+    public function deactivate(User $user)
     {
         try {
-
-            $user->update(['role' => 0]);
+            $user->update(['status' => 'deactivated']); // Make sure you pass an array of attributes
             return redirect()->route('user.index')->with('success', 'Deactivated Successfully');
-        } catch(\Exception $e) {
-
-            return redirect()->route('user.index')->with('danger', 'Opps! Something went wrong');
+        } catch (\Exception $e) {
+            return redirect()->route('user.index')->with('danger', 'Oops! Something went wrong');
         }
     }
 
+      /**
+     * Update the specified resource in storage.
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function reactivate(User $user)
+    {
+        try {
+            $user->update(['status' => 'active']); // Make sure you pass an array of attributes
+            return redirect()->route('user.index')->with('success', 'Deactivated Successfully');
+        } catch (\Exception $e) {
+            return redirect()->route('user.index')->with('danger', 'Oops! Something went wrong');
+        }
+    }
+    
+
     /**
      * Remove the specified resource from storage.
+     * @param array $user
+     * @return \Illiminate\Http\RedirectResponse
      */
     public function destroy(User $user)
     {
