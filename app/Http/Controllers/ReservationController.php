@@ -58,7 +58,7 @@ class ReservationController extends Controller
             return redirect()->route('reservation.index')->with('success', 'Resevervation successfuly added');
         } catch (\Exception $e) {
 
-            return redirect()->route('reservation.index')->with('error', 'Something went wrong, try again');
+            return redirect()->route('reservation.index')->with('error', 'Opps! Something went wrong. ' . $e->getMessage());
         }
     }
 

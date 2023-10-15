@@ -43,7 +43,7 @@ class CategoryController extends Controller
         return redirect()->route('category.index')->with('success', 'Category has been created');
         } catch(\Exception $e) {
             
-            return redirect()->route('category.index')->with('error', 'Opps! Something went wrong');
+            return redirect()->route('category.index')->with('error', 'Opps! Something went wrong.' . $e->getMessage());
         }
         
 
@@ -77,7 +77,7 @@ class CategoryController extends Controller
             ]);
             $category->update($validatedData);
 
-            return redirect()->route('category.index')->with('success', 'Category has been');
+            return redirect()->route('category.index')->with('success', 'Category has been added');
         } catch(\Exception $e) {
             
             return redirect()->route('category.index')->with('error', 'Opps! Something went wrong');
@@ -91,12 +91,12 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         try {
-
+            
             $category->delete();
-            return redirect()->route('category.index')->with('danger', 'Category has been deleted');
+            return redirect()->route('category.index')->with('success', 'Category has been deleted');
         } catch(\Exception $e) {
             
-            return redirect()->route('category.index')->with('error', 'Opps! Something went wrong');
+            return redirect()->route('category.index')->with('error', 'Opps! Something went wrong '.  $e->getMessage());
         }
     }
 }

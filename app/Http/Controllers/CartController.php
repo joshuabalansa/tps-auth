@@ -58,7 +58,7 @@ class CartController extends Controller
             return redirect()->route('cart.index')->with('success', 'Menu has been Added');
         } catch(\Exception $e) {
             
-            return redirect()->route('cart.index')->with('error', 'Somthing went wrong, try again');
+            return redirect()->route('cart.index')->with('error', 'Opps! Something went wrong');
         }
         
     }
@@ -83,9 +83,9 @@ class CartController extends Controller
     {
         $cartSession = Session::get('cart', []);
         try {
-            Cart::where(['menu_id' => $menuId])->delete();
+            Cart::where(['menu_id' => $menuId])->delete()->with('success', 'Deleted Successfuly');
         } catch(Exeption $e) {
-            return redirect()->route('cart.index')->with('error', 'Contact staff for assistance');
+            return redirect()->route('cart.index')->with('error', 'Opps! Someting went wrong');
         }
 
         $indexToDelete = -1;

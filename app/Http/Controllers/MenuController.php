@@ -125,7 +125,7 @@ class MenuController extends Controller
     {
         try {
             $menu->delete();
-            return redirect()->route('menu.index')->with('danger', 'Item has been deleted!');
+            return redirect()->route('menu.index')->with('success', 'Item has been deleted!');
         } catch(\Exception $e) {
             
             return redirect()->route('menu.index')->with('error', 'Opps! Something went wrong');

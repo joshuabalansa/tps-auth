@@ -41,7 +41,7 @@ Route::get('superadmin', function() {
 
 //Menu routes
 Route::prefix('admin')->group(function() {
-    Route::get('dashboard', [DashboardController::class, 'index'])->name('admin')->middleware('admin');
+    Route::get('/', [DashboardController::class, 'index'])->name('admin')->middleware('admin');
    
     Route::prefix('menu')->group(function() {
         Route::get('/',              [MenuController::class, 'index'])->name('menu.index')->middleware('admin');

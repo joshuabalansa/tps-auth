@@ -98,7 +98,7 @@ class OrderController extends Controller
         return redirect()->route('order.index')->with('success', 'Order ready to be served');;
     } catch(\Exeption $e) {
 
-        return redirect()->route('order.index')->with('error', $e);
+        return redirect()->route('order.index')->with('error', $e->getMessage());
         }
     }
 
