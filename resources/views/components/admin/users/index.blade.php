@@ -48,7 +48,7 @@
                                                     <a class="dropdown-item"
                                                         href="{{ route('user.reactivate', $user->id) }}">Reactivate</a>
                                                     <a class="dropdown-item"
-                                                        href="{{ route('user.destroy', $user->id) }}">Remove</a>
+                                                        href="{{ route('user.destroy', $user->id) }}">Delete</a>
                                                 </div>
                                             </div>
                                         </td>

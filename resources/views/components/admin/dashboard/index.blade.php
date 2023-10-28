@@ -4,7 +4,6 @@
     {{-- <!-- start page title -->
     <x-admin.dashboard.page-title />
     <!-- end page title -->  --}}
-
     <div class="row">
         <div class="col-md-6 col-xl-3">
             <div class="card">
@@ -17,8 +16,9 @@
                         </div>
                         <div class="col-6">
                             <div class="text-end">
-                                <h3 class="text-dark my-1">₱<span data-plugin="counterup">12,14</span></h3>
-                                <p class="text-muted mb-1 text-truncate">Income status</p>
+                                <h5 class="text-dark my-1">₱<span data-plugin="counterup">{{ $currentMonthTotal }}</span>
+                                </h5>
+                                <p class="text-muted mb-1 text-truncate">This Month</p>
                             </div>
                         </div>
                     </div>
@@ -36,7 +36,7 @@
                         </div>
                         <div class="col-6">
                             <div class="text-end">
-                                <h3 class="text-dark my-1"><span data-plugin="counterup">{{ $menuCount }}</span></h3>
+                                <h5 class="text-dark my-1"><span data-plugin="counterup">{{ $menuCount }}</span></h5>
                                 <p class="text-muted mb-1 text-truncate">Products</p>
                             </div>
                         </div>
@@ -55,7 +55,7 @@
                         </div>
                         <div class="col-6">
                             <div class="text-end">
-                                <h3 class="text-dark my-1"><span data-plugin="counterup">{{ $categoryCount }}</span></h3>
+                                <h5 class="text-dark my-1"><span data-plugin="counterup">{{ $categoryCount }}</span></h5>
                                 <p class="text-muted mb-1 text-truncate">Categories</p>
                             </div>
                         </div>
@@ -76,7 +76,7 @@
                         </div>
                         <div class="col-6">
                             <div class="text-end">
-                                <h3 class="text-dark my-1"><span data-plugin="counterup">{{ $stocks }}</span></h3>
+                                <h5 class="text-dark my-1"><span data-plugin="counterup">{{ $stocks }}</span></h5>
                                 <p class="text-muted mb-1 text-truncate">Stocks</p>
                             </div>
                         </div>
@@ -101,54 +101,53 @@
                     </div>
                     <h4 class="header-title mb-0">Sales Analytics</h4>
                     <div id="chart"></div>
-
-                    <script>
-                        // Get the monthly data from Blade template
-                        var monthlySums = @json($monthlySums);
-                        var transactionByMonth = @json($transactionByMonth);
-
-                        // Define custom colors for the bars
-                        var customColors = ['#FF5733', '#FFC300', '#33FF57', '#5733FF', '#FF3357'];
-
-                        // Define the chart options
-                        var options = {
-                            chart: {
-                                type: 'area',
-                                height: 350,
-                            },
-                            series: [{
-                                name: 'Sales',
-                                data: Object.values(monthlySums), // Use the monthly total sales data
-                            }],
-                            xaxis: {
-                                categories: Object.keys(transactionByMonth), // Use the months as categories
-                            },
-                            plotOptions: {
-                                bar: {
-                                    colors: {
-                                        ranges: customColors,
-                                    },
-                                },
-                            },
-                            yaxis: {
-                                labels: {
-                                    formatter: function(value) {
-                                        return "₱" + value.toFixed(2); // Add "$" sign and format to two decimal places
-                                    },
-                                },
-                            },
-                        };
-
-                        // Create a new ApexCharts instance
-                        var chart = new ApexCharts(document.querySelector("#chart"), options);
-
-                        // Render the chart
-                        chart.render();
-                    </script>
                 </div> <!-- collapsed end -->
             </div> <!-- end card-body -->
         </div> <!-- end card-->
     </div> <!-- end col -->
-
     </div>
+
+    <script>
+        // Get the monthly data from Blade template
+        var monthlySums = @json($monthlySums);
+        var transactionByMonth = @json($transactionByMonth);
+
+        // Define custom colors for the bars
+        var customColors = ['#FF5733', '#FFC300', '#33FF57', '#5733FF', '#FF3357'];
+
+        // Define the chart options
+        var options = {
+            chart: {
+                type: 'area',
+                height: 350,
+            },
+            series: [{
+                name: 'Sales',
+                data: Object.values(monthlySums), // Use the monthly total sales data
+            }],
+            xaxis: {
+                categories: Object.keys(transactionByMonth), // Use the months as categories
+            },
+            plotOptions: {
+                bar: {
+                    colors: {
+                        ranges: customColors,
+                    },
+                },
+            },
+            yaxis: {
+                labels: {
+                    formatter: function(value) {
+                        return "₱" + value.toFixed(2); // Add "$" sign and format to two decimal places
+                    },
+                },
+            },
+        };
+
+        // Create a new ApexCharts instance
+        var chart = new ApexCharts(document.querySelector("#chart"), options);
+
+        // Render the chart
+        chart.render();
+    </script>
 @endsection

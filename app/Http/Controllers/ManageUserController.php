@@ -9,15 +9,21 @@ class ManageUserController extends Controller
 {
     /**
      * Display a listing of the resource.
+     * @return \Illuminate\View\View
      */
-    public function index()
-    {
-        $users = User::all();
+    public function index() {
+
+        $users = User::where('role', 3)
+                     ->orWhere('role', 4)
+                     ->get();
+        
         return view('components.admin.users.index', compact('users'));
     }
     
+    
     /**
      * Update the specified resource in storage.
+     * @param array $user
      * @return \Illuminate\Http\RedirectResponse
      */
     public function deactivate(User $user)
@@ -32,6 +38,7 @@ class ManageUserController extends Controller
 
       /**
      * Update the specified resource in storage.
+     * @param array $user
      * @return \Illuminate\Http\RedirectResponse
      */
     public function reactivate(User $user)

@@ -36,13 +36,13 @@ class ReservationController extends Controller
     {
         try {
             $validatedData = $request->validate([
-                'firstname'         => 'required',
-                'lastname'          => 'required',
-                'phone'             => 'required',
-                'email'             => '',
-                'table'             => '',
-                'special_request'   => '',
-                'reservation_date'  => 'required'
+                'firstname'         =>  'required',
+                'lastname'          =>  'required',
+                'phone'             =>  'required',
+                'email'             =>  '',
+                'table'             =>  '',
+                'special_request'   =>  '',
+                'reservation_date'  =>  'required'
             ]);
 
             $reservation = new Reservation;

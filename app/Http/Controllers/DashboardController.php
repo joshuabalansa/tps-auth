@@ -38,12 +38,36 @@ class DashboardController extends Controller
             return $transaction->sum('amount');
         });
 
+        /**
+         * this functions is to calculate the total amount 
+         * of the current and next month
+         */ 
+
+        $transactions = Transaction::all();
+
+        // Group transactions by month
+        $transactionByMonth = $transactions->groupBy(function($transaction) {
+            return $transaction->created_at->format('Y-m');
+        });
+    
+        // Get the current month and next month
+        $currentMonth = now()->format('Y-m');
+        $nextMonth = now()->addMonth()->format('Y-m');
+    
+        // Calculate the total amount for the current month
+        $currentMonthTotal = $transactionByMonth->get($currentMonth, collect())->sum('amount');
+    
+        // Calculate the total amount for the next month
+        $nextMonthTotal = $transactionByMonth->get($nextMonth, collect())->sum('amount');
+
         return view('components.admin.dashboard.index', compact(
             'menuCount', 
             'stocks', 
             'monthlySums', 
             'transactionByMonth', 
-            'categoryCount'
+            'categoryCount',
+            'currentMonthTotal',
+            'nextMonthTotal'
         ));
     }
 }

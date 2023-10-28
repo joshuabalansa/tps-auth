@@ -22,7 +22,7 @@
             </div> <!-- end widget-rounded-circle-->
         </div> <!-- end col--> --}}
 
-        <div class="col-md-6 col-xl-3">
+        {{-- <div class="col-md-6 col-xl-3">
             <div class="widget-rounded-circle card">
                 <div class="card-body">
                     <div class="row">
@@ -40,7 +40,7 @@
                     </div> <!-- end row-->
                 </div>
             </div> <!-- end widget-rounded-circle-->
-        </div> <!-- end col-->
+        </div> <!-- end col--> --}}
         {{-- <div class="col-md-6 col-xl-3">
             <div class="widget-rounded-circle card">
                 <div class="card-body">
@@ -86,8 +86,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <a href="{{ route('stocks.create') }}"
-                            class="btn btn-sm btn-blue waves-effect waves-light float-end">
+                        <a href="{{ route('stocks.create') }}" class="btn btn-sm btn-blue waves-effect waves-light float-end">
                             <i class="mdi mdi-plus-circle"></i> Add Item
                         </a>
                         <h4 class="header-title mb-4">Inventory Management</h4>

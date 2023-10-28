@@ -407,7 +407,7 @@ View all
                         <span>Reservation</span>
                     </a>
 
-                    <div class="dropdown-divider"></div>
+                    {{-- <div class="dropdown-divider"></div> --}}
                     <a href="{{ route('user.create') }}" class="dropdown-item">
                         {{-- <i class="fe-headphones me-1"></i> --}}
                         <span>User</span>

@@ -12,9 +12,10 @@ class ReportController extends Controller
      * Display a listing of order history
      * @return \Illuminate\View\View
      */
-    public function ordersReport()
-    {
+    public function ordersReport() {
+
         $transactions = Transaction::all();
+
         $approvedOrders = Order::where('status', 'approved')->count();
         $cancelledOrders = Order::where('status', 'cancelled')->count();
 
@@ -24,31 +25,32 @@ class ReportController extends Controller
     /**
      * returns with the monthly total
      * @return \Illuminate\View\View
-        */
-        public function monthlyReport() {
-            
-            $transactions = Transaction::all();
+    */
+    public function monthlyReport() {
+        
+        $transactions = Transaction::all();
 
-            // group transaction by month
-            $transactionByMonth = $transactions->groupBy(function($transaction) {
+        // group transaction by month
+        $transactionByMonth = $transactions->groupBy(function($transaction) {
 
-                return $transaction->created_at->format('Y-m');
-            });
+            return $transaction->created_at->format('Y-m');
+        });
 
-            // calculate the sum of amount by month
-            $monthlySums = $transactionByMonth->map(function($transaction) {
+        // calculate the sum of amount by month
+        $monthlySums = $transactionByMonth->map(function($transaction) {
 
-                return $transaction->sum('amount');
-            });
+            return $transaction->sum('amount');
+        });
 
-            self::monthlyIncome($transactions);
-            return view('components.admin.reports.monthly-reports', compact('monthlySums', 'transactionByMonth'));
-        }
+        self::monthlyIncome($transactions);
+        return view('components.admin.reports.monthly-reports', compact('monthlySums', 'transactionByMonth'));
+    }
 
-        public static function monthlyIncome($transactions) {
-            
-            return $transactions;
-        }
+
+    public static function monthlyIncome($transactions) {
+        
+        return $transactions;
+    }
     
 
     /**
@@ -76,6 +78,7 @@ class ReportController extends Controller
      * @return \Illuminate\Support\Collection
      */
     public static function dailyIncome() {
+        
         $transactions = Transaction::all();
         $dailySums = $transactions->groupBy(fn($transaction) => $transaction->created_at->format('Y-m-d'))->map(fn($transactions) => $transactions->sum('amount'));
         return $dailySums;
