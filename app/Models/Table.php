@@ -14,9 +14,19 @@ class Table extends Model
         'status'
     ];
 
+    /**
+     * get random table code
+     *
+     * @return string
+     */
     public function getCode() {
         return $this->code;
     }
+
+    /**
+     *get table status
+     * @return string
+     */
     public function getStatus() {
         return $this->status;
     }

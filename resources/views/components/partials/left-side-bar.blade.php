@@ -117,15 +117,17 @@
                 <li>
                     <a href="{{ route('reservation.index') }}">
                         <i class="far fa-calendar-alt"></i>
-                        <span> Reservations </span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ route('reservation.index') }}">
-                        <i class="far fa-calendar-alt"></i>
                         <span> Tables </span>
                     </a>
                 </li>
+
+                <li>
+                    <a href="{{ route('reservation.index') }}">
+                        <i class="far fa-calendar-alt"></i>
+                        <span> Reservations </span>
+                    </a>
+                </li>
+
                 <li>
                     <a
                         href="{{ route('logout') }}"onclick="event.preventDefault();document.getElementById('logout-form').submit();">

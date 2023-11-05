@@ -98,7 +98,7 @@ Route::prefix('admin')->group(function() {
 
 });
 
-/* Table controller
+// Table controller
 Route::prefix('table')->group(function () {
     Route::get('/', 'App\Http\Controllers\TableController@index')->name('table.index');
     Route::get('create', 'App\Http\Controllers\TableController@create')->name('table.create');
@@ -107,7 +107,7 @@ Route::prefix('table')->group(function () {
     Route::put('update/{table}', 'App\Http\Controllers\TableController@update')->name('table.update');
     Route::get('destroy/{table}', 'App\Http\Controllers\TableController@destroy')->name('table.destroy');
 });
-*/
+
 
 // Customer menu and checkout routes
 Route::prefix('menus')->group(function () {

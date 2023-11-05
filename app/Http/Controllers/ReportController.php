@@ -42,7 +42,7 @@ class ReportController extends Controller
 
             return $transaction->sum('amount');
         });
-        
+      
         return view('components.admin.reports.monthly-reports', compact('monthlySums', 'transactionByMonth'));
     }
     

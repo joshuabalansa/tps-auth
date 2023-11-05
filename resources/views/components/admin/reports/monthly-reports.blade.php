@@ -1,31 +1,31 @@
 @extends('layouts.app')
 @section('content')
-<div class="row">
-    <div class="col-12">
-        <div class="card">
-            <div class="card-body">
-                <h4 class="header-title mb-4">Monthly Sales</h4>
-                <div class="table-responsive">
-                    <table id="datatable-buttons" class="table table-striped dt-responsive nowrap w-100">
-                        <thead>
-                        <tr>
-                            <th>Month</th>
-                            <th>Income</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($monthlySums as $month => $total)
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title mb-4">Monthly Sales</h4>
+                    <div class="table-responsive">
+                        <table id="datatable-buttons" class="table table-striped dt-responsive nowrap w-100">
+                            <thead>
                                 <tr>
-                                    <td>{{ date('F Y', strtotime($month . '-01')) }}</td>
-                                    <td>₱ {{ number_format($total, 2) }}</td>
+                                    <th>Month</th>
+                                    <th>Income</th>
                                 </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                @foreach ($monthlySums as $month => $total)
+                                    <tr>
+                                        <td>{{ date('F Y', strtotime($month . '-01')) }}</td>
+                                        <td>₱ {{ number_format($total, 2) }}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div><!-- end col -->
-</div>
-<!-- end row -->
+        </div><!-- end col -->
+    </div>
+    <!-- end row -->
 @endsection
