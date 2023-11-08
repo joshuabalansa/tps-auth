@@ -16,7 +16,8 @@
                         </div>
                         <div class="col-6">
                             <div class="text-end">
-                                <h5 class="text-dark my-1">₱<span data-plugin="counterup">{{ $currentMonthTotal }}</span>
+                                <h5 class="text-dark my-1">₱<span
+                                        data-plugin="counterup">{{ number_format($currentMonthTotal, 2) }}</span>
                                 </h5>
                                 <p class="text-muted mb-1 text-truncate">This Month</p>
                             </div>

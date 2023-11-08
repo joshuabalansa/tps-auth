@@ -138,12 +138,11 @@
                     </a>
                 </li>
 
-                <li>
-                    <a
-                        href="{{ route('logout') }}"onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                        <i class="fe-log-out"></i>
-                        <span> Logout </span>
-                    </a>
+                <li class="d-flex justify-content-center mt-3">
+                    <button type="button" class="btn btn-sm btn-info" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal">
+                        Logout
+                    </button>
                 </li>
             </ul>
 
@@ -159,3 +158,30 @@
 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
     @csrf
 </form>
+
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Are you sure you want to logout?</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            {{-- <div class="modal-body">
+                ...
+            </div> --}}
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                <a class="btn btn-danger"
+                    href="{{ route('logout') }}"onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                    <i class="fe-log-out"></i>
+                    <span> Logout </span>
+
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -125,7 +125,7 @@ Route::prefix('admin')->group(function() {
 // Customer menu and checkout routes
 Route::prefix('menus')->group(function () {
     Route::get('/',                             [CustomerController::class, 'index'])->name('customer.index');
-    Route::get('selectedCategory/{categoryId}', [CustomerController::class, 'index'])->name('menu.selectedCategory');
+    Route::get('selectedCategory/{categoryId}', [CustomerController::class, 'selectedCategory'])->name('menu.selectedCategory');
     Route::get('menu/detail/{menu}',            [CartController::class, 'show'])->name('menu.show');
     
     //menus/menu/cart
