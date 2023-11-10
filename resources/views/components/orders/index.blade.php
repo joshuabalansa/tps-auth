@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>ORders</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    @vite(['resources/css/app.css','resources/js/app.js'])
+    {{-- @vite(['resources/css/app.css','resources/js/app.js']) --}}
 </head>
 <body>
     @php use Carbon\Carbon; @endphp

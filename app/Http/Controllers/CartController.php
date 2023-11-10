@@ -79,38 +79,43 @@ class CartController extends Controller
      * @param int
      * 
      */
-    public function destroy($menuId)
-    {
-        $cartSession = Session::get('cart', []);
+    public function destroy($menuId) {
+    
         try {
-            Cart::where(['menu_id' => $menuId])->delete()->with('success', 'Deleted Successfuly');
-        } catch(Exeption $e) {
-            return redirect()->route('cart.index')->with('error', 'Opps! Someting went wrong');
-        }
-
-        $indexToDelete = -1;
-        foreach ($cartSession as $index => $cartItem) {
-            if ($cartItem['menu_id'] == $menuId) {
-                $indexToDelete = $index;
-                break;
-            }
-        }
         
-        // If the menu item was found, remove it from the cart session
-        if ($indexToDelete !== -1) {
-            unset($cartSession[$indexToDelete]);
-            
-            // Reset array keys to ensure the session remains contiguous
-            $cartSession = array_values($cartSession);
-            
-            // Update the cart session
-            Session::put('cart', $cartSession);
-        }
-    
-     
-    
-        if(empty($cartSession)) return redirect()->route('customer.index');
+            $cartSession = Session::get('cart', []);
+            $deleted = Cart::where(['menu_id' => $menuId])->delete();
 
-        return redirect()->route('cart.index');
+            // if ($deleted > 0) {
+            //     return redirect()->route('cart.index')->with('success', 'Product Deleted Successfully!');
+            // }
+    
+
+            // Find and remove the item from the cart session
+            $indexToDelete = -1;
+            foreach ($cartSession as $index => $cartItem) {
+                if ($cartItem['menu_id'] == $menuId) {
+                    $indexToDelete = $index;
+                    break;
+                }
+            }
+
+            // If the item was found in the cart session, remove it
+            if ($indexToDelete !== -1) {
+                unset($cartSession[$indexToDelete]);
+                $cartSession = array_values($cartSession); // Reset array keys
+                Session::put('cart', $cartSession); // Update the cart session
+            }
+
+            // If the cart is empty, redirect to customer index; otherwise, go back to the cart
+            return empty($cartSession) ? redirect()->route('customer.index') : redirect()->route('cart.index');
+        
+        } catch (Exception $e) {
+            
+            // Log the exception message for debugging
+            Log::error($e);
+
+            return redirect()->route('cart.index')->with('error', 'Oops! Something went wrong');
+        }
     }
 }
