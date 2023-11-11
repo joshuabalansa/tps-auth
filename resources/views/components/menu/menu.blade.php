@@ -11,16 +11,15 @@
             <h1 class="mb-4 text-2xl font-extrabold text-gray-900 dark:text-white md:text-4xl lg:text-5xl"><span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">The Rabbit Hole</span> Cafe</h1>
         
             @if($cart_items_count != 0)
-                <a href="{{ route('cart.index') }}" class="text-gray-900 hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800">My Orders
-                        <span class="inline-flex items-center justify-center w-4 h-4 ml-2 text-s font-semibold text-black-800 rounded-full">
-                        {{-- {{ count(session('cart')) }} --}}
-                    </span>
-                </a>
-            @else
-                <button data-modal-target="popup-modal" data-modal-toggle="popup-modal" class="text-gray-900 hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800" type="button">
-                    My Orders
-                </button>
-            @endif
+            <a href="{{ route('cart.index') }}" class="text-white rounded-full p-3 hover:bg-blue-600 fixed bottom-4 right-4 md:bottom-8 md:right-8 lg:bottom-12 lg:right-12 md:p-8 md:shadow-lg lg:p-10  z-50">
+           <lord-icon
+               src="https://cdn.lordicon.com/mfmkufkr.json"
+               trigger="loop"
+               delay="1000"
+               style="width:50px;height:50px">
+           </lord-icon>
+           </a>
+       @endif
 
         </div>
     </div>
