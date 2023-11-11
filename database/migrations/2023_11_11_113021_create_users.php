@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->integer('role'); //superadmin = 1 admin = 2 cashier = 3 kitchen = 4
-            $table->string('status')->default('active');
+            $table->string('status')->default('deactivated');
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();

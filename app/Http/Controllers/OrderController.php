@@ -101,7 +101,7 @@ class OrderController extends Controller
         return redirect()->route('order.index')->with('error', $e->getMessage());
         }
     }
-
+    
     /**
      * Process payment for one or more orders.
      *

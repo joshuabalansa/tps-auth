@@ -36,7 +36,8 @@
                     <div class="form-group">
                         <label for="role">{{ __('Role') }}</label>
                         <select name="role" id="" class="form-control">
-                            <option value="2">Administrator</option>
+                            {{-- <option value="2">Administrator</option> --}}
+                            <option value="">Select Role</option>
                             <option value="3">Cashier</option>
                             <option value="4">Kichen Orders</option>
                         </select>

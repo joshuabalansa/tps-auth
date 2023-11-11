@@ -44,12 +44,12 @@ Route::prefix('admin')->group(function() {
     Route::get('/', [DashboardController::class, 'index'])->name('admin')->middleware('admin');
     //admin/menu
     Route::prefix('menu')->group(function() {
-        Route::get('/',              [MenuController::class, 'index'])->name('menu.index')->middleware('admin');
-        Route::get('create',         [MenuController::class, 'create'])->name('menu.create')->middleware('admin');
-        Route::post('store',         [MenuController::class, 'store'])->name('menu.store')->middleware('admin');
-        Route::get('edit/{menu}',    [MenuController::class, 'edit'])->name('menu.edit')->middleware('admin');
-        Route::put('update/{menu}',  [MenuController::class, 'update'])->name('menu.update')->middleware('admin');
-        Route::get('destroy/{menu}', [MenuController::class, 'destroy'])->name('menu.destroy')->middleware('admin');
+        Route::get('/',                  [MenuController::class, 'index'])->name('menu.index')->middleware('admin');
+        Route::get('create',             [MenuController::class, 'create'])->name('menu.create')->middleware('admin');
+        Route::post('store',             [MenuController::class, 'store'])->name('menu.store')->middleware('admin');
+        Route::get('edit/{menu}',        [MenuController::class, 'edit'])->name('menu.edit')->middleware('admin');
+        Route::put('update/{menu}',      [MenuController::class, 'update'])->name('menu.update')->middleware('admin');
+        Route::get('destroy/{menu}',     [MenuController::class, 'destroy'])->name('menu.destroy')->middleware('admin');
     });
     
     // Category Controller - admin/category
@@ -71,22 +71,22 @@ Route::prefix('admin')->group(function() {
 
     // Route Stocks routes - admin/stock
     Route::prefix('stock')->group(function () {
-        Route::get('/',               [StockController::class, 'index'])->name('stocks.index')->middleware('admin');
-        Route::get('create',          [StockController::class, 'create'])->name('stocks.create')->middleware('admin');
-        Route::post('store',          [StockController::class, 'store'])->name('stocks.store')->middleware('admin');
-        Route::get('edit/{stock}',    [StockController::class, 'edit'])->name('stocks.edit')->middleware('admin');
-        Route::put('update/{stock}',  [StockController::class, 'update'])->name('stocks.update')->middleware('admin');
-        Route::get('destroy/{stock}', [StockController::class, 'destroy'])->name('stocks.destroy')->middleware('admin');
+        Route::get('/',                 [StockController::class, 'index'])->name('stocks.index')->middleware('admin');
+        Route::get('create',            [StockController::class, 'create'])->name('stocks.create')->middleware('admin');
+        Route::post('store',            [StockController::class, 'store'])->name('stocks.store')->middleware('admin');
+        Route::get('edit/{stock}',      [StockController::class, 'edit'])->name('stocks.edit')->middleware('admin');
+        Route::put('update/{stock}',    [StockController::class, 'update'])->name('stocks.update')->middleware('admin');
+        Route::get('destroy/{stock}',   [StockController::class, 'destroy'])->name('stocks.destroy')->middleware('admin');
     });
 
     //Staff routes - admin/staff
     Route::prefix('staff')->group(function() {
-        Route::get('/',               [StaffController::class, 'index'])->name('staff.index')->middleware('admin');
-        Route::get('create',          [StaffController::class, 'create'])->name('staff.create')->middleware('admin');
-        Route::post('store',          [StaffController::class, 'store'])->name('staff.store')->middleware('admin');
-        Route::get('edit/{staff}',    [StaffController::class, 'edit'])->name('staff.edit')->middleware('admin');
-        Route::put('update/{staff}',  [StaffController::class, 'update'])->name('staff.update')->middleware('admin');
-        Route::get('destroy/{staff}', [StaffController::class, 'destroy'])->name('staff.destroy')->middleware('admin');
+        Route::get('/',                 [StaffController::class, 'index'])->name('staff.index')->middleware('admin');
+        Route::get('create',            [StaffController::class, 'create'])->name('staff.create')->middleware('admin');
+        Route::post('store',            [StaffController::class, 'store'])->name('staff.store')->middleware('admin');
+        Route::get('edit/{staff}',      [StaffController::class, 'edit'])->name('staff.edit')->middleware('admin');
+        Route::put('update/{staff}',    [StaffController::class, 'update'])->name('staff.update')->middleware('admin');
+        Route::get('destroy/{staff}',   [StaffController::class, 'destroy'])->name('staff.destroy')->middleware('admin');
     });
     // reservation routes - admin/reservation
     Route::prefix('reservation')->group(function() {
@@ -106,6 +106,7 @@ Route::prefix('admin')->group(function() {
         Route::put('update/{table}',    [TableController::class, 'update'])->name('table.update');
         Route::get('destroy/{table}',   [TableController::class, 'destroy'])->name('table.destroy');
     });
+
     // users controller - admin/user
     Route::prefix('user')->group(function () {
         Route::get('/',                 [ManageUserController::class, 'index'])->name('user.index');
@@ -139,15 +140,16 @@ Route::prefix('menus')->group(function () {
 
 //Order route - /order
 Route::prefix('order')->group(function() {
-    Route::get('/',              [OrderController::class, 'index'])->name('order.index')->middleware('kitchen');
-    Route::get('store',          [OrderController::class, 'store'])->name('order.store');
-    Route::get('complete',       [OrderController::class, 'complete'])->name('order.complete');
-    Route::get('done/{orderId}', [OrderController::class, 'done'])->name('order.done')->middleware('kitchen');
-    Route::get('paid/{orderId}', [OrderController::class, 'paid'])->name('order.paid');
+    Route::get('/',                     [OrderController::class, 'index'])->name('order.index')->middleware('kitchen');
+    Route::get('store',                 [OrderController::class, 'store'])->name('order.store');
+    Route::get('complete',              [OrderController::class, 'complete'])->name('order.complete');
+    Route::get('done/{orderId}',        [OrderController::class, 'done'])->name('order.done')->middleware('kitchen');
+    Route::get('paid/{orderId}',        [OrderController::class, 'paid'])->name('order.paid');
 }); 
 
 // cashier route
 Route::prefix('cashier')->group(function() {
-    Route::get('/',                [CashierController::class, 'index'])->name('cashier.index')->middleware('cashier');
-    Route::get('cancel/{orderId}', [CashierController::class, 'cancel'])->name('cashier.cancel')->middleware('cashier');
+    Route::get('/',                     [CashierController::class, 'index'])->name('cashier.index')->middleware('cashier');
+    Route::get('cancel/{orderId}',      [CashierController::class, 'cancel'])->name('cashier.cancel')->middleware('cashier');
+    Route::get('details/{orderNumber}', [CashierController::class, 'details'])->name('order.details');
 });

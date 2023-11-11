@@ -33,6 +33,19 @@ class CashierController extends Controller
             
             return redirect()->route('cashier.index')->with('error', 'Something went wrong, try again');
         }
-       
+    }
+
+    
+    /**
+     * view details of orders
+     *
+     * @param int $orderNumber
+     * @return void
+     */
+    public function details($orderNumber) {
+
+        $orderDetails = Order::where('order_number', $orderNumber)->get();
+
+        return view('components.cashier.details', compact('orderDetails'));
     }
 }

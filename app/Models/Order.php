@@ -37,7 +37,22 @@ class Order extends Model
         return $timeAgo;
     }
 
+    /**
+     *
+     * @return float
+     */
     public function getPrice() {
         return $this->price;
     }
+
+
+    /**
+     *
+     * @return int
+     */
+    public function getOrderNumber() {
+        return $this->order_number;
+    }
+
+
 }
