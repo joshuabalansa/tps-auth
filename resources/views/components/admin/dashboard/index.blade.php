@@ -38,7 +38,7 @@
                         <div class="col-6">
                             <div class="text-end">
                                 <h5 class="text-dark my-1"><span data-plugin="counterup">{{ $menuCount }}</span></h5>
-                                <p class="text-muted mb-1 text-truncate">Products</p>
+                                <a href="{{ route('menu.index') }}" class="text-muted mb-1 text-truncate">Products</a>
                             </div>
                         </div>
                     </div>
@@ -57,7 +57,7 @@
                         <div class="col-6">
                             <div class="text-end">
                                 <h5 class="text-dark my-1"><span data-plugin="counterup">{{ $categoryCount }}</span></h5>
-                                <p class="text-muted mb-1 text-truncate">Categories</p>
+                                <a href="{{ route('category.index') }}" class="text-muted mb-1 text-truncate">Categories</a>
                             </div>
                         </div>
                     </div>
@@ -66,7 +66,7 @@
             </div> <!-- end card-->
         </div> <!-- end col -->
 
-        <div class="col-md-6 col-xl-3">
+        <div class="col-md-6 col-xl-3"> 
             <div class="card">
                 <div class="card-body">
                     <div class="row">
@@ -78,7 +78,7 @@
                         <div class="col-6">
                             <div class="text-end">
                                 <h5 class="text-dark my-1"><span data-plugin="counterup">{{ $stocks }}</span></h5>
-                                <p class="text-muted mb-1 text-truncate">Stocks</p>
+                                <a href="{{ route('stocks.index') }}" class="text-muted mb-1 text-truncate">Stocks</a>
                             </div>
                         </div>
                     </div>

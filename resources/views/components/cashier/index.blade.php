@@ -155,21 +155,26 @@
         <script src="{{ asset('assets/js/app.min.js') }}"></script>
 
         <script>
-            document.addEventListener("DOMContentLoaded", function() {
-                const searchInput = document.getElementById("searchInput");
-                const cards = document.querySelectorAll(".card");
+            // Get a reference to the search input field
+            const searchInput = document.getElementById('searchInput');
 
-                searchInput.addEventListener("input", function() {
-                    const searchText = searchInput.value.trim().toLowerCase();
+            // Get all order containers
+            const orderContainers = document.querySelectorAll('.card');
 
-                    cards.forEach(function(card) {
-                        const cardTitle = card.querySelector(".card-title").textContent.toLowerCase();
-                        if (cardTitle.includes(searchText)) {
-                            card.style.display = "block";
-                        } else {
-                            card.style.display = "none";
-                        }
-                    });
+            // Attach an event listener to the search input
+            searchInput.addEventListener('input', () => {
+                const searchTerm = searchInput.value.toLowerCase();
+
+                // Loop through each order container
+                orderContainers.forEach((container) => {
+                    const orderText = container.textContent.toLowerCase();
+
+                    // Check if the order text contains the search term
+                    if (orderText.includes(searchTerm)) {
+                        container.style.display = 'block'; // Show the container
+                    } else {
+                        container.style.display = 'none'; // Hide the container
+                    }
                 });
             });
         </script>

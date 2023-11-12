@@ -88,7 +88,6 @@
                                     </li> --}}
                                 </ul>
                                 <div class="mb-3">
-                                    <span id="display"></span>
                                     <input type="number" name="payment" id="payment" class="form-control"
                                         placeholder="Enter the Cash Payment">
                                 </div>
@@ -141,7 +140,9 @@
                                         <tr>
                                             <th scope="row" colspan="4" class="text-end">Change :</th>
                                             <td>
-                                                <div class="fw-bold">₱234</div>
+                                                <div class="fw-bold">
+                                                    <span id="display"></span>
+                                                </div>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -213,11 +214,13 @@
     <div class="rightbar-overlay"></div>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            const paymentInput = document.getElementById("payment");
-            const displaySpan = document.getElementById("display");
+            const paymentInput = document.getElementById("payment")
+            const displaySpan = document.getElementById("display")
+
 
             paymentInput.addEventListener("input", function() {
-                displaySpan.textContent = paymentInput.value;
+                var amount = displaySpan.textContent = {{ json_encode($totalPrice) }}
+                displaySpan.textContent = paymentInput.value - amount
             });
         });
     </script>
