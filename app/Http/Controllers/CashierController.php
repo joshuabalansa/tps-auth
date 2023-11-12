@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Order;
+use Carbon\Carbon;
 
 class CashierController extends Controller
 {
@@ -15,7 +16,7 @@ class CashierController extends Controller
     {
         $orders = Order::where(['status' => 'pending'])->get();
         $groupedOrders = collect($orders)->groupBy('order_number')->sortBy('created_at');
-        
+
         return view('components.cashier.index', compact('orders', 'groupedOrders')); 
     }
 
@@ -45,7 +46,10 @@ class CashierController extends Controller
     public function details($orderNumber) {
 
         $orderDetails = Order::where('order_number', $orderNumber)->get();
-
-        return view('components.cashier.details', compact('orderDetails'));
+        $totalPrice = $orderDetails->sum('price');
+        $carbonTimestamp = Carbon::parse($orderDetails[0]['created_at']); // Assuming there is at least one order detail
+        $createdTime = $carbonTimestamp->diffForHumans();
+    
+        return view('components.cashier.details', compact('orderDetails','orderNumber', 'totalPrice', 'createdTime'));
     }
 }

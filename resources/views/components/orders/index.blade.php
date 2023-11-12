@@ -30,7 +30,6 @@
                 class="w-full py-2 px-3 rounded-md shadow-md focus:outline-none focus:ring focus:border-blue-300">
         </div>
 
-
         @if (count($orders) < 1)
             <div class="flex items-center justify-center w-full">
                 <h3 class="text-xl text-gray-700">There are no orders at the moment</h3>
