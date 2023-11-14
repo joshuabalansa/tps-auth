@@ -67,6 +67,9 @@ Route::prefix('admin')->group(function() {
         Route::get('orders',            [ReportController::class, 'ordersReport'])->name('reports.orders')->middleware('admin');
         Route::get('daily',             [ReportController::class, 'dailyReport'])->name('daily.reports')->middleware('admin');
         Route::get('monthly',           [ReportController::class, 'monthlyReport'])->name('monthly.reports')->middleware('admin');
+        Route::get('dailysalesfilter',  [ReportController::class, 'dailySalesFilter'])->name('dailySalesFilter')->middleware('admin');
+        Route::get('dailySalesOrders/{day}',  [ReportController::class, 'dailySalesOrders'])->name('dailySalesOrders')->middleware('admin');
+    
     });
 
     // Route Stocks routes - admin/stock

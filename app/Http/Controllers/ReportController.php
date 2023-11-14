@@ -83,4 +83,17 @@ class ReportController extends Controller
         $dailySums = $transactions->groupBy(fn($transaction) => $transaction->created_at->format('Y-m-d'))->map(fn($transactions) => $transactions->sum('amount'));
         return $dailySums;
     }
+
+    /**
+     * Undocumented function
+     *
+     * @param string $day
+     * @return \Illiminate\View\View
+     */
+    public static function dailySalesOrders($day) {
+
+        $transactions = Transaction::whereDate('created_at', $day)->get();
+        
+        return view('components.admin.reports.daily-sales-orders', compact('transactions', 'day'));
+    }
 }
