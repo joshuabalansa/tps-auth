@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Carbon\Carbon;
 use App\Models\Cart;
+use App\Models\Menu;
 use App\Models\Order;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Session;
-use Carbon\Carbon;
 use App\Models\Transaction;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class OrderController extends Controller
 {
@@ -43,6 +44,7 @@ class OrderController extends Controller
         $min = 10;
         $max = 99999; 
 
+      
         // Loop until a unique order number is generated
         do {
             try {
@@ -52,7 +54,8 @@ class OrderController extends Controller
                 throw $e;
             }
         } while (Order::where('order_number', $orderNumber)->exists());
-        
+        $menuQty = Menu::all();
+
         foreach($cartItems as $cartItem) {
             $order = new Order;
             $order->menu          =  $cartItem->menu;
@@ -64,6 +67,19 @@ class OrderController extends Controller
             $order->image         =  $cartItem->image;
             $order->status        =  'pending';
             $order->is_completed  =  false;
+
+            // Update the menu quantity or products quantity
+            $menu =  $menuQty->where('id', $cartItem->menu_id)->first();
+            
+            if($menu) {
+                $menu->quantity -= $cartItem->quantity;
+
+                if($menu->quantity <= 0) {
+                    $menu->quantity = 0;
+                    $menu->status = 2;
+                }
+                $menu->save();
+            }
 
             $order->save();
         }

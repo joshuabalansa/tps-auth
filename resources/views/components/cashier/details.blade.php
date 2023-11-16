@@ -88,7 +88,7 @@
                                     </li> --}}
                                 </ul>
                                 <div class="mb-3">
-                                    <input type="number" name="payment" id="payment" class="form-control"
+                                    <input type="text" name="payment" id="payment" class="form-control"
                                         placeholder="Enter the Cash Payment">
                                 </div>
                                 <div class="text-center mt-4">

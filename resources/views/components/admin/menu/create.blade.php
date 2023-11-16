@@ -57,6 +57,11 @@
                         <input value="{{ old('image') }}" name="image" type="file" class="form-control" required />
                     </div>
                     <div class="mb-3">
+                        <label for="product-price">Quantity <span class="text-danger">*</span></label>
+                        <input value="{{ old('quantity') }}" name="quantity" placeholder="Enter total stocks available"
+                            type="text" class="form-control" required />
+                    </div>
+                    <div class="mb-3">
                         <label class="mb-2">Status <span class="text-danger">*</span></label>
                         <br />
                         <div class="radio form-check-inline">

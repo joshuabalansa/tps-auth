@@ -39,14 +39,15 @@ class MenuController extends Controller
      * @param array request
      * @return view
      */
-    public function store(Request $request)
-{
+    public function store(Request $request) {
+
         $validatedData = $request->validate([
             'name'          => 'required|min:2',
             'description'   => 'required',
             'category'      => 'required',
             'price'         => ['required', 'numeric'],
             'status'        => '',
+            'quantity'      => 'required',
             'image' => [
                 'nullable',
                 'image', 
@@ -56,26 +57,29 @@ class MenuController extends Controller
         ]);
 
         if ($request->hasFile('image')) {
+
             $image = $request->file('image');
             $imageName = time().'.'.$image->getClientOriginalExtension();
             $image->move(public_path('uploads'), $imageName);
             $validatedData['image'] = $imageName;
+
         } else {
+
             $validatedData['image'] = null;
         }
             // getting user input request and storing to database 
             $menu = new Menu;
             
-            $menu->name = $validatedData['name'];
-            $menu->description = $validatedData['description'];
-            $menu->category = $validatedData['category'];
-            $menu->price = $validatedData['price'];
-            $menu->status = $validatedData['status'];
-            $menu->image = $validatedData['image'];
-            $menu->save();   
-
+            $menu->name         =   $validatedData['name'];
+            $menu->description  =   $validatedData['description'];
+            $menu->category     =   $validatedData['category'];
+            $menu->price        =   $validatedData['price'];
+            $menu->status       =   $validatedData['status'];
+            $menu->quantity     =   $validatedData['quantity'];
+            $menu->image        =   $validatedData['image'];
+            $menu->save();
             return redirect()->route('menu.index')->with('success', 'Item added successfully!');
-}
+        }
 
 
     /**
@@ -100,11 +104,12 @@ class MenuController extends Controller
     {
         try {
             $validate = $request->validate([
-                'name' => 'required:min:2',
-                'description' => 'required',
-                'category' => 'required',
-                'price' => ['required', 'numeric'],
-                'status' => ''
+                'name'          =>  'required:min:2',
+                'category'      =>  'required',
+                'description'   =>  'required',
+                'price'         =>  ['required', 'numeric'],
+                'quantity'      =>  'required',
+                'status'        =>  ''
             ]);
             
             $menu->update($validate);

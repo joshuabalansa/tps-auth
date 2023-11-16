@@ -20,7 +20,8 @@ class Menu extends Model
         'description',
         'category',
         'price',
-        'status'
+        'status',
+        'quantity'
     ];
 
 
@@ -73,7 +74,15 @@ class Menu extends Model
      * @return string
      */
     public function getStatus() {
-        $status = $this->status == 1 ? 'Available' : 'Draft';
+        $status = ($this->status == 1) ? 'Available' : (($this->status == 0) ? 'Draft' : 'Out Of Stock');
         return $status;
+    }
+
+    /**
+     * @return int
+     */
+    public function getQuantity() {
+
+        return $this->quantity;
     }
 }

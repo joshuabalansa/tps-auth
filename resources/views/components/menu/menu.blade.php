@@ -89,7 +89,7 @@
                                 <h2 class="text-xl font-semibold mb-2">{{ $menu->getName() }}</h2>
                                 {{-- <p class="text-gray-700">{{ $menu->getDescription() }}</p> --}}
                             </div>
-                            <h1 class="mb-3 bottom-4 right-4 text-lg ">{{ $menu->getPrice() }}</h1>
+                            <h1 class="mb-3 bottom-4 right-4 text-lg ">₱{{ $menu->getPrice() }}</h1>
                         </div>
                     </a>
                 @endforeach
