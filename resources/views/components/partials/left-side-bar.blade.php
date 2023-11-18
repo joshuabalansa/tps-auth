@@ -74,6 +74,12 @@
                         </ul>
                     </div>
                 </li>
+                <li>
+                    <a href="{{ route('stocks.index') }}">
+                        <i class="mdi mdi-dropbox"></i>
+                        <span> Inventory Tracking</span>
+                    </a>
+                </li>
 
                 <li>
                     <a href="{{ route('reports.orders') }}">
@@ -96,16 +102,14 @@
                             <li>
                                 <a href="{{ route('monthly.reports') }}">Monthly Income</a>
                             </li>
+                            <li>
+                                <a href="{{ route('yearly.reports') }}">Yearly Income</a>
+                            </li>
                         </ul>
                     </div>
                 </li>
 
-                <li>
-                    <a href="{{ route('stocks.index') }}">
-                        <i class="mdi mdi-dropbox"></i>
-                        <span> Stocks </span>
-                    </a>
-                </li>
+
 
                 <li>
                     <a href="{{ route('staff.index') }}">

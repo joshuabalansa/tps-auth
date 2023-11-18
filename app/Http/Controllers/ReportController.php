@@ -51,7 +51,6 @@ class ReportController extends Controller
         
         return $transactions;
     }
-    
 
     /**
      * returns the daily sums
@@ -74,6 +73,26 @@ class ReportController extends Controller
     }
 
     /**
+     * compute the sums of yearly orders function
+     *
+     * @return \Illuminate\View\View
+     */
+    public function yearlyReport() {
+        
+        $transactions = Transaction::all();
+
+        $transactionsByYear = $transactions->groupBy(function ($transaction) {
+            return $transaction->created_at->format('Y');
+        });
+
+        $yearlySums = $transactionsByYear->map(function ($transactions) {
+            return $transactions->sum('amount');
+        });
+
+        return view('components.admin.reports.yearly-report', compact('yearlySums', 'transactionsByYear'));
+    }
+
+    /**
      * Retrieve the daily income by summing up transaction amounts for each day.
      * @return \Illuminate\Support\Collection
      */
@@ -85,7 +104,7 @@ class ReportController extends Controller
     }
 
     /**
-     * Undocumented function
+     * get the daily sales order function
      *
      * @param string $day
      * @return \Illiminate\View\View
@@ -93,7 +112,6 @@ class ReportController extends Controller
     public static function dailySalesOrders($day) {
 
         $transactions = Transaction::whereDate('created_at', $day)->get();
-        
         return view('components.admin.reports.daily-sales-orders', compact('transactions', 'day'));
     }
 }

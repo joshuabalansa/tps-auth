@@ -66,7 +66,8 @@
                                                      --}}
                                         <h4 class="mb-4">Price : <b>₱{{ $menu->getPrice() }}</b></h4>
                                         <h4><span
-                                                class="badge bg-soft-success text-success mb-4">{{ $menu->getStatus() }}</span>
+                                                class="badge bg-soft-{{ ($menu->status == 0 ? 'warning' : $menu->status == 1) ? 'success' : 'danger' }} text-{{ ($menu->status == 0 ? 'warning' : $menu->status == 1) ? 'success' : 'danger' }} mb-4">{{ $menu->quantity }}
+                                                {{ $menu->status == 1 ? 'Available' : 'Not Available' }}</span>
                                         </h4>
                                         <p class="text-muted mb-4">{{ $menu->description }}</p>
 
@@ -76,19 +77,24 @@
                                             <div class="d-flex flex-wrap align-items-center mb-4">
                                                 <label class="my-1 me-2" for="quantityinput">Quantity</label>
                                                 <div class="me-3">
-                                                    <input type="number" name="qty" id="quantityinput"
-                                                        min="1" value="5" class="form-control"
-                                                        placeholder="Qty" style="width: 90px;">
+                                                    <input type="number" max="{{ $menu->quantity }}" name="qty"
+                                                        id="quantityinput" min="1" value="1"
+                                                        class="form-control" placeholder="Qty" style="width: 90px;">
                                                 </div>
                                             </div>
 
                                             <div class="d-flex justify-around align-items-center">
                                                 <a href="{{ route('customer.index') }}"
                                                     class="btn btn-outline-secondary me-2">Back</a>
-                                                <button type="submit" class="btn btn-success waves-effect waves-light">
-                                                    <span class="btn-label"><i class="mdi mdi-cart"></i></span>Add to
-                                                    Order
-                                                </button>
+
+                                                @if ($menu->status == 1)
+                                                    <button type="submit"
+                                                        class="btn btn-success waves-effect waves-light">
+                                                        <span class="btn-label"><i class="mdi mdi-cart"></i></span>Add
+                                                        to
+                                                        Order
+                                                    </button>
+                                                @endif
                                             </div>
                                         </form>
 

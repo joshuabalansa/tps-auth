@@ -14,7 +14,8 @@ class CustomerController extends Controller
     public function index() {
 
         $cart_items_count = Cart::count();
-        $menus = Menu::where('status', 1)->get();
+        // $menus = Menu::where('status', 1)->get();
+        $menus = Menu::all();
         $categories = Category::all();
 
        $menus->isEmpty() ? $isEmpty = true : $isEmpty = false;

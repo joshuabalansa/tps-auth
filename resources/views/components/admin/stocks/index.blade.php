@@ -2,77 +2,81 @@
 
 @section('content')
     <div class="row">
-        {{-- <div class="col-md-6 col-xl-3">
+        <div class="col-md-6 col-xl-3" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="custom-tooltip"
+            data-bs-title="Shows the lowest quantity of stocks">
             <div class="widget-rounded-circle card">
                 <div class="card-body">
                     <div class="row">
                         <div class="col-6">
-                            <div class="avatar-lg rounded-circle bg-primary">
-                                <i class="mdi mdi-hamburger font-22 avatar-title text-white"></i>
+                            <div class="avatar-lg rounded-circle"> {{-- bg-success --}}
+                                <i class="mdi mdi-trending-down font-22 avatar-title text-dark"></i>
                             </div>
                         </div>
                         <div class="col-6">
-                            <div class="text-end">
-                                <h3 class="text-dark mt-1"><span data-plugin="counterup">{{ $stocks->count() }}</span></h3>
-                                <p class="text-muted mb-1 text-truncate">Total Items</p>
-                            </div>
-                        </div>
-                    </div> <!-- end row-->
-                </div>
-            </div> <!-- end widget-rounded-circle-->
-        </div> <!-- end col--> --}}
-
-        {{-- <div class="col-md-6 col-xl-3">
-            <div class="widget-rounded-circle card">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-6">
-                            <div class="avatar-lg rounded-circle bg-secondary">
-                                <i class="dripicons-checklist font-22 avatar-title text-white"></i>
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="text-end">
-                                <h3 class="text-dark mt-1"><span data-plugin="counterup">{{ $stocks->count() }}</span></h3>
-                                <p class="text-muted mb-1 text-truncate">stocks</p>
-                            </div>
-                        </div>
-                    </div> <!-- end row-->
-                </div>
-            </div> <!-- end widget-rounded-circle-->
-        </div> <!-- end col--> --}}
-        {{-- <div class="col-md-6 col-xl-3">
-            <div class="widget-rounded-circle card">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-6">
-                            <div class="avatar-lg rounded-circle bg-success">
-                                <i class="fe-trash-2 font-22 avatar-title text-white"></i>
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="text-end">
-                                <h3 class="text-dark mt-1"><span data-plugin="counterup">12334</span></h3>
-                                <p class="text-muted mb-1 text-truncate">Available</p>
+                            <div class="text-end" title="Product with low quantity">
+                                <h3 class="text-dark mt-1"><span data-plugin="counterup">{{ $productQtyMin }}</span></h3>
+                                <p class="text-muted mb-1 text-truncate">{{ $productLowQty->name }}</p>
                             </div>
                         </div>
                     </div> <!-- end row-->
                 </div>
             </div> <!-- end widget-rounded-circle-->
         </div> <!-- end col-->
-        <div class="col-md-6 col-xl-3">
+
+        <div class="col-md-6 col-xl-3" data-bs-toggle="tooltip" data-bs-placement="bottom"
+            data-bs-custom-class="custom-tooltip" data-bs-title="Shows the Highest quantity of stocks">
             <div class="widget-rounded-circle card">
                 <div class="card-body">
                     <div class="row">
                         <div class="col-6">
-                            <div class="avatar-lg rounded-circle bg-warning border-warning border shadow">
-                                <i class="ti-archive font-22 avatar-title text-white"></i>
+                            <div class="avatar-lg rounded-circle">
+                                <i class="mdi mdi-trending-up font-22 avatar-title text-dark"></i>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="text-end">
-                                <h3 class="mt-1"><span data-plugin="counterup">6432</span></h3>
-                                <p class="text-muted mb-1 text-truncate">Drafts</p>
+                                <h3 class="text-dark mt-1"><span data-plugin="counterup">{{ $productQtyMax }}</span></h3>
+                                <p class="text-muted mb-1 text-truncate">{{ $productHighQty->name }}</p>
+                            </div>
+                        </div>
+                    </div> <!-- end row-->
+                </div>
+            </div> <!-- end widget-rounded-circle-->
+        </div> <!-- end col-->
+        <div class="col-md-6 col-xl-3" data-bs-toggle="tooltip" data-bs-placement="bottom"
+            data-bs-custom-class="custom-tooltip" data-bs-title="Shows the total out of stocks">
+            <div class="widget-rounded-circle card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="avatar-lg rounded-circle">
+                                <i class="mdi mdi-close font-22 avatar-title text-dark"></i>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="text-end">
+                                <h3 class="text-dark mt-1"><span data-plugin="counterup">{{ $outOfStocks }}</span></h3>
+                                <p class="text-muted mb-1 text-truncate">Out of Stocks</p>
+                            </div>
+                        </div>
+                    </div> <!-- end row-->
+                </div>
+            </div> <!-- end widget-rounded-circle-->
+        </div> <!-- end col-->
+        <div class="col-md-6 col-xl-3" data-bs-toggle="tooltip" data-bs-placement="bottom"
+            data-bs-custom-class="custom-tooltip" data-bs-title="Shows the total of available stocks">
+            <div class="widget-rounded-circle card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="avatar-lg rounded-circle">
+                                <i class="mdi mdi-check font-22 avatar-title text-dark"></i>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="text-end">
+                                <h3 class="mt-1"><span data-plugin="counterup">{{ $availableStocks }}</span></h3>
+                                <p class="text-muted mb-1 text-truncate">Available</p>
                             </div>
                         </div>
                     </div> <!-- end row-->
@@ -80,57 +84,65 @@
             </div> <!-- end widget-rounded-circle-->
         </div>
     </div>
-    <!-- end row --> --}}
 
-        <div class="row">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-body">
-                        <a href="{{ route('stocks.create') }}" class="btn btn-sm btn-blue waves-effect waves-light float-end">
-                            <i class="mdi mdi-plus-circle"></i> Add Item
-                        </a>
-                        <h4 class="header-title mb-4">Inventory Management</h4>
-                        <div class="table-responsive">
-                            <table class="table table-hover m-0 table-centered dt-responsive nowrap w-100"
-                                id="tickets-table">
-                                <thead>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <a href="{{ route('stocks.create') }}" class="btn btn-sm btn-blue waves-effect waves-light float-end">
+                        <i class="mdi mdi-plus-circle"></i> Add Product
+                    </a>
+                    <h4 class="header-title mb-4">Inventory Tracking</h4>
+                    <div class="table-responsive">
+                        <table class="table table-hover m-0 table-centered dt-responsive nowrap w-100" id="tickets-table">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        #
+                                    </th>
+                                    <th>Product</th>
+                                    {{-- <th>Description</th> --}}
+                                    <th>Category</th>
+                                    {{-- <th>Price</th> --}}
+                                    <th>Quantity</th>
+                                    <th>Status</th>
+                                    {{-- <th class="hidden-sm">Action</th> --}}
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @foreach ($menus as $menu)
                                     <tr>
-                                        <th>
-                                            #
-                                        </th>
-                                        <th>Item</th>
-                                        <th>Description</th>
-                                        <th>Manufacturer</th>
-                                        <th>Quantity</th>
-                                        <th>Cost</th>
-                                        <th class="hidden-sm">Action</th>
-                                    </tr>
-                                </thead>
+                                        <td><b>{{ $menu->id }}</b></td>
+                                        <td>
+                                            {{ $menu->getName() }}
+                                        </td>
+                                        {{-- 
+                                            <td>
+                                                {{ $menu->getDescription() }}
+                                            </td> --}}
 
-                                <tbody>
-                                    @foreach ($stocks as $stock)
-                                        <tr>
-                                            <td><b>{{ $stock->getId() }}</b></td>
-                                            <td>
-                                                {{ $stock->getItem() }}
-                                            </td>
+                                        <td>
+                                            @foreach ($menu->getCategory() as $category)
+                                                {{ $category['category'] }}
+                                            @endforeach
+                                        </td>
 
-                                            <td>
-                                                {{ $stock->getDescription() }}
-                                            </td>
+                                        <td>
+                                            {{ $menu->getQuantity() }}
+                                        </td>
 
-                                            <td>
-                                                {{ $stock->getManufacturer() }}
-                                            </td>
+                                        {{-- <td>
+                                                {{ $menu->getPrice() }}
+                                            </td> --}}
+                                        <td>
+                                            <span
+                                                class="badge bg-{{ $menu->getStatus() == 'Available' ? 'success' : ($menu->getStatus() == 'Draft' ? 'warning' : 'danger') }}">
+                                                {{ $menu->getStatus('status') }}
+                                            </span>
+                                        </td>
 
-                                            <td>
-                                                {{ $stock->getQuantity() }}
-                                            </td>
-                                            <td>
-                                                {{ $stock->getCost() }}
-                                            </td>
-
-                                            <td>
+                                        {{-- <td>
                                                 <div class="btn-group dropdown">
                                                     <a href="javascript: void(0);"
                                                         class="table-action-btn dropdown-toggle arrow-none btn btn-light btn-sm"
@@ -145,15 +157,15 @@
                                                                 class="mdi mdi-delete me-2 text-muted font-18 vertical-middle"></i>Remove</a>
                                                     </div>
                                                 </div>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
+                                            </td> --}}
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-            </div><!-- end col -->
-        </div>
-        <!-- end row -->
-    @endsection
+            </div>
+        </div><!-- end col -->
+    </div>
+    <!-- end row -->
+@endsection
