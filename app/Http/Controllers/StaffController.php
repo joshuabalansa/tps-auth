@@ -21,7 +21,17 @@ class StaffController extends Controller
      */
     public function create()
     {
-        return view('components.admin.staff.create');
+        $schedFields = [
+            'mon' => 'Monday',
+            'tue' => 'Tuesday',
+            'wed' => 'Wednesday',
+            'thu' => 'Thursday',
+            'fri' => 'Friday',
+            'sat' => 'Saturday',
+            'sunday' => 'Sunday'
+        ];
+
+        return view('components.admin.staff.create', compact('schedFields'));
     }
 
     /**
@@ -29,6 +39,8 @@ class StaffController extends Controller
      */
     public function store(Request $request)
     {
+
+        dd($request);
         try {
             $validate = $request->validate([
                 'firstname' => 'required|min:2',

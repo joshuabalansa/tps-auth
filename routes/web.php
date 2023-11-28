@@ -24,7 +24,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\TableController;
 use App\Http\Controllers\ManageUserController;
-
+use App\Http\Controllers\CustomerReservationController;
 // View Dashboard
 Route::get('/', function () {
     return view('auth.login');
@@ -95,8 +95,8 @@ Route::prefix('admin')->group(function() {
     // reservation routes - admin/reservation
     Route::prefix('reservation')->group(function() {
         Route::get('/',                     [ReservationController::class, 'index'])->name('reservation.index')->middleware('admin');
-        Route::get('create',                [ReservationController::class, 'create'])->name('reservation.create')->middleware('admin');
-        Route::post('store',                [ReservationController::class, 'store'])->name('reservation.store')->middleware('admin');
+        Route::get('create',                [ReservationController::class, 'create'])->name('reservation.create');
+        Route::post('store',                [ReservationController::class, 'store'])->name('reservation.store');
         Route::get('destroy/{reservation}', [ReservationController::class, 'destroy'])->name('reservation.destroy')->middleware('admin');
         Route::get('edit/{reservation}',    [ReservationController::class, 'edit'])->name('reservation.edit')->middleware('admin');
         Route::put('update/{reservation}',  [ReservationController::class, 'update'])->name('reservation.update')->middleware('admin');
@@ -113,10 +113,10 @@ Route::prefix('admin')->group(function() {
 
     // users controller - admin/user
     Route::prefix('user')->group(function () {
-        Route::get('/',                 [ManageUserController::class, 'index'])->name('user.index');
-        Route::get('create',            [ManageUserController::class, 'create'])->name('user.create');
-        Route::post('store',            [ManageUserController::class, 'store'])->name('user.store');
-        Route::get('edit/{user}',       [ManageUserController::class, 'edit'])->name('user.edit');
+        Route::get('/', [ManageUserController::class, 'index'])->name('user.index');
+        Route::get('create',[ManageUserController::class, 'create'])->name('user.create');
+        Route::post('store', [ManageUserController::class, 'store'])->name('user.store');
+        Route::get('edit/{user}', [ManageUserController::class, 'edit'])->name('user.edit');
         Route::get('deactivate/{user}', [ManageUserController::class, 'deactivate'])->name('user.deactivate');
         Route::get('reactivate/{user}', [ManageUserController::class, 'reactivate'])->name('user.reactivate');
         Route::get('destroy/{user}',    [ManageUserController::class, 'destroy'])->name('user.destroy');
@@ -124,15 +124,12 @@ Route::prefix('admin')->group(function() {
 
 });
 
-
-
-
 // Customer menu and checkout routes
 Route::prefix('menus')->group(function () {
     Route::get('/',                             [CustomerController::class, 'index'])->name('customer.index');
     Route::get('selectedCategory/{categoryId}', [CustomerController::class, 'selectedCategory'])->name('menu.selectedCategory');
     Route::get('menu/detail/{menu}',            [CartController::class, 'show'])->name('menu.show');
-    
+
     //menus/menu/cart
     Route::prefix('menu/cart')->group(function() {
         Route::get('/',                [CartController::class, 'index'])->name('cart.index');
@@ -141,6 +138,11 @@ Route::prefix('menus')->group(function () {
     });
 });
 
+Route::prefix('customer')->group(function () {
+    Route::get('reserve', [CustomerReservationController::class, 'create'])->name('reserve.create');
+    Route::post('reserve-create', [CustomerReservationController::class, 'store'])->name('reserve.store');
+    Route::get('reserve-complete', [CustomerReservationController::class, 'complete'])->name('reserve.complete');
+});
 
 //Order route - /order
 Route::prefix('order')->group(function() {
