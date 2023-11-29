@@ -157,5 +157,6 @@ Route::prefix('order')->group(function() {
 Route::prefix('cashier')->group(function() {
     Route::get('/',                     [CashierController::class, 'index'])->name('cashier.index')->middleware('cashier');
     Route::get('cancel/{orderId}',      [CashierController::class, 'cancel'])->name('cashier.cancel')->middleware('cashier');
+    Route::get('reservation',           [CashierController::class, 'reservations'])->name('cashier.reservations')->middleware('cashier');
     Route::get('details/{orderNumber}', [CashierController::class, 'details'])->name('order.details');
 });

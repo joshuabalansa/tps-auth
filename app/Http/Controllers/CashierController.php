@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use Carbon\Carbon;
+use App\Models\Reservation;
 
 class CashierController extends Controller
 {
@@ -51,5 +52,11 @@ class CashierController extends Controller
         $createdTime = $carbonTimestamp->diffForHumans();
     
         return view('components.cashier.details', compact('orderDetails','orderNumber', 'totalPrice', 'createdTime'));
+    }
+    public function reservations() {
+
+        $reservations = Reservation::all();
+
+        return view('components.cashier.reservations', compact('reservations'));
     }
 }

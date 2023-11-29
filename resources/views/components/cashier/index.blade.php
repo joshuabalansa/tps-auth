@@ -99,6 +99,9 @@
             <h1 class="display-4 font-weight-bold text-dark">
                 Orders
             </h1>
+            <a href="{{ route('cashier.reservations') }}" class="btn btn-primary waves-effect waves-light">
+                <span class="btn-label">3</i></span>Reservation
+            </a>
             <input type="text" class="form-control my-3" id="searchInput" placeholder="Search for an order...">
             <div class="row">
                 <div class="col-12 text-center">
