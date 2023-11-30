@@ -142,6 +142,8 @@ Route::prefix('customer')->group(function () {
     Route::get('reserve', [CustomerReservationController::class, 'create'])->name('reserve.create');
     Route::post('reserve-create', [CustomerReservationController::class, 'store'])->name('reserve.store');
     Route::get('reserve-complete', [CustomerReservationController::class, 'complete'])->name('reserve.complete');
+    Route::get('reserve-accept/{reservation}', [CustomerReservationController::class, 'accept'])->name('reserve.accept');
+    Route::get('reserve-decline/{reservation}', [CustomerReservationController::class, 'decline'])->name('reserve.decline');
 });
 
 //Order route - /order

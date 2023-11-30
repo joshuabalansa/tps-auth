@@ -17,8 +17,8 @@ class CashierController extends Controller
     {
         $orders = Order::where(['status' => 'pending'])->get();
         $groupedOrders = collect($orders)->groupBy('order_number')->sortBy('created_at');
-
-        return view('components.cashier.index', compact('orders', 'groupedOrders')); 
+        $reservations = Reservation::where(['status' => 'pending'])->get();
+        return view('components.cashier.index', compact('orders', 'groupedOrders', 'reservations')); 
     }
 
     /**

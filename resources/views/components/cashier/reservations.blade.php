@@ -102,9 +102,10 @@
                                 <i class="mdi mdi-plus-circle"></i>Add Customer
                             </a>
                             <h4 class="header-title mb-4">Customer Reservations</h4>
-        
+
                             <div class="table-responsive">
-                                <table class="table table-hover m-0 table-centered dt-responsive nowrap w-100" id="tickets-table">
+                                <table class="table table-hover m-0 table-centered dt-responsive nowrap w-100"
+                                    id="tickets-table">
                                     <thead>
                                         <tr>
                                             <th>
@@ -115,10 +116,11 @@
                                             <th>Email</th>
                                             <th>Table</th>
                                             <th>Reservation Date</th>
+                                            <th>status</th>
                                             <th class="hidden-sm">Action</th>
                                         </tr>
                                     </thead>
-        
+
                                     <tbody>
                                         @foreach ($reservations as $reservation)
                                             <tr>
@@ -140,7 +142,11 @@
                                                 <td>
                                                     {{ $reservation->getReservationDate() }}
                                                 </td>
-                                                {{-- <span class="badge bg-{{$menu->getStatus() == 'Available' ? 'success' : 'warning'}}">{{ $menu->getStatus('status') }}</span> --}}
+                                                <td>
+                                                    <span
+                                                        class="badge bg-{{ $reservation->getStatus() == 'pending' ? 'danger' : 'success' }}">{{ $reservation->getStatus() }}</span>
+                                                </td>
+
                                                 <td>
                                                     <div class="btn-group dropdown">
                                                         <a href="javascript: void(0);"
@@ -149,14 +155,12 @@
                                                                 class="mdi mdi-dots-horizontal"></i></a>
                                                         <div class="dropdown-menu dropdown-menu-end">
                                                             <a class="dropdown-item"
-                                                                href="#"><i
+                                                                href="{{ route('reserve.accept', $reservation->id) }}"><i
                                                                     class="mdi mdi-check me-2 text-muted font-18 vertical-middle"></i>Accept</a>
                                                             <a class="dropdown-item"
-                                                                href="#"><i
-                                                                    class="mdi mdi-pencil me-2 text-muted font-18 vertical-middle"></i>Edit</a>
-                                                            <a class="dropdown-item"
-                                                                href="#"><i
-                                                                    class="mdi mdi-delete me-2 text-muted font-18 vertical-middle"></i>Remove</a>
+                                                                href="{{ route('reserve.decline', $reservation->id) }}"><i
+                                                                    class="mdi mdi-window-close me-2 text-muted font-18 vertical-middle"></i>Decline</a>
+
                                                         </div>
                                                     </div>
                                                 </td>
@@ -171,17 +175,17 @@
             </div>
         </div>
 
-    <!-- Right bar overlay-->
-    <div class="rightbar-overlay"></div>
+        <!-- Right bar overlay-->
+        <div class="rightbar-overlay"></div>
 
-    <!-- Vendor js -->
-    <script src="{{ asset('assets/js/vendor.min.js') }}"></script>
+        <!-- Vendor js -->
+        <script src="{{ asset('assets/js/vendor.min.js') }}"></script>
 
-    <!-- Dashboard 2 init -->
-    <script src="{{ asset('assets/js/pages/dashboard-2.init.js') }}"></script>
+        <!-- Dashboard 2 init -->
+        <script src="{{ asset('assets/js/pages/dashboard-2.init.js') }}"></script>
 
-    <!-- App js -->
-    <script src="{{ asset('assets/js/app.min.js') }}"></script>
+        <!-- App js -->
+        <script src="{{ asset('assets/js/app.min.js') }}"></script>
 </body>
 
 </html>

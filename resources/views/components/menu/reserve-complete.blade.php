@@ -35,7 +35,7 @@
             <img src="{{ asset('assets/images/rabbit-logo.png') }}" alt="Rabbit Logo" class="mx-auto w-50 h-50">
             <h1 class="mb-3 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl"><span
                     class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">Reservation
-                </span>Complete!</h1>
+                </span>Submitted!</h1>
             <p class="text-2xl font-bold text-gray-900 dark:text-white">
                 Redirecting...
                 {{-- session('orderNumber') --}}

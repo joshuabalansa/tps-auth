@@ -16,7 +16,8 @@ class Reservation extends Model
         'email',
         'table',
         'special_request',
-        'reservation_date'
+        'reservation_date',
+        'status'
     ];
 
     /**
@@ -70,5 +71,15 @@ class Reservation extends Model
     public function getReservationDate() {
 
         return \Carbon\Carbon::parse($this->reservation_date)->format('F d, Y');
+    }
+
+    /**
+     * return status function default = pending
+     *
+     * @return string
+     */
+    public function getStatus() {
+
+        return $this->status;
     }
 }

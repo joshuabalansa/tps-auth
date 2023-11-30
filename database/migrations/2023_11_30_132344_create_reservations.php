@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('table');
             $table->text('special_request')->nullable();
             $table->datetime('reservation_date');
+            $table->string('status');
             $table->timestamps();
         });
     }

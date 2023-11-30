@@ -50,6 +50,7 @@ class CustomerReservationController extends Controller
             $reservation->table             =   $validatedData['table'];
             $reservation->special_request   =   $validatedData['special_request'];
             $reservation->reservation_date  =   $validatedData['reservation_date'];
+            $reservation->status            =   'pending';
             $reservation->save();
 
             return redirect()->route('reserve.complete');
@@ -69,26 +70,23 @@ class CustomerReservationController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Update reservation status to reserved
      */
-    public function edit(string $id)
-    {
-        //
+    public function accept(Reservation $reservation) {
+        
+        $reservation->status = 'reserved';
+        $reservation->save();
+
+        return redirect()->back()->with('success', 'Customer has beed reserved');
     }
 
-    /**
-     * Update the specified resource in storage.
+       /**
+     * Update reservation status
      */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
+    public function decline(Reservation $reservation) {
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        $reservation->delete();
+
+        return redirect()->back()->with('success', 'Customer has beed declined');
     }
 }
