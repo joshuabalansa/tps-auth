@@ -92,7 +92,7 @@
         </div>
         <!-- end Topbar -->
         <div class="container" style="margin-top: 110px;">
-            <a href="{{ route('cashier.index') }}" class="btn btn-outline-info mb-3">Back</a>
+            <a href="{{ route('cashier.index') }}" class="btn btn-outline-secondary mb-3">Back</a>
             <div class="row">
                 <div class="col-12">
                     <div class="card">

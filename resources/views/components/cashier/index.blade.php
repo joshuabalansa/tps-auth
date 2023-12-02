@@ -84,7 +84,7 @@
                 <div class="logo-box">
                     <a href="#">
                         <span class="flex justify-center items-center">
-                            <h2 class="text-white font-bold">Cashier</h2>
+                            <h3 class="text-white font-bold mt-3">The Rabbit Hole POS</h3>
                         </span>
                     </a>
                 </div>
@@ -99,7 +99,7 @@
             <h1 class="display-4 font-weight-bold text-dark">
                 Orders
             </h1>
-            <a href="{{ route('cashier.reservations') }}" class="btn btn-primary waves-effect waves-light">
+            <a href="{{ route('cashier.reservations') }}" class="btn btn-outline-secondary waves-effect waves-light">
                 <span class="btn-label">{{ $reservations->count() }}</i></span>Reservations
             </a>
             <input type="text" class="form-control my-3" id="searchInput" placeholder="Search for an order...">

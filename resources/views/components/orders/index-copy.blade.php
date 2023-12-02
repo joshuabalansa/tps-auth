@@ -52,7 +52,7 @@
                             aria-expanded="false">
                             {{-- <img src="../assets/images/users/user-1.jpg" alt="user-image" class="rounded-circle"> --}}
                             <span class="pro-user-name ms-1">
-                                Orders <i class="mdi mdi-chevron-down"></i>
+                                Cashier <i class="mdi mdi-chevron-down"></i>
                             </span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end profile-dropdown ">
@@ -84,7 +84,7 @@
                 <div class="logo-box">
                     <a href="#">
                         <span class="flex justify-center items-center">
-                            <h3 class="text-white font-bold mt-3">The Rabbit Hole Orders</h3>
+                            <h2 class="text-white font-bold">Cashier</h2>
                         </span>
                     </a>
                 </div>
@@ -99,9 +99,9 @@
             <h1 class="display-4 font-weight-bold text-dark">
                 Orders
             </h1>
-            {{-- <a href="{{ route('cashier.reservations') }}" class="btn btn-primary waves-effect waves-light">
+            <a href="{{ route('cashier.reservations') }}" class="btn btn-primary waves-effect waves-light">
                 <span class="btn-label">{{ $reservations->count() }}</i></span>Reservations
-            </a> --}}
+            </a>
             <input type="text" class="form-control my-3" id="searchInput" placeholder="Search for an order...">
             <div class="row">
                 <div class="col-12 text-center">
@@ -116,12 +116,12 @@
                         <div class="card-body">
 
                             <h2 class="card-title h4 font-weight-bold">Order #: {{ $orderNumber }}</h2>
-                            {{-- <a href="{{ route('cashier.cancel', $orderNumber) }}" class="btn btn-sm btn-warning">Cancel
-                                order</a> --}}
+                            <a href="{{ route('cashier.cancel', $orderNumber) }}" class="btn btn-sm btn-warning">Cancel
+                                order</a>
                             {{-- <a href="{{ route('order.paid', $orderNumber) }}"
                                 class="btn btn-sm btn-success">Checkout</a> --}}
-                            <a href="{{ route('order.done', $orderNumber) }}" class="btn btn-sm btn-primary">Serve
-                                Order</a>
+                            <a href="{{ route('order.details', $orderNumber) }}"
+                                class="btn btn-sm btn-success">Checkout</a>
 
                             <!-- List of orders -->
                             <ul class="list-unstyled mt-3">
@@ -131,14 +131,12 @@
                                         $timeAgo = $carbonTimestamp->diffForHumans();
                                     @endphp
                                     <li class="mb-2">
-                                        <input class="form-check-input" type="checkbox" value=""
-                                            id="flexCheckIndeterminate"> {{ $order['quantity'] }} {{ $order['menu'] }}
-                                        ₱{{ $order['price'] }}
+                                        {{ $order['quantity'] }} {{ $order['menu'] }} ₱{{ $order['price'] }}
                                     </li>
                                 @endforeach
                             </ul>
                             <hr>
-                            {{-- <b>Total cost:</b> ₱{{ $group->sum('price') }} --}}
+                            <b>Total cost:</b> ₱{{ $group->sum('price') }}
                             <p class="mt-3">{{ $timeAgo }}</p>
                         </div>
                     </div>
