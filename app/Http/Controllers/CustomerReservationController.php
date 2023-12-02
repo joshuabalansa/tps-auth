@@ -6,15 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Table;
 use App\Models\Reservation;
 
-class CustomerReservationController extends Controller
-{
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
+class CustomerReservationController extends Controller {
 
     /**
      * Show the form for creating a new resource.
@@ -88,5 +80,42 @@ class CustomerReservationController extends Controller
         $reservation->delete();
 
         return redirect()->back()->with('success', 'Customer has beed declined');
+    }
+
+    public function cashierReservationCreate() {
+
+        $tables = Table::all();
+        return view('components.cashier.create', compact('tables'));
+    }
+
+    public function cashierReservationStore(Request $request) {
+        try {
+
+            $validatedData = $request->validate([
+                'firstname'         =>  'required',
+                'lastname'          =>  'required',
+                'phone'             =>  'required',
+                'email'             =>  '',
+                'table'             =>  '',
+                'special_request'   =>  '',
+                'reservation_date'  =>  'required'
+            ]);
+
+            $reservation = new Reservation;
+            $reservation->firstname         =   $validatedData['firstname'];
+            $reservation->lastname          =   $validatedData['lastname'];
+            $reservation->phone             =   $validatedData['phone'];
+            $reservation->email             =   $validatedData['email'];
+            $reservation->table             =   $validatedData['table'];
+            $reservation->special_request   =   $validatedData['special_request'];
+            $reservation->reservation_date  =   $validatedData['reservation_date'];
+            $reservation->status            =   'reserved';
+            $reservation->save();
+
+            return redirect()->route('cashier.reservations')->with('success', 'Customer has been reserved');
+        } catch (\Exception $e) {   
+
+            return redirect()->route('cashier.reservations')->with('danger', $e->getMessage());
+        }
     }
 }

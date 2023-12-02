@@ -144,6 +144,10 @@ Route::prefix('customer')->group(function () {
     Route::get('reserve-complete', [CustomerReservationController::class, 'complete'])->name('reserve.complete');
     Route::get('reserve-accept/{reservation}', [CustomerReservationController::class, 'accept'])->name('reserve.accept');
     Route::get('reserve-decline/{reservation}', [CustomerReservationController::class, 'decline'])->name('reserve.decline');
+    
+    // cashier reservation route
+    Route::get('reserve-add', [CustomerReservationController::class, 'cashierReservationCreate'])->name('cashier.reserve.create');
+    Route::post('reserve-store', [CustomerReservationController::class, 'cashierReservationStore'])->name('cashier.reserve.store');
 });
 
 //Order route - /order

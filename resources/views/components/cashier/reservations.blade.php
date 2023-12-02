@@ -97,7 +97,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <a href="{{ route('reservation.create') }}"
+                            <a href="{{ route('cashier.reserve.create') }}"
                                 class="btn btn-sm btn-blue waves-effect waves-light float-end">
                                 <i class="mdi mdi-plus-circle"></i>Add Customer
                             </a>

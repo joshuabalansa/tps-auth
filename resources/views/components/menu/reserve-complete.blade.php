@@ -37,7 +37,7 @@
                     class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">Reservation
                 </span>Submitted!</h1>
             <p class="text-2xl font-bold text-gray-900 dark:text-white">
-                Redirecting...
+                Redirecting to menus...
                 {{-- session('orderNumber') --}}
             </p>
         </div>
