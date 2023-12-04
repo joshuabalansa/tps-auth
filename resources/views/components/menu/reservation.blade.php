@@ -52,7 +52,6 @@
             </div>
 
             <div class="col-lg-6">
-
                 <div class="card">
                     <div class="card-body">
                         <div class="mb-3">
@@ -64,6 +63,11 @@
                             <label class="form-label">Reservation Date</label>
                             <input value="{{ old('reservation_date') }}" name="reservation_date" type="date"
                                 class="form-control" id="reservation_date" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Reservation Time</label>
+                            <input value="{{ old('reservation_time') }}" name="reservation_time" type="time"
+                                class="form-control" id="reservation_time" required>
                         </div>
                         <div class="mb-3">
                             <label for="product-category" class="form-label">Assign Table <span

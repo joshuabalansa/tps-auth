@@ -128,7 +128,11 @@
                                         <td>
                                             {{ $reservation->getReservationDate() }}
                                         </td>
-                                        {{-- <span class="badge bg-{{$menu->getStatus() == 'Available' ? 'success' : 'warning'}}">{{ $menu->getStatus('status') }}</span> --}}
+                                        <td>
+                                            <span
+                                                class="badge bg-{{ $reservation->getStatus() == 'pending' ? 'danger' : 'success' }}">{{ $reservation->getStatus() }}
+                                            </span>
+                                        </td>
                                         <td>
                                             <div class="btn-group dropdown">
                                                 <a href="javascript: void(0);"
@@ -136,6 +140,9 @@
                                                     data-bs-toggle="dropdown" aria-expanded="false"><i
                                                         class="mdi mdi-dots-horizontal"></i></a>
                                                 <div class="dropdown-menu dropdown-menu-end">
+                                                    <a class="dropdown-item"
+                                                        href="{{ route('reservation.accept', $reservation->id) }}"><i
+                                                            class="mdi mdi-pencil me-2 text-muted font-18 vertical-middle"></i>Accept</a>
                                                     <a class="dropdown-item"
                                                         href="{{ route('reservation.edit', $reservation->id) }}"><i
                                                             class="mdi mdi-pencil me-2 text-muted font-18 vertical-middle"></i>Edit</a>

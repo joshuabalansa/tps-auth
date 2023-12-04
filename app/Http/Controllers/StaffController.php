@@ -39,8 +39,6 @@ class StaffController extends Controller
      */
     public function store(Request $request)
     {
-
-        dd($request);
         try {
             $validate = $request->validate([
                 'firstname' => 'required|min:2',
@@ -51,7 +49,8 @@ class StaffController extends Controller
                 'email' => 'required|email',
                 'birthdate' => 'required|date',
                 'role' => 'required',
-                'salary' => 'required|numeric',
+                'salary' => '',
+                'time' => 'required',
                 'emergency_number' => 'nullable',
             ]);
 
@@ -59,7 +58,7 @@ class StaffController extends Controller
             return redirect()->route('staff.index')->with('success', 'New staff has been added');
         } catch(\Exception $e) {
             
-            return redirect()->route('staff.index')->with('error', 'Opps! Something went wrong');
+            return redirect()->route('staff.index')->with('error', 'Opps! Something went wrong' . $e->getMessage());
         }
         
         

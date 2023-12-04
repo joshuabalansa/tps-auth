@@ -21,6 +21,7 @@ return new class extends Migration
             $table->text('special_request')->nullable();
             $table->datetime('reservation_date');
             $table->string('status');
+            $table->time('time');
             $table->timestamps();
         });
     }

@@ -77,7 +77,7 @@
                 <li>
                     <a href="{{ route('stocks.index') }}">
                         <i class="mdi mdi-dropbox"></i>
-                        <span> Inventory Tracking</span>
+                        <span> Inventory </span>
                     </a>
                 </li>
 

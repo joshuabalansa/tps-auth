@@ -19,7 +19,8 @@ class Staff extends Model
         'birthdate',
         'role',
         'salary',
-        'emergency_number'
+        'emergency_number',
+        'time'
     ];
 
     /**

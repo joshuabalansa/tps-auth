@@ -115,7 +115,8 @@
                                             <th>Phone </th>
                                             <th>Email</th>
                                             <th>Table</th>
-                                            <th>Reservation Date</th>
+                                            <th>Date</th>
+                                            <th>Time</th>
                                             <th>status</th>
                                             <th class="hidden-sm">Action</th>
                                         </tr>
@@ -143,6 +144,9 @@
                                                     {{ $reservation->getReservationDate() }}
                                                 </td>
                                                 <td>
+                                                    {{ $reservation->getReservationTime() }}
+                                                </td>
+                                                <td>
                                                     <span
                                                         class="badge bg-{{ $reservation->getStatus() == 'pending' ? 'danger' : 'success' }}">{{ $reservation->getStatus() }}</span>
                                                 </td>
@@ -159,7 +163,7 @@
                                                                     class="mdi mdi-check me-2 text-muted font-18 vertical-middle"></i>Accept</a>
                                                             <a class="dropdown-item"
                                                                 href="{{ route('reserve.decline', $reservation->id) }}"><i
-                                                                    class="mdi mdi-window-close me-2 text-muted font-18 vertical-middle"></i>Decline</a>
+                                                                    class="mdi mdi-window-close me-2 text-muted font-18 vertical-middle"></i>Remove</a>
 
                                                         </div>
                                                     </div>
@@ -171,7 +175,7 @@
                             </div>
                         </div>
                     </div>
-                </div><!-- end col -->
+                </div>
             </div>
         </div>
 

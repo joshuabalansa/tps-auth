@@ -42,7 +42,8 @@ class ReservationController extends Controller
                 'email'             =>  '',
                 'table'             =>  '',
                 'special_request'   =>  '',
-                'reservation_date'  =>  'required'
+                'reservation_date'  =>  'required',
+                'reservation_time'  =>  'required',
             ]);
 
             $reservation = new Reservation;
@@ -53,6 +54,8 @@ class ReservationController extends Controller
             $reservation->table             =   $validatedData['table'];
             $reservation->special_request   =   $validatedData['special_request'];
             $reservation->reservation_date  =   $validatedData['reservation_date'];
+            $reservation->time              =   $validatedData['reservation_time'];
+            $reservation->status            =   'reserved';
             $reservation->save();
 
             return redirect()->route('reservation.index')->with('success', 'Resevervation successfuly added');
@@ -65,8 +68,12 @@ class ReservationController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id) {
-        //
+    public function accept(Reservation $reservation) {
+        
+        $reservation->status = 'reserved';
+        $reservation->save();
+
+        return redirect()->back()->with('success', 'Customer has beed reserved');
     }
 
     /**

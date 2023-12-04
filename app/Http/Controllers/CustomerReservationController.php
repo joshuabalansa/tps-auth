@@ -22,6 +22,7 @@ class CustomerReservationController extends Controller {
      */
     public function store(Request $request)
     {
+        // dd($request);
         try {
 
             $validatedData = $request->validate([
@@ -29,12 +30,14 @@ class CustomerReservationController extends Controller {
                 'lastname'          =>  'required',
                 'phone'             =>  'required',
                 'email'             =>  '',
-                'table'             =>  '',
                 'special_request'   =>  '',
-                'reservation_date'  =>  'required'
+                'reservation_date'  =>  'required',
+                'reservation_time'  =>  'required',
+                'table'             =>  '',
             ]);
 
             $reservation = new Reservation;
+
             $reservation->firstname         =   $validatedData['firstname'];
             $reservation->lastname          =   $validatedData['lastname'];
             $reservation->phone             =   $validatedData['phone'];
@@ -42,10 +45,12 @@ class CustomerReservationController extends Controller {
             $reservation->table             =   $validatedData['table'];
             $reservation->special_request   =   $validatedData['special_request'];
             $reservation->reservation_date  =   $validatedData['reservation_date'];
+            $reservation->time              =   $validatedData['reservation_time'];
             $reservation->status            =   'pending';
             $reservation->save();
 
             return redirect()->route('reserve.complete');
+
         } catch (\Exception $e) {   
 
             return redirect()->route('reserve.create');
@@ -98,7 +103,8 @@ class CustomerReservationController extends Controller {
                 'email'             =>  '',
                 'table'             =>  '',
                 'special_request'   =>  '',
-                'reservation_date'  =>  'required'
+                'reservation_date'  =>  'required',
+                'reservation_time'  =>  'required',
             ]);
 
             $reservation = new Reservation;
@@ -109,6 +115,7 @@ class CustomerReservationController extends Controller {
             $reservation->table             =   $validatedData['table'];
             $reservation->special_request   =   $validatedData['special_request'];
             $reservation->reservation_date  =   $validatedData['reservation_date'];
+            $reservation->time              =   $validatedData['reservation_time'];
             $reservation->status            =   'reserved';
             $reservation->save();
 

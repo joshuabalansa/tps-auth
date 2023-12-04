@@ -100,6 +100,7 @@ Route::prefix('admin')->group(function() {
         Route::get('destroy/{reservation}', [ReservationController::class, 'destroy'])->name('reservation.destroy')->middleware('admin');
         Route::get('edit/{reservation}',    [ReservationController::class, 'edit'])->name('reservation.edit')->middleware('admin');
         Route::put('update/{reservation}',  [ReservationController::class, 'update'])->name('reservation.update')->middleware('admin');
+        Route::get('accept/{reservation}',  [ReservationController::class, 'accept'])->name('reservation.accept')->middleware('admin');
     });
     // Table controller - admin/table
     Route::prefix('table')->group(function () {

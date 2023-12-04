@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Reservation extends Model
 {
@@ -17,7 +18,8 @@ class Reservation extends Model
         'table',
         'special_request',
         'reservation_date',
-        'status'
+        'status',
+        'time'
     ];
 
     /**
@@ -74,6 +76,19 @@ class Reservation extends Model
     }
 
     /**
+     * sets time function
+     *
+     * @return string $formattedTime
+     */
+    public function getReservationTime() {
+
+      $time = Carbon::createFromFormat('H:i:s', $this->time);
+
+      $formattedTime = $time->format('h:i:s A');
+
+      return $formattedTime;
+    }
+    /**
      * return status function default = pending
      *
      * @return string
@@ -82,4 +97,10 @@ class Reservation extends Model
 
         return $this->status;
     }
+
+    // public function setTimeAttribute($value)
+    // {
+    //     $this->attributes['time'] = Carbon::createFromFormat('H:i:s', $value)->format('h:i:s A');
+    // }
+    
 }
