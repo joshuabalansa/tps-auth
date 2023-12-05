@@ -18,6 +18,7 @@ use App\Http\Controllers\MenuController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\StaffController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\CartController;
@@ -25,6 +26,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\TableController;
 use App\Http\Controllers\ManageUserController;
 use App\Http\Controllers\CustomerReservationController;
+
 // View Dashboard
 Route::get('/', function () {
     return view('auth.login');
@@ -92,6 +94,16 @@ Route::prefix('admin')->group(function() {
         Route::put('update/{staff}',    [StaffController::class, 'update'])->name('staff.update')->middleware('admin');
         Route::get('destroy/{staff}',   [StaffController::class, 'destroy'])->name('staff.destroy')->middleware('admin');
     });
+
+    Route::prefix('role')->group(function() {
+        Route::get('/',                 [RoleController::class, 'index'])->name('role.index')->middleware('admin');
+        Route::get('create',            [RoleController::class, 'create'])->name('role.create')->middleware('admin');
+        Route::post('store',            [RoleController::class, 'store'])->name('role.store')->middleware('admin');
+        Route::get('edit/{role}',       [RoleController::class, 'edit'])->name('role.edit')->middleware('admin');
+        Route::put('update/{role}',     [RoleController::class, 'update'])->name('role.update')->middleware('admin');
+        Route::get('destroy/{role}',    [RoleController::class, 'destroy'])->name('role.destroy')->middleware('admin');
+    });
+
     // reservation routes - admin/reservation
     Route::prefix('reservation')->group(function() {
         Route::get('/',                     [ReservationController::class, 'index'])->name('reservation.index')->middleware('admin');

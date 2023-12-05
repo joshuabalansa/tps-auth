@@ -111,11 +111,29 @@
 
 
 
-                <li>
+                {{-- <li>
                     <a href="{{ route('staff.index') }}">
                         <i class="fas fa-user"></i>
                         <span> Staff </span>
                     </a>
+                </li> --}}
+
+                <li>
+                    <a href="#staff" data-bs-toggle="collapse">
+                        <i class="fas fa-chart-bar"></i>
+                        <span> Staff </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="staff">
+                        <ul class="nav-second-level">
+                            <li>
+                                <a href="{{ route('staff.index') }}">Staff</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('role.index') }}">Manage Roles</a>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
                 <li>
                     <a href="#customers" data-bs-toggle="collapse">
