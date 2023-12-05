@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Staff;
+use App\Models\Role;
 
 class StaffController extends Controller
 {
@@ -21,6 +22,8 @@ class StaffController extends Controller
      */
     public function create()
     {
+        $roles = Role::all();
+
         $schedFields = [
             'mon' => 'Monday',
             'tue' => 'Tuesday',
@@ -31,7 +34,7 @@ class StaffController extends Controller
             'sunday' => 'Sunday'
         ];
 
-        return view('components.admin.staff.create', compact('schedFields'));
+        return view('components.admin.staff.create', compact('schedFields', 'roles'));
     }
 
     /**

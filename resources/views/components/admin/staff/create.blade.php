@@ -83,9 +83,9 @@
                 <label for="inputState" class="form-label">Role</label>
                 <select name="role" id="inputState" class="form-select">
                     <option>Choose Role</option>
-                    <option value="1">Cashier</option>
-                    <option value="2">Kitchen</option>
-                    <option value="3">Staff</option>
+                    @foreach ($roles as $role)
+                        <option value="{{ $role->role }}">{{ $role->role }}</option>
+                    @endforeach
                 </select>
             </div>
 

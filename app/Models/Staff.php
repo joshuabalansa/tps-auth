@@ -95,8 +95,7 @@ class Staff extends Model
      */
     public function getRole() {
     
-        $role = ($this->role == 1) ? 'Cashier' : (($this->role == 2) ? 'Kitchen' : 'Staff');
-        return $role;
+        return $this->role;
     }
 
     /**
