@@ -28,8 +28,22 @@
                         <label for="product-description" class="form-label">Address<span class="text-danger">*</span></label>
                         <textarea class="form-control" name="address" rows="3"  placeholder="Add description">{{ $staff->getAddress() }}</textarea>
                     </div>
-
+                    <label for="">Schedule Staff<span class="text-danger">*</span></label>
+                    <div class="mb-3 mt-2">
+                        @foreach ($schedFields as $schedule => $label)
+                            <input type="checkbox" name="schedule[]" value="{{ $label }}"
+                                id="{{ $schedule }}">
+                            <label for="{{ $schedule }}">{{ $label }}</label> <br />
+                        @endforeach
                     </div>
+
+                    <div class="mb-3">
+                        <label for="product-description" class="form-label">Time<span
+                                class="text-danger">*</span></label>
+                        <input type="time" name="time" class="form-control">
+                    </div>
+                    
+                    </div>   
                 </div> 
             </div>
             <div class="col-lg-6">

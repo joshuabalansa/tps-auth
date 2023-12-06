@@ -120,7 +120,7 @@
 
                 <li>
                     <a href="#staff" data-bs-toggle="collapse">
-                        <i class="fas fa-chart-bar"></i>
+                        <i class="fas fa-user-friends"></i>
                         <span> Staff </span>
                         <span class="menu-arrow"></span>
                     </a>
@@ -137,7 +137,7 @@
                 </li>
                 <li>
                     <a href="#customers" data-bs-toggle="collapse">
-                        <i class="fas fa-chart-bar"></i>
+                        <i class="fas fa-user-friends"></i>
                         <span> Customers </span>
                         <span class="menu-arrow"></span>
                     </a>
@@ -152,10 +152,10 @@
                         </ul>
                     </div>
                 </li>
-
+                
                 <li>
                     <a href="{{ route('user.index') }}">
-                        <i class="fas fa-user-friends"></i>
+                        <i class="fas fa-user"></i>
                         <span> Manage Users </span>
                     </a>
                 </li>

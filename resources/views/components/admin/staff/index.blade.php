@@ -20,7 +20,11 @@
                                     <th>Address</th>
                                     <th>Phone</th>
                                     <th>Role</th>
+                                    <th>Schedule</th>
+                                    <th>Time</th>
                                     <th>Salary</th>
+                                    <th>Email</th>
+                                    <th>Birth date</th>
                                     <th class="hidden-sm">Action</th>
                                 </tr>
                             </thead>
@@ -40,12 +44,23 @@
                                         <td>
                                             {{ $staff->getPhone() }}
                                         </td>
-
                                         <td>
                                             {{ $staff->getRole() }}
                                         </td>
                                         <td>
+                                            {{ $staff->schedule }}
+                                        </td>
+                                        <td>
+                                            {{ $staff->time }}
+                                        </td>
+                                        <td>
                                             {{ $staff->getSalary() }}
+                                        </td>
+                                        <td>
+                                            {{ $staff->email }}
+                                        </td>
+                                        <td>
+                                            {{ $staff->birthdate }}
                                         </td>
                                         {{-- <td>
                                 <span class="badge bg-success">{{ $stock->getCost() }}</span>
@@ -57,7 +72,8 @@
                                                     data-bs-toggle="dropdown" aria-expanded="false"><i
                                                         class="mdi mdi-dots-horizontal"></i></a>
                                                 <div class="dropdown-menu dropdown-menu-end">
-                                                    <a class="dropdown-item" href="{{ route('staff.edit', $staff->id) }}"><i
+                                                    <a class="dropdown-item"
+                                                        href="{{ route('staff.edit', $staff->id) }}"><i
                                                             class="mdi mdi-pencil me-2 text-muted font-18 vertical-middle"></i>Edit
                                                         Staff</a>
                                                     <a class="dropdown-item"

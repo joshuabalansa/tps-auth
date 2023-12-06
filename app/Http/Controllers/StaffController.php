@@ -53,11 +53,29 @@ class StaffController extends Controller
                 'birthdate' => 'required|date',
                 'role' => 'required',
                 'salary' => '',
+                'schedule' => 'required',
                 'time' => 'required',
                 'emergency_number' => 'nullable',
             ]);
+            
+            $staff = new Staff;
+            
+            $staff->firstname        =  $validate['firstname'];
+            $staff->middlename       =  $validate['middlename'];
+            $staff->lastname         =  $validate['lastname'];
+            $staff->address          =  $validate['address'];
+            $staff->phone            =  $validate['phone'];
+            $staff->email            =  $validate['email'];
+            $staff->birthdate        =  $validate['birthdate'];
+            $staff->role             =  $validate['role'];
+            $staff->schedule         =  implode(',', $request->schedule);
+            $staff->salary           =  $validate['salary'];
+            $staff->time             =  $validate['time'];
+            $staff->emergency_number =  $validate['emergency_number'];
 
-            Staff::create($validate); 
+            $staff->save();
+
+            // Staff::create($validate); 
             return redirect()->route('staff.index')->with('success', 'New staff has been added');
         } catch(\Exception $e) {
             
@@ -73,8 +91,19 @@ class StaffController extends Controller
      */
     public function edit(Staff $staff)
     {
-        
-        return view('components.admin.staff.edit', compact('staff'));
+        $roles = Role::all();
+
+        $schedFields = [
+            'mon' => 'Monday',
+            'tue' => 'Tuesday',
+            'wed' => 'Wednesday',
+            'thu' => 'Thursday',
+            'fri' => 'Friday',
+            'sat' => 'Saturday',
+            'sunday' => 'Sunday'
+        ];
+
+        return view('components.admin.staff.edit', compact('staff', 'roles', 'schedFields'));
     }
 
     /**
@@ -93,6 +122,8 @@ class StaffController extends Controller
             'role' => '',
             'salary' => 'required|numeric',
             'emergency_number' => 'nullable',
+            'schedule' => 'required',
+            'time' => 'required',
         ]);
 
         $staff->update($validate);
@@ -109,10 +140,10 @@ class StaffController extends Controller
         try {
 
             $staff->delete();
-            return redirect()->route('staff.index')->with('danger', 'Staff has been archived');
+            return redirect()->route('staff.index')->with('success', 'Staff has been removed');
         } catch(\Exception $e) {
 
-            return redirect()->route('staff.index')->with('error', 'Opps! Something went wrong');
+            return redirect()->route('staff.index')->with('error', 'Opps! Something went wrong' . $e->getMessage());
         }
     }
 }
