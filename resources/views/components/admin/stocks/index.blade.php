@@ -15,7 +15,7 @@
                         <div class="col-6">
                             <div class="text-end" title="Product with low quantity">
                                 <h3 class="text-dark mt-1"><span data-plugin="counterup">{{ $productQtyMin }}</span></h3>
-                                <p class="text-muted mb-1 text-truncate">{{ $productLowQty->name }}</p>
+                                <p class="text-muted mb-1 text-truncate">{{ optional($productLowQty)->name }}</p>
                             </div>
                         </div>
                     </div> <!-- end row-->
@@ -36,7 +36,7 @@
                         <div class="col-6">
                             <div class="text-end">
                                 <h3 class="text-dark mt-1"><span data-plugin="counterup">{{ $productQtyMax }}</span></h3>
-                                <p class="text-muted mb-1 text-truncate">{{ $productHighQty->name }}</p>
+                                <p class="text-muted mb-1 text-truncate">{{ optional($productHighQty)->name }}</p>
                             </div>
                         </div>
                     </div> <!-- end row-->
