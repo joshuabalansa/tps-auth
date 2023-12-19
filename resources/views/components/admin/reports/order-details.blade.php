@@ -6,7 +6,9 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="header-title mb-4">Order Details</h4>
+                   
                     <div class="table-responsive">
+                        <h4>Total Amount:  ₱{{ $orders->pluck('price')->sum() }}</h4>
                         <table class="table table-hover m-0 table-centered dt-responsive nowrap w-100" id="tickets-table">
                             <thead>
                                 <tr>
@@ -39,6 +41,7 @@
                                 </td> --}}
                                     </tr>
                                 @endforeach
+                               
                             </tbody>
                         </table>
                         <a href="{{ route('reports.orders') }}" class="btn btn-outline-secondary">Back</a>
