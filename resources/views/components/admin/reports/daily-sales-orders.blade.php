@@ -5,8 +5,7 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="header-title mb-4">
-                        <a href="{{ route('daily.reports') }}">
-                            <i class="fa fa-arrow-left" aria-hidden="true"></i></a> {{ date('F d', strtotime($day)) }} Orders
+                         {{ date('F d', strtotime($day)) }} Orders
                     </h4>
                     <div class="table-responsive">
                         <table id="datatable-buttons" class="table table-striped dt-responsive nowrap w-100">
@@ -25,6 +24,7 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        <a class="btn btn-outline-secondary" href="{{ route('daily.reports') }}">Back</a>
                     </div>
                 </div>
             </div>

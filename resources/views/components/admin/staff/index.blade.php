@@ -21,7 +21,8 @@
                                     <th>Phone</th>
                                     <th>Role</th>
                                     <th>Schedule</th>
-                                    <th>Time</th>
+                                    <th>Time in</th>
+                                    <th>Time out</th>
                                     <th>Salary</th>
                                     <th>Email</th>
                                     <th>Birth date</th>
@@ -51,7 +52,10 @@
                                             {{ $staff->schedule }}
                                         </td>
                                         <td>
-                                            {{ $staff->time }}
+                                            {{ $staff->time_in }}
+                                        </td>
+                                        <td>
+                                            {{ $staff->time_out }}
                                         </td>
                                         <td>
                                             {{ $staff->getSalary() }}

@@ -38,9 +38,16 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="product-description" class="form-label">Time<span
+                        <label for="product-description" class="form-label">Time in<span
                                 class="text-danger">*</span></label>
-                        <input type="time" name="time" class="form-control">
+                        <input type="time" name="time_in" class="form-control">
+                    </div>
+
+                    
+                    <div class="mb-3">
+                        <label for="product-description" class="form-label">Time out<span
+                                class="text-danger">*</span></label>
+                        <input type="time" name="time_out" class="form-control">
                     </div>
                     
                     </div>   

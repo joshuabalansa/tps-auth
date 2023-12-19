@@ -42,7 +42,7 @@
                                     <tr>
                                         <td>
                                             <a
-                                                href="{{ route('dailySalesOrders', $day) }}">{{ date('F d', strtotime($day)) }}</a>
+                                                href="{{ route('dailySalesOrders', $day) }}">{{ date('F d', strtotime($day)) . " ". date('Y', strtotime($day))}} </a>
                                         </td>
                                         <td>₱ {{ number_format($total, 2) }}</td>
                                     </tr>

@@ -72,6 +72,7 @@ Route::prefix('admin')->group(function() {
         Route::get('yearly',                    [ReportController::class, 'yearlyReport'])->name('yearly.reports')->middleware('admin');
         Route::get('dailysalesfilter',          [ReportController::class, 'dailySalesFilter'])->name('dailySalesFilter')->middleware('admin');
         Route::get('dailySalesOrders/{day}',    [ReportController::class, 'dailySalesOrders'])->name('dailySalesOrders')->middleware('admin');
+        Route::get('orderDetails/{order_id}',    [ReportController::class, 'orderDetails'])->name('order_details')->middleware('admin');
     
     });
 

@@ -114,4 +114,10 @@ class ReportController extends Controller
         $transactions = Transaction::whereDate('created_at', $day)->get();
         return view('components.admin.reports.daily-sales-orders', compact('transactions', 'day'));
     }
+
+    public function orderDetails($order_id) {
+
+        $orders = Order::where('order_number', $order_id)->get();
+        return view('components.admin.reports.order-details', compact('orders'));
+    }
 }

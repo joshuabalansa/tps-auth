@@ -84,7 +84,7 @@
                 <li>
                     <a href="{{ route('reports.orders') }}">
                         <i class="fas fa-credit-card"></i>
-                        <span> Payments </span>
+                        <span> Orders </span>
                     </a>
                 </li>
 

@@ -44,18 +44,19 @@ class StaffController extends Controller
     {
         try {
             $validate = $request->validate([
-                'firstname' => 'required|min:2',
-                'middlename' => 'required',
-                'lastname' => 'required|min:2',
-                'address' => 'required',
-                'phone' => 'required|numeric',
-                'email' => 'required|email',
-                'birthdate' => 'required|date',
-                'role' => 'required',
-                'salary' => '',
-                'schedule' => 'required',
-                'time' => 'required',
-                'emergency_number' => 'nullable',
+                'firstname'         =>  'required|min:2',
+                'middlename'        =>  'required',
+                'lastname'          =>  'required|min:2',
+                'address'           =>  'required',
+                'phone'             =>  'required|numeric',
+                'email'             =>  'required|email',
+                'birthdate'         =>  'required|date',
+                'role'              =>  'required',
+                'salary'            =>  '',
+                'schedule'          =>  'required',
+                'time_in'           =>  'required',
+                'time_out'          =>  'required',
+                'emergency_number'  =>  'nullable',
             ]);
             
             $staff = new Staff;
@@ -70,7 +71,8 @@ class StaffController extends Controller
             $staff->role             =  $validate['role'];
             $staff->schedule         =  implode(',', $request->schedule);
             $staff->salary           =  $validate['salary'];
-            $staff->time             =  $validate['time'];
+            $staff->time_in          =  $validate['time_in'];
+            $staff->time_out         =  $validate['time_out'];
             $staff->emergency_number =  $validate['emergency_number'];
 
             $staff->save();
@@ -123,7 +125,8 @@ class StaffController extends Controller
             'salary' => 'required|numeric',
             'emergency_number' => 'nullable',
             'schedule' => 'required',
-            'time' => 'required',
+            'time_in' => 'required',
+            'time_out' => 'required',
         ]);
 
         $staff->update($validate);

@@ -23,7 +23,8 @@ return new class extends Migration
             $table->string('role');
             $table->decimal('salary', 8, 2);
             $table->string('schedule');
-            $table->time('time');
+            $table->time('time_in');
+            $table->time('time_out');
             $table->string('emergency_number')->nullable();
             $table->timestamps();
         });
