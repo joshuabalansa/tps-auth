@@ -14,7 +14,15 @@
 </head>
 
 <body>
-    <div class="container mt-5">
+    <div class="container mt-3">
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                @foreach ($errors->all() as $error)
+                    {{ $error }} <br>
+                @endforeach
+            </div>
+        @endif
+
         <div class="row">
             <div class="col-lg-6">
                 <div class="card">

@@ -95,7 +95,8 @@
                                     <a href="{{ route('cashier.index') }}" class="btn btn-outline-secondary">Back</a>
                                     <a href="{{ route('cashier.cancel', $orderNumber) }}" class="btn btn-danger">Cancel
                                         order</a>
-                                    <a href="{{ route('order.paid', $orderNumber) }}" class="btn btn-success">Place
+                                    <a href="{{ route('order.paid', $orderNumber) }}" id="placeOrderLink"
+                                        class="btn btn-success">Place
                                         Order</a>
                                 </div>
                             </div>
@@ -214,13 +215,23 @@
     <div class="rightbar-overlay"></div>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            const paymentInput = document.getElementById("payment")
-            const displaySpan = document.getElementById("display")
-
+            const paymentInput = document.getElementById("payment");
+            const displaySpan = document.getElementById("display");
+            const placeOrderLink = document.getElementById("placeOrderLink");
 
             paymentInput.addEventListener("input", function() {
-                var amount = displaySpan.textContent = {{ json_encode($totalPrice) }}
-                displaySpan.textContent = paymentInput.value - amount
+                var amount = {{ json_encode($totalPrice) }};
+                displaySpan.textContent = paymentInput.value - amount;
+            });
+
+            placeOrderLink.addEventListener("click", function(event) {
+                var paymentAmount = parseFloat(paymentInput.value);
+                var orderTotal = parseFloat({{ json_encode($totalPrice) }});
+
+                if (isNaN(paymentAmount) || paymentAmount < orderTotal) {
+                    event.preventDefault();
+                    alert("The input must not be less than the order total.");
+                }
             });
         });
     </script>

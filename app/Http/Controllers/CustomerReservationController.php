@@ -22,20 +22,19 @@ class CustomerReservationController extends Controller {
      */
     public function store(Request $request)
     {
-        // dd($request);
-        try {
-
+        
+           
             $validatedData = $request->validate([
-                'firstname'         =>  'required',
-                'lastname'          =>  'required',
-                'phone'             =>  'required',
-                'email'             =>  '',
-                'special_request'   =>  '',
-                'reservation_date'  =>  'required',
-                'reservation_time'  =>  'required',
-                'table'             =>  '',
+                'firstname'         => 'required',
+                'lastname'          => 'required',
+                'phone'             => 'required',
+                'email'             => 'required|unique:reservations,table',
+                'table'             => 'required|unique:reservations,table',
+                'special_request'   => '',
+                'reservation_date'  => 'required',
+                'reservation_time'  => 'required|unique:reservations,time',
             ]);
-
+// try {
             $reservation = new Reservation;
 
             $reservation->firstname         =   $validatedData['firstname'];
@@ -51,10 +50,10 @@ class CustomerReservationController extends Controller {
 
             return redirect()->route('reserve.complete');
 
-        } catch (\Exception $e) {   
-
-            return redirect()->route('reserve.create');
-        }
+        // } catch (\Exception $e) {   
+        //     \Log::error('Validation failed: ' . $e->getMessage());
+        //     return redirect()->route('reserve.create');
+        // }
     }
 
     /**
@@ -95,16 +94,15 @@ class CustomerReservationController extends Controller {
 
     public function cashierReservationStore(Request $request) {
         try {
-
             $validatedData = $request->validate([
-                'firstname'         =>  'required',
-                'lastname'          =>  'required',
-                'phone'             =>  'required',
-                'email'             =>  '',
-                'table'             =>  '',
-                'special_request'   =>  '',
-                'reservation_date'  =>  'required',
-                'reservation_time'  =>  'required',
+                'firstname'         => 'required',
+                'lastname'          => 'required',
+                'phone'             => 'required',
+                'email'             => 'required|unique:reservations,email', 
+                'table'             => 'required|unique:reservations,table',
+                'special_request'   => '',
+                'reservation_date'  => 'required',
+                'reservation_time'  => 'required|unique:reservations,time',
             ]);
 
             $reservation = new Reservation;

@@ -104,7 +104,12 @@
                                     {{-- <th>Description</th> --}}
                                     <th>Category</th>
                                     {{-- <th>Price</th> --}}
-                                    <th>Quantity</th>
+                                    <th>Quantity Start</th>
+                                    <th>Quantity Sold</th>
+                                    <th>Quantity End</th>
+                                    <th>Product Price</th>
+                                    <th>Cost</th>
+                                    <th>Date</th>
                                     <th>Status</th>
                                     {{-- <th class="hidden-sm">Action</th> --}}
                                 </tr>
@@ -131,6 +136,22 @@
                                         <td>
                                             {{ $menu->getQuantity() }}
                                         </td>
+                                        <td>
+                                            {{ $menu->getQuantity() }}
+                                        </td>
+                                        <td>
+                                            {{ $menu->getQuantity() }}
+                                        </td>
+                                        <td>
+                                            {{ $menu->getQuantity() }}
+                                        </td>
+                                        <td>
+                                            {{ $menu->getQuantity() }}
+                                        </td>
+                                        <td>
+                                            {{ $menu->getQuantity() }}
+                                        </td>
+
 
                                         {{-- <td>
                                                 {{ $menu->getPrice() }}
