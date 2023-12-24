@@ -117,6 +117,7 @@
                                             <th>Table</th>
                                             <th>Date</th>
                                             <th>Time</th>
+                                            <th>Created At</th>
                                             <th>status</th>
                                             <th class="hidden-sm">Action</th>
                                         </tr>
@@ -145,6 +146,9 @@
                                                 </td>
                                                 <td>
                                                     {{ $reservation->getReservationTime() }}
+                                                </td>
+                                                <td>
+                                                    {{ $reservation->created_at }}
                                                 </td>
                                                 <td>
                                                     <span

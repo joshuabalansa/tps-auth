@@ -84,7 +84,7 @@
                 <li>
                     <a href="{{ route('reports.orders') }}">
                         <i class="fas fa-credit-card"></i>
-                        <span> Orders </span>
+                        <span> Order History </span>
                     </a>
                 </li>
 
@@ -152,7 +152,7 @@
                         </ul>
                     </div>
                 </li>
-                
+
                 <li>
                     <a href="{{ route('user.index') }}">
                         <i class="fas fa-user"></i>

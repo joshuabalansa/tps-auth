@@ -137,19 +137,118 @@
                                             {{ $menu->getQuantity() }}
                                         </td>
                                         <td>
-                                            {{ $menu->getQuantity() }}
+                                            0
                                         </td>
+                                        <td>
+                                            0
+                                        </td>
+                                        <td>
+                                            0
+                                        </td>
+                                        <td>
+                                            {{ $menu->cost }}
+                                        </td>
+                                        <td>
+                                            {{ $menu->purchase_date }}
+                                        </td>
+
+
+                                        {{-- <td>
+                                                {{ $menu->getPrice() }}
+                                            </td> --}}
+                                        <td>
+                                            <span
+                                                class="badge bg-{{ $menu->getStatus() == 'Available' ? 'success' : ($menu->getStatus() == 'Draft' ? 'warning' : 'danger') }}">
+                                                {{ $menu->getStatus('status') }}
+                                            </span>
+                                        </td>
+
+                                        {{-- <td>
+                                                <div class="btn-group dropdown">
+                                                    <a href="javascript: void(0);"
+                                                        class="table-action-btn dropdown-toggle arrow-none btn btn-light btn-sm"
+                                                        data-bs-toggle="dropdown" aria-expanded="false"><i
+                                                            class="mdi mdi-dots-horizontal"></i></a>
+                                                    <div class="dropdown-menu dropdown-menu-end">
+                                                        <a class="dropdown-item"
+                                                            href="{{ route('stocks.edit', $stock->getId()) }}"><i
+                                                                class="mdi mdi-pencil me-2 text-muted font-18 vertical-middle"></i>Edit</a>
+                                                        <a class="dropdown-item"
+                                                            href="{{ route('stocks.destroy', $stock->getId()) }}"><i
+                                                                class="mdi mdi-delete me-2 text-muted font-18 vertical-middle"></i>Remove</a>
+                                                    </div>
+                                                </div>
+                                            </td> --}}
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div><!-- end col -->
+
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title mb-4">Products</h4>
+                    <div class="table-responsive">
+                        <table class="table table-hover m-0 table-centered dt-responsive nowrap w-100" id="tickets-table">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        #
+                                    </th>
+                                    <th>Product</th>
+                                    {{-- <th>Description</th> --}}
+                                    <th>Category</th>
+                                    {{-- <th>Price</th> --}}
+                                    <th>Quantity Start</th>
+                                    <th>Quantity Sold</th>
+                                    <th>Quantity End</th>
+                                    <th>Product Price</th>
+                                    <th>Cost</th>
+                                    <th>Date</th>
+                                    <th>Status</th>
+                                    {{-- <th class="hidden-sm">Action</th> --}}
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @foreach ($menus as $menu)
+                                    <tr>
+                                        <td><b>{{ $menu->id }}</b></td>
+                                        <td>
+                                            {{ $menu->getName() }}
+                                        </td>
+                                        {{-- 
+                                            <td>
+                                                {{ $menu->getDescription() }}
+                                            </td> --}}
+
+                                        <td>
+                                            @foreach ($menu->getCategory() as $category)
+                                                {{ $category['category'] }}
+                                            @endforeach
+                                        </td>
+
                                         <td>
                                             {{ $menu->getQuantity() }}
                                         </td>
                                         <td>
-                                            {{ $menu->getQuantity() }}
+                                            0
                                         </td>
                                         <td>
-                                            {{ $menu->getQuantity() }}
+                                            0
                                         </td>
                                         <td>
-                                            {{ $menu->getQuantity() }}
+                                            0
+                                        </td>
+                                        <td>
+                                            {{ $menu->cost }}
+                                        </td>
+                                        <td>
+                                            {{ $menu->purchase_date }}
                                         </td>
 
 

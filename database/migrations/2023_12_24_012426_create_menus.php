@@ -19,6 +19,8 @@ return new class extends Migration
             $table->float('price');
             $table->string('status');
             $table->string('quantity');
+            $table->string('cost');
+            $table->date('purchase_date');
             $table->string('image')->nullable();
             $table->timestamps();
         });

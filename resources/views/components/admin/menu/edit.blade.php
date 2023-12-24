@@ -33,6 +33,11 @@
                                 @endforeach
                             </select>
                         </div>
+                        <div class="mb-3">
+                            <label for="product-cost">Cost <span class="text-danger">*</span></label>
+                            <input value="{{ $menu->cost }}" name="cost" type="text" class="form-control"
+                                id="product-cost" placeholder="Enter product cost" required>
+                        </div>
                         {{-- <div>
                         <label class="form-label">Comment</label>
                         <textarea class="form-control" rows="3" placeholder="Please enter comment"></textarea>
@@ -67,7 +72,11 @@
                 <input value="{{ $menu->quantity }}" name="quantity" type="number" class="form-control"
                     id="product-quantity" placeholder="Enter stocks available">
             </div>
-
+            <div class="mb-3">
+                <label for="product-purchase-date">Purchase Date <span class="text-danger">*</span></label>
+                <input value="{{ $menu->purchase_date }}" name="purchase_date" type="date" class="form-control"
+                    id="product-purchase-date" required>
+            </div>
             <div class="mb-3">
                 <label class="mb-2">Status <span class="text-danger">*</span></label>
                 <br />

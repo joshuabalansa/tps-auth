@@ -21,6 +21,8 @@ class Menu extends Model
         'category',
         'price',
         'status',
+        'cost',
+        'purchase_date',
         'quantity'
     ];
 

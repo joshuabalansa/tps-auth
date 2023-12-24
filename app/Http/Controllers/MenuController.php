@@ -42,12 +42,14 @@ class MenuController extends Controller
     public function store(Request $request) {
 
         $validatedData = $request->validate([
-            'name'          => 'required|min:2',
-            'description'   => 'required',
-            'category'      => 'required',
-            'price'         => ['required', 'numeric'],
-            'status'        => '',
-            'quantity'      => 'required',
+            'name'              => 'required|min:2',
+            'description'       => 'required',
+            'category'          => 'required',
+            'price'             => ['required', 'numeric'],
+            'status'            => '',
+            'quantity'          => 'required',
+            'cost'              => 'required',
+            'purchase_date'     => '',
             'image' => [
                 'nullable',
                 'image', 
@@ -76,7 +78,9 @@ class MenuController extends Controller
             $menu->price        =   $validatedData['price'];
             $menu->status       =   $validatedData['status'];
             $menu->quantity     =   $validatedData['quantity'];
-            $menu->image        =   $validatedData['image'];
+            $menu->cost             =   $validatedData['cost'];
+            $menu->purchase_date    =   $validatedData['purchase_date'];
+            $menu->image            =   $validatedData['image'];
             $menu->save();
             return redirect()->route('menu.index')->with('success', 'Item added successfully!');
         }
@@ -109,9 +113,10 @@ class MenuController extends Controller
                 'description'   =>  'required',
                 'price'         =>  ['required', 'numeric'],
                 'quantity'      =>  'required',
+                'cost'            => 'required',
+                'purchase_date'     => '',
                 'status'        =>  ''
             ]);
-            
             $menu->update($validate);
             return redirect()->route('menu.index')->with('success', $menu->name . ' Has beed updated');
         } catch (\Exception $e) {

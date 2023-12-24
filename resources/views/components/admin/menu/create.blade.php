@@ -17,7 +17,7 @@
                         <div class="mb-3">
                             <label for="product-description" class="form-label">Description <span
                                     class="text-danger">*</span></label>
-                            <textarea class="form-control" name="description" rows="3">{{ old('description') }}</textarea> <!-- end Snow-editor-->
+                            <textarea class="form-control" placeholder="Enter product description" name="description" rows="3">{{ old('description') }}</textarea> <!-- end Snow-editor-->
                         </div>
                         <div class="mb-3">
                             <label for="product-category" class="form-label">Categories <span
@@ -31,11 +31,15 @@
                         </div>
 
                         <div class="mb-3">
+                            <label for="product-cost">Cost <span class="text-danger">*</span></label>
+                            <input value="{{ old('cost') }}" name="cost" type="text" class="form-control"
+                                id="product-cost" placeholder="Enter product cost" required>
+                        </div>
+                        <div class="mb-3">
                             <label for="product-price">Price <span class="text-danger">*</span></label>
                             <input value="{{ old('price') }}" name="price" type="text" class="form-control"
                                 id="product-price" placeholder="Enter amount" required>
                         </div>
-
 
 
                         {{-- <div>
@@ -60,6 +64,11 @@
                         <label for="product-price">Quantity <span class="text-danger">*</span></label>
                         <input value="{{ old('quantity') }}" name="quantity" placeholder="Enter total stocks available"
                             type="text" class="form-control" required />
+                    </div>
+                    <div class="mb-3">
+                        <label for="product-purchase-date">Purchase Date <span class="text-danger">*</span></label>
+                        <input value="{{ old('purchase_date') }}" name="purchase_date" type="date" class="form-control"
+                            id="product-purchase-date" required>
                     </div>
                     <div class="mb-3">
                         <label class="mb-2">Status <span class="text-danger">*</span></label>
