@@ -90,22 +90,22 @@
     {{-- <x-admin.dashboard.dashboard-analytics /> --}}
 
     <div class="row">
-        {{-- <x-admin.dashboard.card-map /> --}}
-        <div class="container">
-            <div class="card">
-                <div class="card-body">
-                    <div class="card-widgets">
-                        <a href="javascript: void(0);" data-toggle="reload"><i class="mdi mdi-refresh"></i></a>
-                        <a data-bs-toggle="collapse" href="#cardCollpase5" role="button" aria-expanded="false"
-                            aria-controls="cardCollpase5"><i class="mdi mdi-minus"></i></a>
-                        <a href="javascript: void(0);" data-toggle="remove"><i class="mdi mdi-close"></i></a>
-                    </div>
-                    <h4 class="header-title mb-0">Sales Analytics</h4>
-                    <div id="chart"></div>
-                </div> <!-- collapsed end -->
-            </div> <!-- end card-body -->
-        </div> <!-- end card-->
-    </div> <!-- end col -->
+            {{-- <x-admin.dashboard.card-map /> --}}
+            <div class="container">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-widgets">
+                            <a href="javascript: void(0);" data-toggle="reload"><i class="mdi mdi-refresh"></i></a>
+                            <a data-bs-toggle="collapse" href="#cardCollpase5" role="button" aria-expanded="false"
+                                aria-controls="cardCollpase5"><i class="mdi mdi-minus"></i></a>
+                            <a href="javascript: void(0);" data-toggle="remove"><i class="mdi mdi-close"></i></a>
+                        </div>
+                        <h4 class="header-title mb-0">Sales Analytics</h4>
+                        <div id="chart"></div>
+                    </div> <!-- collapsed end -->
+                </div> <!-- end card-body -->
+            </div> <!-- end card-->
+        </div> <!-- end col -->
     </div>
 
     <script>

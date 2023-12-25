@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Stock;
 use App\Models\Menu;
 use App\Models\Category;
+use App\Models\Order;
 
 class StockController extends Controller
 {
@@ -17,6 +18,15 @@ class StockController extends Controller
         // $stocks = Stock::paginate(10);
         // $stocksCount = Stock::count();
         // return view('components.admin.stocks.index', compact('stocks', 'stocksCount'));
+
+        $approvedOrders = Order::where('status', 'approved')->get();
+
+        $ordersByDayAndName = $approvedOrders->groupBy(function ($order) {
+            return $order->created_at->format('m-d-Y');
+        })->map(function ($ordersByDay) {
+            return $ordersByDay->groupBy('menu');
+        });
+
         $menus = Menu::all();
         $categories = Category::all();
         $availableCount = Menu::where('status', 1)->count();
@@ -30,25 +40,27 @@ class StockController extends Controller
         $productQtyMax = $menus->max('quantity');
         $productHighQty = $menus->where('quantity', $productQtyMax)->first();
 
+        
         return view('components.admin.stocks.index', 
             compact('menus', 
             'categories', 
-            'availableCount', 
+            'availableCount',
             'draftCount', 
             'productQtyMin', 
             'productQtyMax', 
             'productLowQty',
             'productHighQty',
             'outOfStocks',
-            'availableStocks'
+            'availableStocks',
+            'ordersByDayAndName'
         ));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
+    public function create() {
+        
         return view('components.admin.stocks.create');
     }
 
@@ -70,18 +82,11 @@ class StockController extends Controller
                 ->route('stocks.index')
                 ->with('success', 'Item has been added');
         } catch (\Exception $e) {
+
             return redirect()
                 ->route('stocks.index')
                 ->with('error', 'Something went wrong!');
         }
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
     }
 
     /**
