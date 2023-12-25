@@ -22,19 +22,19 @@ class CustomerReservationController extends Controller {
      */
     public function store(Request $request)
     {
-        
-           
             $validatedData = $request->validate([
-                'firstname'         => 'required',
-                'lastname'          => 'required',
-                'phone'             => 'required',
-                'email'             => 'required|unique:reservations,table',
-                'table'             => 'required|unique:reservations,table',
-                'special_request'   => '',
-                'reservation_date'  => 'required',
-                'reservation_time'  => 'required|unique:reservations,time',
+                'firstname'         =>  'required',
+                'lastname'          =>  'required',
+                'phone'             =>  'required',
+                'email'             =>  'required|unique:reservations,email',
+                'table'             =>  'required',
+                'special_request'   =>  '',
+                'reservation_date'  =>  'required',
+                'time_from'         =>  'required|unique:reservations,time_from',
+                'time_to'           =>  'required|unique_time_range|unique:reservations,time_to',
             ]);
-// try {
+
+            // try {
             $reservation = new Reservation;
 
             $reservation->firstname         =   $validatedData['firstname'];
@@ -44,16 +44,18 @@ class CustomerReservationController extends Controller {
             $reservation->table             =   $validatedData['table'];
             $reservation->special_request   =   $validatedData['special_request'];
             $reservation->reservation_date  =   $validatedData['reservation_date'];
-            $reservation->time              =   $validatedData['reservation_time'];
+            $reservation->time_from         =   $validatedData['time_from'];
+            $reservation->time_to           =   $validatedData['time_to'];
+
             $reservation->status            =   'pending';
             $reservation->save();
 
             return redirect()->route('reserve.complete');
 
-        // } catch (\Exception $e) {   
-        //     \Log::error('Validation failed: ' . $e->getMessage());
-        //     return redirect()->route('reserve.create');
-        // }
+            // } catch (\Exception $e) {   
+            //     \Log::error('Validation failed: ' . $e->getMessage());
+            //     return redirect()->route('reserve.create');
+            // }
     }
 
     /**

@@ -17,7 +17,8 @@ class Reservation extends Model
         'email',
         'table',
         'special_request',
-        'reservation_date',
+        'time_from',
+        'time_to',
         'status',
         'time'
     ];

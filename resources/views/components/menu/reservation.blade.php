@@ -56,6 +56,10 @@
                                 <input value="{{ old('email') }}" name="email" type="email" class="form-control"
                                     id="phone" placeholder="Enter email">
                             </div>
+                            <div class="mb-3">
+                                <label class="form-label">Special Request</label>
+                                <textarea class="form-control" name="special_request" rows="3" placeholder="Please enter comment"></textarea>
+                            </div>
                     </div>
                 </div>
             </div>
@@ -63,10 +67,7 @@
             <div class="col-lg-6">
                 <div class="card">
                     <div class="card-body">
-                        <div class="mb-3">
-                            <label class="form-label">Special Request</label>
-                            <textarea class="form-control" name="special_request" rows="3" placeholder="Please enter comment"></textarea>
-                        </div>
+
 
                         <div class="mb-3">
                             <label class="form-label">Reservation Date</label>
@@ -74,9 +75,14 @@
                                 class="form-control" id="reservation_date" required>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Reservation Time</label>
-                            <input value="{{ old('reservation_time') }}" name="reservation_time" type="time"
-                                class="form-control" id="reservation_time" required>
+                            <label class="form-label">Start Time</label>
+                            <input value="{{ old('time_from') }}" name="time_from" type="time" class="form-control"
+                                id="time_from" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">End Time</label>
+                            <input value="{{ old('time_to') }}" name="time_to" type="time" class="form-control"
+                                id="time_to" required>
                         </div>
                         <div class="mb-3">
                             <label for="product-category" class="form-label">Assign Table <span
@@ -94,7 +100,8 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="text-center mb-3 mt-5">
-                            <a href="{{ route('customer.index') }}" class="btn w-sm btn-light waves-effect">Cancel</a>
+                            <a href="{{ route('customer.index') }}"
+                                class="btn w-sm btn-light waves-effect">Cancel</a>
                             <input type="submit" class="btn w-sm btn-success waves-effect waves-light"
                                 value="Submit" />
                             {{-- <button type="button" class="btn w-sm btn-danger waves-effect waves-light">Delete</button> --}}
