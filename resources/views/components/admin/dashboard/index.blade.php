@@ -31,25 +31,6 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-6">
-                            <div class="avatar-sm bg-success rounded shadow-lg">
-                                <i class="fe-shopping-cart avatar-title font-22 text-white"></i>
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="text-end">
-                                <h5 class="text-dark my-1"><span data-plugin="counterup">{{ $menuCount }}</span></h5>
-                                <a href="{{ route('menu.index') }}" class="text-muted mb-1 text-truncate">Products</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> <!-- end card-->
-        </div> <!-- end col -->
-        <div class="col-md-6 col-xl-3">
-            <div class="card">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-6">
                             <div class="avatar-sm bg-warning rounded shadow-lg">
                                 <i class="fe-bar-chart-2 avatar-title font-22 text-white"></i>
                             </div>
@@ -66,7 +47,7 @@
             </div> <!-- end card-->
         </div> <!-- end col -->
 
-        <div class="col-md-6 col-xl-3"> 
+        <div class="col-md-6 col-xl-3">
             <div class="card">
                 <div class="card-body">
                     <div class="row">
@@ -77,8 +58,28 @@
                         </div>
                         <div class="col-6">
                             <div class="text-end">
-                                <h5 class="text-dark my-1"><span data-plugin="counterup">{{ $stocks }}</span></h5>
-                                <a href="{{ route('stocks.index') }}" class="text-muted mb-1 text-truncate">Stocks</a>
+                                <h5 class="text-dark my-1"><span data-plugin="counterup">127836</span></h5>
+                                <a href="{{ route('reports.orders') }}" class="text-muted mb-1 text-truncate">Orders</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- end card-->
+        </div> <!-- end col -->
+
+        <div class="col-md-6 col-xl-3">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="avatar-sm bg-success rounded shadow-lg">
+                                <i class="fe-shopping-cart avatar-title font-22 text-white"></i>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="text-end">
+                                <h5 class="text-dark my-1"><span data-plugin="counterup">{{ $menuCount }}</span></h5>
+                                <a href="{{ route('menu.index') }}" class="text-muted mb-1 text-truncate">Products</a>
                             </div>
                         </div>
                     </div>
@@ -87,25 +88,26 @@
         </div> <!-- end col -->
     </div>
 
+
     {{-- <x-admin.dashboard.dashboard-analytics /> --}}
 
     <div class="row">
-            {{-- <x-admin.dashboard.card-map /> --}}
-            <div class="container">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="card-widgets">
-                            <a href="javascript: void(0);" data-toggle="reload"><i class="mdi mdi-refresh"></i></a>
-                            <a data-bs-toggle="collapse" href="#cardCollpase5" role="button" aria-expanded="false"
-                                aria-controls="cardCollpase5"><i class="mdi mdi-minus"></i></a>
-                            <a href="javascript: void(0);" data-toggle="remove"><i class="mdi mdi-close"></i></a>
-                        </div>
-                        <h4 class="header-title mb-0">Sales Analytics</h4>
-                        <div id="chart"></div>
-                    </div> <!-- collapsed end -->
-                </div> <!-- end card-body -->
-            </div> <!-- end card-->
-        </div> <!-- end col -->
+        {{-- <x-admin.dashboard.card-map /> --}}
+        <div class="container">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-widgets">
+                        <a href="javascript: void(0);" data-toggle="reload"><i class="mdi mdi-refresh"></i></a>
+                        <a data-bs-toggle="collapse" href="#cardCollpase5" role="button" aria-expanded="false"
+                            aria-controls="cardCollpase5"><i class="mdi mdi-minus"></i></a>
+                        <a href="javascript: void(0);" data-toggle="remove"><i class="mdi mdi-close"></i></a>
+                    </div>
+                    <h4 class="header-title mb-0">Sales Analytics</h4>
+                    <div id="chart"></div>
+                </div> <!-- collapsed end -->
+            </div> <!-- end card-body -->
+        </div> <!-- end card-->
+    </div> <!-- end col -->
     </div>
 
     <script>

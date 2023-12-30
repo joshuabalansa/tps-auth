@@ -7,6 +7,7 @@ use App\Models\Stock;
 use App\Models\Menu;
 use App\Models\Category;
 use App\Models\Order;
+use Carbon\Carbon;
 
 class StockController extends Controller
 {
@@ -19,6 +20,9 @@ class StockController extends Controller
         // $stocksCount = Stock::count();
         // return view('components.admin.stocks.index', compact('stocks', 'stocksCount'));
 
+        $firstDatOfMonth = Carbon::now()->firstOfMonth();
+        $lastDayOfMonth  =  Carbon::now()->lastOfMonth();
+
         $approvedOrders = Order::where('status', 'approved')->get();
 
         $ordersByDayAndName = $approvedOrders->groupBy(function ($order) {
@@ -26,6 +30,16 @@ class StockController extends Controller
         })->map(function ($ordersByDay) {
             return $ordersByDay->groupBy('menu');
         });
+
+        $approvedOrdersThisMonth = Order::where('status', 'approved')->whereBetween('created_at', [$firstDatOfMonth, $lastDayOfMonth])->get();
+
+        $ordersByDayAndNameThisMonth = $approvedOrdersThisMonth->groupBy(function ($order) {
+            return $order->created_at->format('m-d-Y');
+        })->map(function ($ordersByDay) {
+            return $ordersByDay->groupBy('menu');
+        });
+
+        // dd($ordersByDayAndNameThisMonth);
 
         $menus = Menu::all();
         $categories = Category::all();
@@ -52,7 +66,8 @@ class StockController extends Controller
             'productHighQty',
             'outOfStocks',
             'availableStocks',
-            'ordersByDayAndName'
+            'ordersByDayAndName',
+            'ordersByDayAndNameThisMonth'
         ));
     }
 

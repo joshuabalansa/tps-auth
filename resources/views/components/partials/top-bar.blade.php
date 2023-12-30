@@ -1,4 +1,4 @@
-<div class="navbar-custom">
+<div class="navbar-custom bg-dark">
     <div class="container-fluid">
         <ul class="list-unstyled topnav-menu float-end mb-0">
 
@@ -6,11 +6,11 @@
                 <form class="app-search">
                     <div class="app-search-box dropdown">
                         {{-- <div class="input-group">
-<input type="search" class="form-control" placeholder="Search..." id="top-search">
-<button class="btn input-group-text" type="submit">
-<i class="fe-search"></i>
-</button>
-</div> --}}
+                        <input type="search" class="form-control" placeholder="Search..." id="top-search">
+                        <button class="btn input-group-text" type="submit">
+                        <i class="fe-search"></i>
+                        </button>
+                        </div> --}}
                         <div class="dropdown-menu dropdown-lg" id="search-dropdown">
                             <!-- item-->
                             <div class="dropdown-header noti-title">
@@ -401,6 +401,10 @@ View all
                     <a href="{{ route('staff.create') }}" class="dropdown-item">
                         {{-- <i class="fe-headphones me-1"></i> --}}
                         <span>Staff</span>
+                    </a>
+                    <a href="{{ route('table.index') }}" class="dropdown-item">
+                        {{-- <i class="fe-headphones me-1"></i> --}}
+                        <span>Table</span>
                     </a>
                     <a href="{{ route('reservation.create') }}" class="dropdown-item">
                         {{-- <i class="fe-headphones me-1"></i> --}}

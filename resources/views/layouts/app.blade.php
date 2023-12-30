@@ -12,6 +12,8 @@
     <!-- App favicon -->
 
     <!-- third party css -->
+    <link href="{{ asset('assets/libs/bootstrap-table/bootstrap-table.min.css') }}" rel="stylesheet" type="text/css" />
+
     <link href="{{ asset('assets/libs/datatables.net-bs5/css/dataTables.bootstrap5.min.css') }}" rel="stylesheet"
         type="text/css" />
     <link href="{{ asset('assets/libs/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css') }}"
@@ -153,7 +155,9 @@
     <script src="{{ asset('assets/libs/datatables.net-select/js/dataTables.select.min.js') }}"></script>
     <script src="{{ asset('assets/libs/pdfmake/build/pdfmake.min.js') }}"></script>
     <script src="{{ asset('assets/libs/pdfmake/build/vfs_fonts.js') }}"></script>
-    <!-- third party js ends -->
+
+    <script src="{{ asset('assets/libs/bootstrap-table/bootstrap-table.min.js') }}"></script>
+    <script src="{{ asset('assets/js/pages/bootstrap-tables.init.js') }}"></script>
 
     <!-- Datatables init -->
     <script src="{{ asset('assets/js/pages/datatables.init.js') }}"></script>

@@ -96,7 +96,7 @@
                             aria-controls="cardCollpase5"><i class="mdi mdi-minus"></i></a>
                         <a href="javascript: void(0);" data-toggle="remove"><i class="mdi mdi-close"></i></a>
                     </div>
-                    <h4 class="header-title mb-0">Product Analytics</h4>
+                    <h4 class="header-title mb-0">Number of orders</h4>
                     <div id="chart"></div>
                 </div> <!-- collapsed end -->
             </div> <!-- end card-body -->
@@ -106,10 +106,10 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <a href="{{ route('stocks.create') }}" class="btn btn-sm btn-blue waves-effect waves-light float-end">
+                {{-- <a href="{{ route('stocks.create') }}" class="btn btn-sm btn-blue waves-effect waves-light float-end">
                     <i class="mdi mdi-plus-circle"></i> Add Product
-                </a>
-                <h4 class="header-title mb-4">Inventory Tracking</h4>
+                </a> --}}
+                <h4 class="header-title mb-4">Products</h4>
                 <div class="table-responsive">
                     <table class="table table-hover m-0 table-centered dt-responsive nowrap w-100" id="tickets-table">
                         <thead>
@@ -122,8 +122,6 @@
                                 <th>Category</th>
                                 {{-- <th>Price</th> --}}
                                 <th>Quantity Start</th>
-                                <th>Quantity Sold</th>
-                                <th>Quantity End</th>
                                 <th>Product Price</th>
                                 <th>Cost</th>
                                 <th>Date</th>
@@ -145,19 +143,11 @@
                                             </td> --}}
 
                                     <td>
-                                        @foreach ($menu->getCategory() as $category)
-                                            {{ $category['category'] }}
-                                        @endforeach
+                                        {{ $menu->getCategory()->pluck('category')->implode('') }}
                                     </td>
 
                                     <td>
                                         {{ $menu->getQuantity() }}
-                                    </td>
-                                    <td>
-                                        0
-                                    </td>
-                                    <td>
-                                        0
                                     </td>
                                     <td>
                                         0
@@ -186,16 +176,16 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <h4 class="header-title">Product Orders</h4>
+                <h4 class="header-title">Product Sold</h4>
                 <p class="text-muted font-13 mb-4">
-                    Shows the number of products ordered
+                    Display the quantity of items ordered.
                 </p>
 
                 <table id="basic-datatable" class="table dt-responsive nowrap w-100">
                     <thead>
                         <tr>
                             <th>Product</th>
-                            <th>Num. of Orders</th>
+                            <th>Order Quantity</th>
                             <th>Date</th>
                         </tr>
                     </thead>
@@ -216,10 +206,65 @@
             </div>
         </div>
     </div>
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <h4 class="header-title">Products in Stock</h4>
+                <p class="text-muted font-13 mb-4">
+                    Display the available products
+                </p>
+
+                <table id="selection-datatable" class="table dt-responsive nowrap w-100">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            {{-- <th>Description</th> --}}
+                            {{-- <th>Category</th> --}}
+                            {{-- <th>Price</th> --}}
+                            <th>In Stock</th>
+                            <th>Status</th>
+                            {{-- <th class="hidden-sm">Action</th> --}}
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach ($menus as $menu)
+                            <tr>
+                                <td>
+                                    {{ $menu->getName() }}
+                                </td>
+                                {{-- 
+                                        <td>
+                                            {{ $menu->getDescription() }}
+                                        </td> --}}
+
+                                {{-- <td>
+                                    {{ $menu->getCategory()->pluck('category')->implode('') }}
+
+                                </td> --}}
+
+                                <td>
+                                    {{ $menu->getQuantity() }}
+                                </td>
+                                <td>
+                                    <span
+                                        class="badge bg-{{ $menu->getStatus() == 'Available' ? 'success' : ($menu->getStatus() == 'Draft' ? 'warning' : 'danger') }}">
+                                        {{ $menu->getStatus('status') }}
+                                    </span>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+
+            </div> <!-- end card body-->
+        </div> <!-- end card -->
+    </div><!-- end col-->
     </div>
     <script>
         // Get the data from the Blade template
-        let ordersByDayAndName = {!! json_encode($ordersByDayAndName) !!};
+        let ordersByDayAndName = {!! json_encode($ordersByDayAndNameThisMonth) !!};
 
         // Process the data to get the data for each product
         let seriesData = Object.keys(ordersByDayAndName).map(date => {
@@ -228,8 +273,9 @@
 
             for (let name in ordersByName) {
                 dataForDate.push({
-                    x: name,
-                    y: ordersByName[name].length
+                    x: `${name} | ${date}`, // Combine product name and date
+                    y: ordersByName[name].length,
+                    date: date // Add date information
                 });
             }
 
@@ -245,7 +291,7 @@
                 acc.push({
                     x: item.x,
                     y: item.y,
-                    date: curr.x
+                    date: item.date
                 });
             });
             return acc;
@@ -279,7 +325,7 @@
             xaxis: {
                 categories: flattenedData.map(item => item.x),
                 title: {
-                    text: 'Product Name'
+                    text: 'Product Name and Date'
                 }
             },
             yaxis: {
@@ -306,6 +352,7 @@
 
         chart.render();
     </script>
+
 
 
     {{--     
