@@ -62,7 +62,9 @@ class Menu extends Model
      * 
      * @return float
      */
-
+    public function getPrice() {
+        return $this->price;
+    }
 
     /**
      * @return float
