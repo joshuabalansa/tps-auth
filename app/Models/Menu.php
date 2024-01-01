@@ -62,10 +62,16 @@ class Menu extends Model
      * 
      * @return float
      */
-    public function getPrice() {
-        return $this->price;
-    }
 
+
+    /**
+     * @return float
+     */
+    public function getCostAndPrice($field) {
+
+      $formattedField = '₱' . number_format($field === 'price' ? $this->price : $this->cost, 2);
+      return $formattedField;
+    }
 
     /**
      * return the status of the product

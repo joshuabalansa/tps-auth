@@ -96,7 +96,7 @@
                             aria-controls="cardCollpase5"><i class="mdi mdi-minus"></i></a>
                         <a href="javascript: void(0);" data-toggle="remove"><i class="mdi mdi-close"></i></a>
                     </div>
-                    <h4 class="header-title mb-0">Number of orders</h4>
+                    <h4 class="header-title mb-0">Orders Chart</h4>
                     <div id="chart"></div>
                 </div> <!-- collapsed end -->
             </div> <!-- end card-body -->
@@ -150,10 +150,10 @@
                                         {{ $menu->getQuantity() }}
                                     </td>
                                     <td>
-                                        0
+                                        {{ $menu->getCostAndPrice('price') }}
                                     </td>
                                     <td>
-                                        {{ $menu->cost }}
+                                        {{ $menu->getCostAndPrice('cost') }}
                                     </td>
                                     <td>
                                         {{ $menu->purchase_date }}
