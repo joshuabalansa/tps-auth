@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('category');
             $table->float('price');
             $table->string('status');
+            $table->string('quantity_start');
             $table->string('quantity');
             $table->string('cost');
             $table->date('purchase_date');

@@ -74,11 +74,28 @@
                         </ul>
                     </div>
                 </li>
-                <li>
+                {{-- <li>
                     <a href="{{ route('stocks.index') }}">
                         <i class="mdi mdi-dropbox"></i>
                         <span> Inventory </span>
                     </a>
+                </li> --}}
+                <li>
+                    <a href="#inventory" data-bs-toggle="collapse">
+                        <i class="fas fa-chart-bar"></i>
+                        <span> Inventory </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="inventory">
+                        <ul class="nav-second-level">
+                            <li>
+                                <a href="{{ route('stocks.index') }}">Inventory</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)">Stock In</a>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
 
                 <li>

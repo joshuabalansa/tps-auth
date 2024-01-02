@@ -23,6 +23,7 @@ class Menu extends Model
         'status',
         'cost',
         'purchase_date',
+        'quantity_start',
         'quantity'
     ];
 

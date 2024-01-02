@@ -83,12 +83,15 @@ class Reservation extends Model
      */
     public function getReservationTime() {
 
-      $time = Carbon::createFromFormat('H:i:s', $this->time);
-
-      $formattedTime = $time->format('h:i:s A');
-
-      return $formattedTime;
+        try {
+            $time = Carbon::createFromFormat('H:i:s', $this->time);
+            $formattedTime = $time->format('h:i:s A');
+            return $formattedTime;
+        } catch (\Exception $e) {
+            return 'Error formatting time';
+        }
     }
+    
     /**
      * return status function default = pending
      *

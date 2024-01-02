@@ -77,7 +77,8 @@ class MenuController extends Controller
             $menu->category     =   $validatedData['category'];
             $menu->price        =   $validatedData['price'];
             $menu->status       =   $validatedData['status'];
-            $menu->quantity     =   $validatedData['quantity'];
+            $menu->quantity_start   =   $validatedData['quantity'];
+            $menu->quantity         =   $validatedData['quantity'];
             $menu->cost             =   $validatedData['cost'];
             $menu->purchase_date    =   $validatedData['purchase_date'];
             $menu->image            =   $validatedData['image'];
