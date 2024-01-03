@@ -52,6 +52,7 @@ Route::prefix('admin')->group(function() {
         Route::get('edit/{menu}',        [MenuController::class, 'edit'])->name('menu.edit')->middleware('admin');
         Route::put('update/{menu}',      [MenuController::class, 'update'])->name('menu.update')->middleware('admin');
         Route::get('destroy/{menu}',     [MenuController::class, 'destroy'])->name('menu.destroy')->middleware('admin');
+        Route::post('stockin/{menu}',     [MenuController::class, 'addStock'])->name('menu.stock.in')->middleware('admin');
     });
     
     // Category Controller - admin/category

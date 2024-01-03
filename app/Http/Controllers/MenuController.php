@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Menu;
 use App\Models\Category;
+use App\Models\StockIn;
 
 class MenuController extends Controller
 {
@@ -141,5 +142,37 @@ class MenuController extends Controller
             
             return redirect()->route('menu.index')->with('error', 'Opps! Something went wrong');
         }
+    }
+
+    /**
+     * This function will add/update the quantity to the products
+     *
+     * @param Illuminate\Http\Request $Request 
+     * @param int $menuId
+     * @return void
+     */
+    public function addStock(Request $request, $menuId) {
+
+        $products = Menu::where(['id' => $menuId])->get();
+
+        $stockIn = new StockIn;
+
+        try {
+            foreach($products as $product) {
+
+                $stockIn->stock_id   =   isset($product->id)         ?   $product->id        :   0;
+                $stockIn->product    =   isset($product->name)       ?   $product->name      :   '';
+                $stockIn->category   =   isset($product->category)   ?   $product->category  :   '';
+                $stockIn->quantity   =   isset($request->quantity)   ?   $request->quantity  :   0;
+     
+                $stockIn->save();
+     
+                $product->update(['quantity' => $product->quantity + $request->quantity]);
+             }     
+        } catch(\Exception $e) {
+            return redirect()->back()->with('error', 'Opps! Something went wrong, Please try again');
+        }
+       
+        return redirect()->back()->with('success', 'Product Quantity updated successfully');
     }
 }

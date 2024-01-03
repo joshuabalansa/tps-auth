@@ -156,6 +156,10 @@
                                                     data-bs-toggle="dropdown" aria-expanded="false"><i
                                                         class="mdi mdi-dots-horizontal"></i></a>
                                                 <div class="dropdown-menu dropdown-menu-end">
+                                                    <a class="dropdown-item" href="javascript:void(0)"
+                                                        data-bs-toggle="modal" data-bs-target="#stockInModal"><i
+                                                            class="mdi mdi-dropbox me-2 text-muted font-18 vertical-middle"></i>Add
+                                                        Stock</a>
                                                     <a class="dropdown-item" href="{{ route('menu.edit', $menu->id) }}"><i
                                                             class="mdi mdi-pencil me-2 text-muted font-18 vertical-middle"></i>Edit</a>
                                                     <a class="dropdown-item"
@@ -173,5 +177,38 @@
             </div>
         </div><!-- end col -->
     </div>
-    <!-- end row -->
+
+    <div class="modal fade" id="stockInModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Add Stock</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('menu.stock.in', $menu->id) }}" method="POST">
+                        @csrf
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">Quantity:</label>
+                            <input type="number" class="form-control" name="quantity" id="numericInput">
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Add<buton>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('numericInput').addEventListener('input', function(event) {
+
+            let inputValue = event.target.value;
+            let numericValue = inputValue.replace(/[^0-9]/g, '');
+            event.target.value = numericValue;
+
+        });
+    </script>
 @endsection
