@@ -26,6 +26,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\TableController;
 use App\Http\Controllers\ManageUserController;
 use App\Http\Controllers\CustomerReservationController;
+use App\Http\Controllers\RestockController;
 
 // View Dashboard
 Route::get('/', function () {
@@ -52,8 +53,9 @@ Route::prefix('admin')->group(function() {
         Route::get('edit/{menu}',        [MenuController::class, 'edit'])->name('menu.edit')->middleware('admin');
         Route::put('update/{menu}',      [MenuController::class, 'update'])->name('menu.update')->middleware('admin');
         Route::get('destroy/{menu}',     [MenuController::class, 'destroy'])->name('menu.destroy')->middleware('admin');
-        Route::post('stockin/{menu}',     [MenuController::class, 'addStock'])->name('menu.stock.in')->middleware('admin');
+        Route::post('stockin/{menu}',    [MenuController::class, 'addStock'])->name('menu.stock.in')->middleware('admin');
     });
+    
     
     // Category Controller - admin/category
     Route::prefix('category')->group(function() {
@@ -86,7 +88,9 @@ Route::prefix('admin')->group(function() {
         Route::put('update/{stock}',    [StockController::class, 'update'])->name('stocks.update')->middleware('admin');
         Route::get('destroy/{stock}',   [StockController::class, 'destroy'])->name('stocks.destroy')->middleware('admin');
     });
-
+    
+    Route::get('restock',           [RestockController::class, 'index'])->name('restock.index')->middleware('admin');
+    
     //Staff routes - admin/staff
     Route::prefix('staff')->group(function() {
         Route::get('/',                 [StaffController::class, 'index'])->name('staff.index')->middleware('admin');

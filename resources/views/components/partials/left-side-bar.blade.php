@@ -92,7 +92,7 @@
                                 <a href="{{ route('stocks.index') }}">Inventory</a>
                             </li>
                             <li>
-                                <a href="javascript:void(0)">Stock In</a>
+                                <a href="{{ route('restock.index') }}">Stock In</a>
                             </li>
                         </ul>
                     </div>

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Category;
 
 class StockIn extends Model {
    
@@ -12,4 +13,15 @@ class StockIn extends Model {
         'category',
         'quantity',
     ];
+
+    public function getCategory() {
+        
+        $category = Category::where('category_id', $this->category)->get();
+
+        $categoryArray = $category->pluck('category')->toArray();
+
+        $categoryString = implode(', ', $categoryArray);
+        
+        return $categoryString;
+    }
 }
