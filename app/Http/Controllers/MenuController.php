@@ -152,27 +152,32 @@ class MenuController extends Controller
      * @return void
      */
     public function addStock(Request $request, $menuId) {
-
         $products = Menu::where(['id' => $menuId])->get();
-
+    
         $stockIn = new StockIn;
-
+    
         try {
-            foreach($products as $product) {
-
-                $stockIn->stock_id   =   isset($product->id)         ?   $product->id        :   0;
-                $stockIn->product    =   isset($product->name)       ?   $product->name      :   '';
-                $stockIn->category   =   isset($product->category)   ?   $product->category  :   '';
-                $stockIn->quantity   =   isset($request->quantity)   ?   $request->quantity  :   0;
-     
+            foreach ($products as $product) {
+                $stockIn->stock_id   = isset($product->id)         ? $product->id        : 0;
+                $stockIn->product    = isset($product->name)       ? $product->name      : '';
+                $stockIn->category   = isset($product->category)   ? $product->category  : '';
+                $stockIn->quantity   = isset($request->quantity)   ? $request->quantity  : 0;
+    
+                // Update $product values outside the loop
+                $product->quantity += $request->quantity;
+                $product->status = 1;
+    
+                // Save $product changes
+                $product->save();
+    
+                // Save $stockIn object
                 $stockIn->save();
-     
-                $product->update(['quantity' => $product->quantity + $request->quantity]);
-             }     
-        } catch(\Exception $e) {
+            }
+        } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Opps! Something went wrong, Please try again');
         }
-       
+    
         return redirect()->back()->with('success', 'Product Quantity updated successfully');
     }
+    
 }

@@ -157,7 +157,8 @@
                                                         class="mdi mdi-dots-horizontal"></i></a>
                                                 <div class="dropdown-menu dropdown-menu-end">
                                                     <a class="dropdown-item" href="javascript:void(0)"
-                                                        data-bs-toggle="modal" data-bs-target="#stockInModal"><i
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#stockInModal{{ $menu->id }}"><i
                                                             class="mdi mdi-dropbox me-2 text-muted font-18 vertical-middle"></i>Add
                                                         Stock</a>
                                                     <a class="dropdown-item" href="{{ route('menu.edit', $menu->id) }}"><i
@@ -166,9 +167,38 @@
                                                         href="{{ route('menu.destroy', $menu->id) }}"><i
                                                             class="mdi mdi-delete me-2 text-muted font-18 vertical-middle"></i>Remove</a>
                                                 </div>
-                                            </div>
+                                            </div>  
                                         </td>
                                     </tr>
+
+                                    <div class="modal fade" id="stockInModal{{ $menu->id }}" tabindex="-1"
+                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Add Stock</h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form action="{{ route('menu.stock.in', $menu->id) }}" method="POST">
+                                                        @csrf
+                                                        <div class="mb-3">
+                                                            <label for="recipient-name"
+                                                                class="col-form-label">Quantity:</label>
+                                                            <input type="number" class="form-control" name="quantity"
+                                                                id="numericInput">
+                                                        </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn btn-primary">Add<buton>
+                                                </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
                                 @endforeach
                             </tbody>
                         </table>
@@ -176,30 +206,6 @@
                 </div>
             </div>
         </div><!-- end col -->
-    </div>
-
-    <div class="modal fade" id="stockInModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Add Stock</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form action="{{ route('menu.stock.in', $menu->id) }}" method="POST">
-                        @csrf
-                        <div class="mb-3">
-                            <label for="recipient-name" class="col-form-label">Quantity:</label>
-                            <input type="number" class="form-control" name="quantity" id="numericInput">
-                        </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Add<buton>
-                </div>
-                </form>
-            </div>
-        </div>
     </div>
 
     <script>

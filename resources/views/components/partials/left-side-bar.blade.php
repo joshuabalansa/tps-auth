@@ -99,13 +99,6 @@
                 </li>
 
                 <li>
-                    <a href="{{ route('reports.orders') }}">
-                        <i class="fas fa-credit-card"></i>
-                        <span> Order History </span>
-                    </a>
-                </li>
-
-                <li>
                     <a href="#payments" data-bs-toggle="collapse">
                         <i class="fas fa-chart-bar"></i>
                         <span> Reports </span>
@@ -121,6 +114,11 @@
                             </li>
                             <li>
                                 <a href="{{ route('yearly.reports') }}">Yearly Income</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('reports.orders') }}">
+                                    <span> Order History </span>
+                                </a>
                             </li>
                         </ul>
                     </div>

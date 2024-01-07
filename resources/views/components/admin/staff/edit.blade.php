@@ -87,6 +87,7 @@
                         <option value="3" {{ ($staff->getRole() == 'Staff') ? 'selected' : '' }}>Staff</option>
                     </select> 
                 </div>
+                
 
                 <div class="row">
                     <div class="col-12">

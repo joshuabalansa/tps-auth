@@ -84,11 +84,17 @@ class Reservation extends Model
     public function getReservationTime() {
 
         try {
-            $time = Carbon::createFromFormat('H:i:s', $this->time);
-            $formattedTime = $time->format('h:i:s A');
-            return $formattedTime;
+            $timeFrom = Carbon::createFromFormat('H:i:s', $this->time_from);
+            $formattedTimeFrom = $timeFrom->format('h:i:s A');
+
+            $timeTo = Carbon::createFromFormat('H:i:s', $this->time_to);
+            $formattedTimeTo = $timeTo->format('h:i:s A');
+
+            $time = $formattedTimeFrom . ' - ' . $formattedTimeTo;
+
+            return $time;
         } catch (\Exception $e) {
-            return 'Error formatting time';
+            return 'Error Time';
         }
     }
     
