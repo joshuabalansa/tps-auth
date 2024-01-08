@@ -108,6 +108,26 @@ class Reservation extends Model
         return $this->status;
     }
 
+    public function getTime($field) {
+
+        try {
+
+            if($field === 'from') {
+
+                $time = Carbon::parse($this->time_from);
+                $formattedTimeFrom = $time->format('h:i A');
+                return $formattedTimeFrom;
+            } else {
+
+                $time = Carbon::parse($this->time_to);
+                $formattedTimeTo = $time->format('h:i A');
+                return $formattedTimeTo;
+            }
+        } catch(\Exception $e) {
+            echo 'Error Time';
+        }
+    }
+
     // public function setTimeAttribute($value)
     // {
     //     $this->attributes['time'] = Carbon::createFromFormat('H:i:s', $value)->format('h:i:s A');

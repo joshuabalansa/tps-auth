@@ -103,6 +103,7 @@
                                     <th>Email</th>
                                     <th>Table</th>
                                     <th>Reservation Date</th>
+                                     <th>Time</th>
                                     <th class="hidden-sm">Action</th>
                                 </tr>
                             </thead>
@@ -127,6 +128,9 @@
                                         </td>
                                         <td>
                                             {{ $reservation->getReservationDate() }}
+                                        </td>
+                                         <td>
+                                            {{ $reservation->getTime('from') . ' - ' . $reservation->getTime('to') }}
                                         </td>
                                         <td>
                                             <span
