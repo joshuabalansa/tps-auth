@@ -85,10 +85,10 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <a href="{{ route('reservation.create') }}"
+                    {{-- <a href="{{ route('reservation.create') }}"
                         class="btn btn-sm btn-blue waves-effect waves-light float-end">
                         <i class="mdi mdi-plus-circle"></i>Add Customer
-                    </a>
+                    </a> --}}
                     <h4 class="header-title mb-4">Customer Reservations</h4>
 
                     <div class="table-responsive">
@@ -100,9 +100,11 @@
                                     </th>
                                     <th>Name</th>
                                     <th>Phone </th>
-                                    <th>Email</th>
+                                    {{-- <th>Email</th> --}}
                                     <th>Table</th>
                                     <th>Reservation Date</th>
+                                    <th>Time</th>
+                                    <th>Status</th>
                                     <th class="hidden-sm">Action</th>
                                 </tr>
                             </thead>
@@ -119,14 +121,17 @@
                                         <td>
                                             {{ $reservation->getPhone() }}
                                         </td>
-                                        <td>
+                                        {{-- <td>
                                             {{ $reservation->getEmail() }}
-                                        </td>
+                                        </td> --}}
                                         <td>
                                             {{ $reservation->table }}
                                         </td>
                                         <td>
                                             {{ $reservation->getReservationDate() }}
+                                        </td>
+                                        <td>
+                                            {{ $reservation->getReservationTime() }}
                                         </td>
                                         <td>
                                             <span

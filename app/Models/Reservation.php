@@ -73,30 +73,34 @@ class Reservation extends Model
      */
     public function getReservationDate() {
 
-        return \Carbon\Carbon::parse($this->reservation_date)->format('F d, Y');
+        return Carbon::parse($this->reservation_date)->format('F d, Y');
     }
 
     /**
      * sets time function
      *
-     * @return string $formattedTime
+     * @return string $time
      */
     public function getReservationTime() {
-
         try {
-            $timeFrom = Carbon::createFromFormat('H:i:s', $this->time_from);
-            $formattedTimeFrom = $timeFrom->format('h:i:s A');
 
-            $timeTo = Carbon::createFromFormat('H:i:s', $this->time_to);
-            $formattedTimeTo = $timeTo->format('h:i:s A');
-
-            $time = $formattedTimeFrom . ' - ' . $formattedTimeTo;
-
+            $currentTime = Carbon::now();
+            $reservationDate = Carbon::parse($this->reservation_date)->format('Y-m-d');
+            $timeFrom = Carbon::createFromFormat('H:i:s', $this->time_from)->format('h:i:s A');
+            $timeTo = Carbon::createFromFormat('H:i:s', $this->time_to)->format('h:i:s A');
+    
+            if ($currentTime > $reservationDate  && $currentTime > $timeTo) {
+                return 'Reservation Ended';
+            }
+    
+            $time = "{$timeFrom} - {$timeTo}";
             return $time;
+    
         } catch (\Exception $e) {
             return 'Error Time';
         }
     }
+    
     
     /**
      * return status function default = pending

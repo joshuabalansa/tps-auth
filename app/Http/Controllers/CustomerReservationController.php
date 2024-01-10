@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Table;
 use App\Models\Reservation;
+use Illuminate\Validation\ValidationException;
+
 
 class CustomerReservationController extends Controller {
 
@@ -20,44 +22,98 @@ class CustomerReservationController extends Controller {
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
+    // public function store(Request $request)
+    // {
+    //         $validatedData = $request->validate([
+    //             'firstname'         =>  'required',
+    //             'lastname'          =>  'required',
+    //             'phone'             =>  'required',
+    //             'email'             =>  'required|unique:reservations,email',
+    //             'table'             =>  'required',
+    //             'special_request'   =>  '',
+    //             'reservation_date'  =>  'required',
+    //             'time_from'         =>  'required|unique:reservations,time_from',
+    //             'time_to'           =>  'required|unique_time_range|unique:reservations,time_to',
+    //         ]);
+
+    //         // try {
+    //         $reservation = new Reservation;
+
+    //         $reservation->firstname         =   $validatedData['firstname'];
+    //         $reservation->lastname          =   $validatedData['lastname'];
+    //         $reservation->phone             =   $validatedData['phone'];
+    //         $reservation->email             =   $validatedData['email'];
+    //         $reservation->table             =   $validatedData['table'];
+    //         $reservation->special_request   =   $validatedData['special_request'];
+    //         $reservation->reservation_date  =   $validatedData['reservation_date'];
+    //         $reservation->time_from         =   $validatedData['time_from'];
+    //         $reservation->time_to           =   $validatedData['time_to'];
+
+    //         $reservation->status            =   'pending';
+    //         $reservation->save();
+
+    //         return redirect()->route('reserve.complete');
+
+    //         // } catch (\Exception $e) {   
+    //         //     \Log::error('Validation failed: ' . $e->getMessage());
+    //         //     return redirect()->route('reserve.create');
+    //         // }
+    // }
+
+    // new function store reservation
+        public function store(Request $request) {
+        try {
             $validatedData = $request->validate([
                 'firstname'         =>  'required',
                 'lastname'          =>  'required',
                 'phone'             =>  'required',
-                'email'             =>  'required|unique:reservations,email',
+                'email'             =>  'required',
                 'table'             =>  'required',
                 'special_request'   =>  '',
                 'reservation_date'  =>  'required',
-                'time_from'         =>  'required|unique:reservations,time_from',
-                'time_to'           =>  'required|unique_time_range|unique:reservations,time_to',
+                'time_from'         =>  'required',
+                'time_to'           =>  'required',
             ]);
 
-            // try {
+            // Check if a reservation with the same date, time range, and table already exists
+            $existingReservation = Reservation::where([
+                'reservation_date' => $validatedData['reservation_date'],
+                'time_from' => $validatedData['time_from'],
+                'time_to' => $validatedData['time_to'],
+                'table' => $validatedData['table'],
+            ])->first();
+            // dd($existingReservation);
+
+            if ($existingReservation) {
+                return redirect()->back()->with(['warning' => 'Reservation with the same date, time range, and table already exists.']);
+            }
+
+            // If no existing reservation found, proceed to save the new reservation
             $reservation = new Reservation;
 
-            $reservation->firstname         =   $validatedData['firstname'];
-            $reservation->lastname          =   $validatedData['lastname'];
-            $reservation->phone             =   $validatedData['phone'];
-            $reservation->email             =   $validatedData['email'];
-            $reservation->table             =   $validatedData['table'];
-            $reservation->special_request   =   $validatedData['special_request'];
-            $reservation->reservation_date  =   $validatedData['reservation_date'];
-            $reservation->time_from         =   $validatedData['time_from'];
-            $reservation->time_to           =   $validatedData['time_to'];
+            $reservation->firstname = $validatedData['firstname'];
+            $reservation->lastname = $validatedData['lastname'];
+            $reservation->phone = $validatedData['phone'];
+            $reservation->email = $validatedData['email'];
+            $reservation->table = $validatedData['table'];
+            $reservation->special_request = $validatedData['special_request'];
+            $reservation->reservation_date = $validatedData['reservation_date'];
+            $reservation->time_from = $validatedData['time_from'];
+            $reservation->time_to = $validatedData['time_to'];
 
-            $reservation->status            =   'pending';
+            $reservation->status = 'pending';
             $reservation->save();
 
             return redirect()->route('reserve.complete');
 
-            // } catch (\Exception $e) {   
-            //     \Log::error('Validation failed: ' . $e->getMessage());
-            //     return redirect()->route('reserve.create');
-            // }
+        } catch (ValidationException $e) {
+            // Handle validation errors
+            return redirect()->route('reserve.create')->withErrors($e->errors())->withInput();
+        } catch (\Exception $e) {
+            \Log::error('Error saving reservation: ' . $e->getMessage());
+            return redirect()->route('reserve.create');
+        }
     }
-
     /**
      * Display the specified resource.
      */
