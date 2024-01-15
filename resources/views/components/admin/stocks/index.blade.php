@@ -195,7 +195,7 @@
                             @foreach ($ordersByName as $name => $orders)
                                 <tr>
                                     <td>{{ $name }}</td>
-                                    <td>{{ $orders->count() }}</td>
+                                    <td>{{ $orders->sum('quantity') }}</td>
                                     <td>{{ \Carbon\Carbon::createFromFormat('m-d-Y', $date)->format('F j, Y') }}
                                     </td>
                                 </tr>
