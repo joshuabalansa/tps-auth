@@ -147,7 +147,7 @@
                                     </td>
 
                                     <td>
-                                        {{ $menu->getQuantity() }}
+                                        {{ $menu->quantity_start }}
                                     </td>
                                     <td>
                                         {{ $menu->getCostAndPrice('price') }}
